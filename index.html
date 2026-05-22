@@ -873,12 +873,11 @@ document.querySelectorAll('button').forEach(btn => {
     <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">6</div><div class="kpi-lbl">Ammesse</div><div class="kpi-sub">1 esclusa — vizio formale</div></div>
     <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">⚠️</div></div><div class="kpi-val" style="font-size:1.2rem">€ 2.233.000</div><div class="kpi-lbl">Soglia Anomalia</div><div class="kpi-sub" style="color:var(--err)">1 offerta sotto soglia</div></div>
     <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🏆</div></div><div class="kpi-val" style="font-size:.95rem;color:var(--purple)">Restauri Antichi</div><div class="kpi-lbl">Prima graduatoria</div><div class="kpi-sub">89,2 / 100 punti</div></div>
-  </div>
-  </div>
+  </div><!-- ✅ chiude kpi-grid — NO </div> extra dopo! -->
   <div class="card mb6">
     <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div class="card-title">Graduatoria Provvisoria</div></div><span class="badge b-amber">⏳ Verifica anomalia in corso</span></div>
     <div class="tw"><table>
-      <thead><tr><th>#</th><th>Concorrente</th><th>P. Tecnico (60)</th><th>P. Economico (40)</th><th>Totale</th><th>Ribasso %</th><th>Anomalia</th><th>Score benficiario</th><th>Stato</th></tr></thead>
+      <thead><tr><th>#</th><th>Concorrente</th><th>P. Tecnico (60)</th><th>P. Economico (40)</th><th>Totale</th><th>Ribasso %</th><th>Anomalia</th><th>Score beneficiario</th><th>Stato</th></tr></thead>
       <tbody>
         <tr class="hr-row"><td>🥇 <strong>1°</strong></td><td><strong>Restauri Antichi Srl</strong></td><td>54,1 / 60</td><td>35,1 / 40</td><td><strong style="color:var(--c600);font-size:.98rem">89,2</strong></td><td>11,8%</td><td><span class="badge b-green">Regolare</span></td><td><span class="badge b-green">🏢 87/100</span></td><td><span class="badge b-green">Ammessa</span></td></tr>
         <tr><td>2°</td><td>Edilizia Storica SpA</td><td>50,3 / 60</td><td>33,8 / 40</td><td><strong>84,1</strong></td><td>9,9%</td><td><span class="badge b-green">Regolare</span></td><td><span class="badge b-green">🏢 91/100</span></td><td><span class="badge b-green">Ammessa</span></td></tr>
@@ -888,7 +887,7 @@ document.querySelectorAll('button').forEach(btn => {
       </tbody>
     </table></div>
     <div class="card-foot"><button class="btn btn-secondary btn-sm">📄 Scarica graduatoria</button><button class="btn btn-danger btn-sm" onclick="toast('Sub-procedimento avviato','warn')">🚨 Avvia sub-proc. anomalia</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="toast('Proposta inviata al RUP','ok')">✅ Proponi aggiudicazione</button></div>
-  </div>
+  </div><!-- chiude card mb6 -->
   <div class="g64">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">📋</div><div class="card-title">Checklist Commissione</div></div><span class="badge b-amber">5/9</span></div><div class="card-body">
       <div class="checklist">
@@ -908,8 +907,8 @@ document.querySelectorAll('button').forEach(btn => {
       <div class="callout info"><span class="ci">💡</span><div class="cb">Restauri Antichi Srl ha score 87/100 e 3 contratti analoghi completati. Profilo solido, aggiudicazione consigliata se giustificazioni KO.</div></div>
       <div class="callout ok"><span class="ci">✅</span><div class="cb">Commissione regolare — Det. 231/2025 · nessun conflitto dichiarato · verbali 3 sedute completi.</div></div>
     </div></div>
-  </div>
-</div>
+  </div><!-- chiude g64 -->
+</div><!-- ✅ CHIUDE page-valutazione -->
 
 <!-- ══════════ DATABASE BENEFICIARI ══════════ -->
 <div class="page" id="page-beneficiari">
