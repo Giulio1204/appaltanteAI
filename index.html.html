@@ -428,6 +428,66 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   </div>
   <div class="tb-acts">
     <div class="tb-ico" onclick="toast('Hai 3 notifiche non lette','warn')">🔔<div class="tb-dot"></div></div>
+	  <div style="position:relative; display:inline-block;">
+  <button id="notif-btn" onclick="toggleNotifiche()" style="
+    background:none; border:none; font-size:1.3rem; cursor:pointer; position:relative;">
+    🔔
+    <span id="notif-badge" style="
+      position:absolute; top:-4px; right:-6px; background:#ef4444; color:white;
+      font-size:0.6rem; border-radius:50%; width:16px; height:16px;
+      display:flex; align-items:center; justify-content:center;">3</span>
+  </button>
+
+  <div id="notif-panel" style="
+    display:none; position:absolute; right:0; top:110%; width:340px;
+    background:white; border:1px solid #e5e7eb; border-radius:12px;
+    box-shadow:0 8px 32px rgba(0,0,0,0.13); z-index:999;">
+    <div style="padding:12px 16px; border-bottom:1px solid #f3f4f6;
+      display:flex; justify-content:space-between; align-items:center;">
+      <strong>🔔 Notifiche</strong>
+      <button onclick="segnaLette()" style="font-size:0.75rem; color:#3b82f6;
+        border:none; background:none; cursor:pointer;">Segna tutte lette</button>
+    </div>
+    <div id="notif-list">
+      <div class="notif-item unread" style="padding:12px 16px;
+        border-bottom:1px solid #f9fafb; background:#eff6ff;">
+        <div style="font-size:0.85rem; font-weight:600;">🚨 DURC scaduto — Ediltech Srl</div>
+        <div style="font-size:0.75rem; color:#6b7280;">Score calato a 51/100 · Bloccare SAL n.3</div>
+        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 09:41</div>
+      </div>
+      <div class="notif-item unread" style="padding:12px 16px;
+        border-bottom:1px solid #f9fafb; background:#eff6ff;">
+        <div style="font-size:0.85rem; font-weight:600;">⚠️ Scadenza — Ospedale Civile</div>
+        <div style="font-size:0.75rem; color:#6b7280;">14 giu · mancano 2 buste su 6</div>
+        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 08:15</div>
+      </div>
+      <div class="notif-item" style="padding:12px 16px;">
+        <div style="font-size:0.85rem;">✅ Analisi IT Tributi completata</div>
+        <div style="font-size:0.75rem; color:#6b7280;">11 operatori · ribasso atteso 7–12%</div>
+        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Ieri, 17:22</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function toggleNotifiche() {
+  const p = document.getElementById('notif-panel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+}
+function segnaLette() {
+  document.querySelectorAll('.notif-item.unread').forEach(el => {
+    el.style.background = 'white';
+    el.classList.remove('unread');
+  });
+  document.getElementById('notif-badge').style.display = 'none';
+}
+document.addEventListener('click', e => {
+  const btn = document.getElementById('notif-btn');
+  if (btn && !btn.contains(e.target))
+    document.getElementById('notif-panel').style.display = 'none';
+});
+</script>
     <div class="tb-ico" onclick="toast('Impostazioni — prossimamente','info')">⚙️</div>
     <button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova Procedura</button>
   </div>
