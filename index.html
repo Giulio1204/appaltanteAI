@@ -1329,96 +1329,39 @@ window.addEventListener('load', () => {
 <!-- ═══ MODAL PROCEDURA ═══ -->
 <div class="modal-overlay" id="proc-modal" onclick="if(event.target===this)closeProcModal()">
   <div class="modal">
-   <div id="dettaglio-modal" style="display:none; position:fixed; inset:0;
-  background:rgba(0,0,0,0.5); z-index:9998;
-  align-items:center; justify-content:center;">
-  <div style="background:white; width:580px; border-radius:16px;
-    box-shadow:0 20px 60px rgba(0,0,0,0.2); padding:28px; position:relative; max-height:90vh; overflow-y:auto;">
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
-      <h3 style="margin:0; font-size:1rem;">📋 Dettaglio Procedura</h3>
-      <button onclick="document.getElementById('dettaglio-modal').style.display='none'"
-        style="border:none; background:none; font-size:1.3rem; cursor:pointer;">✕</button>
+    <div class="modal-hd">
+      <div class="modal-title" id="proc-modal-title">Dettaglio Procedura</div>
+      <button class="modal-close" onclick="closeProcModal()">✕</button>
     </div>
-    <div id="modal-proc-body">— seleziona una procedura —</div>
+    <div class="modal-body" id="proc-modal-body">— seleziona una procedura —</div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeProcModal()">Chiudi</button>
+      <button class="btn btn-secondary btn-sm" onclick="toast('Export avviato','ok')">📥 Esporta</button>
+      <button class="btn btn-primary btn-sm" onclick="nav('valutazione',null)">⚖️ Vai a Valutazione</button>
+    </div>
   </div>
 </div>
-
-<script>
-const procedureDB = {
-  'CIG-2025-0088': { titolo:'🏥 Ospedale Civile Pad. C', normativa:'D.Lgs. 36/23',
-    importo:'€ 4.200.000', scadenza:'14 giu 2025', stato:'⚠️ Ricezione',
-    offerte:6, tipo:'Aperta Ordinaria', fonte:'PNRR M6C2', cup:'H89J25000010001',
-    note:'Verificare ricezione 2 buste mancanti entro scadenza.' },
-  'CIG-2025-0059': { titolo:'🏛️ Mercato Coperto Storico', normativa:'D.Lgs. 36/23',
-    importo:'€ 2.900.000', scadenza:'Scaduta', stato:'⏳ Valutazione',
-    offerte:7, tipo:'Aperta Ordinaria', fonte:'PNRR BC', cup:'F81B24000320006',
-    note:'Verifica anomalia Costruzioni Sud 2020 in corso.' },
-  'CIG-2025-0071': { titolo:'🖥️ IT Tributi Comunali', normativa:'D.Lgs. 50/16',
-    importo:'€ 1.800.000', scadenza:'28 giu 2025', stato:'✅ Pubblicata',
-    offerte:3, tipo:'Accordo Quadro', fonte:'FSC 21-27', cup:'—',
-    note:'11 operatori idonei · ribasso atteso 7–12%.' },
-  'CIG-2025-0038': { titolo:'⚡ Gestione Calore Edifici', normativa:'D.Lgs. 50/16 Sp.',
-    importo:'€ 3.100.000', scadenza:'15 ago 2025', stato:'📨 Inviti inviati',
-    offerte:5, tipo:'Ristretta', fonte:'Bilancio', cup:'—',
-    note:'Settori Speciali — attesa ricezione offerte.' },
-  'CIG-2025-0031': { titolo:'💧 Manutenzione Rete Idrica', normativa:'D.Lgs. 50/16 Sp.',
-    importo:'€ 890.000', scadenza:'20 lug 2025', stato:'📬 Ricezione',
-    offerte:4, tipo:'Negoziata s.b.', fonte:'Bilancio', cup:'—',
-    note:'Settori Speciali — negoziata senza bando.' },
-};
-
-function apriDettaglioProcedura(cig) {
-  const d = procedureDB[cig];
-  if (!d) return;
-  document.getElementById('modal-proc-body').innerHTML = `
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem;">
-      <div><strong>Oggetto</strong><br>${d.titolo}</div>
-      <div><strong>Stato</strong><br>${d.stato}</div>
-      <div><strong>CIG</strong><br><code>${cig}</code></div>
-      <div><strong>CUP</strong><br>${d.cup}</div>
-      <div><strong>Normativa</strong><br>${d.normativa}</div>
-      <div><strong>Tipo procedura</strong><br>${d.tipo}</div>
-      <div><strong>Importo</strong><br>${d.importo}</div>
-      <div><strong>Scadenza</strong><br>${d.scadenza}</div>
-      <div><strong>Offerte ricevute</strong><br>${d.offerte}</div>
-      <div><strong>Fonte</strong><br>${d.fonte}</div>
-    </div>
-    <div style="margin-top:14px; padding:10px 14px; background:#fef9c3;
-      border-radius:8px; font-size:0.82rem;">
-      🤖 <strong>AI Note:</strong> ${d.note}
-    </div>
-    <div style="display:flex; gap:10px; margin-top:14px;">
-      <button style="background:#1d4ed8; color:white; border:none; padding:9px 16px;
-        border-radius:8px; cursor:pointer; font-size:0.82rem;">⚖️ Vai a Valutazione</button>
-      <button style="background:#f3f4f6; color:#374151; border:none; padding:9px 16px;
-        border-radius:8px; cursor:pointer; font-size:0.82rem;">📥 Esporta</button>
-    </div>`;
-  document.getElementById('dettaglio-modal').style.display = 'flex';
-}
-
-// Aggancia tutti i pulsanti → della tabella procedure
-document.querySelectorAll('td').forEach(td => {
-  const m = td.textContent.match(/CIG-2025-\d+/);
-  if (m) td.closest('tr')?.querySelectorAll('button, a').forEach(btn => {
-    if (btn.textContent.includes('→')) {
-      btn.onclick = () => apriDettaglioProcedura(m[0]);
-    }
-  });
-});
-</script>
 
 <!-- ═══ MODAL BENEFICIARIO ═══ -->
 <div class="modal-overlay" id="ben-modal" onclick="if(event.target===this)closeBenModal()">
   <div class="modal" style="max-width:760px">
-    <div class="modal-hd"><div class="modal-title" id="ben-modal-title">Dettaglio Beneficiario</div><button class="modal-close" onclick="closeBenModal()">✕</button></div>
+    <div class="modal-hd">
+      <div class="modal-title" id="ben-modal-title">Dettaglio Beneficiario</div>
+      <button class="modal-close" onclick="closeBenModal()">✕</button>
+    </div>
     <div class="modal-body" id="ben-modal-body"></div>
-    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeBenModal()">Chiudi</button><button class="btn btn-secondary btn-sm" onclick="toast('Report beneficiario esportato','ok')">📥 Esporta report</button><button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo del beneficiario selezionato e suggerisci azioni di monitoraggio appropriate.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" onclick="closeBenModal()">Chiudi</button>
+      <button class="btn btn-secondary btn-sm" onclick="toast('Report beneficiario esportato','ok')">📥 Esporta report</button>
+      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo del beneficiario selezionato e suggerisci azioni di monitoraggio appropriate.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
+    </div>
   </div>
 </div>
 
 <!-- ═══ TOAST BAR ═══ -->
 <div class="toast-bar" id="toasts"></div>
 
+<script>
 <script>
 /* ═══ NAVIGATION ═══ */
 const META={
@@ -1435,379 +1378,400 @@ const META={
   conformita:['Conformità & ANAC','Controlli automatici multi-normativa'],
   report:['Report & Analisi','KPI, storico e benchmark multi-settore'],
 };
-function nav(id,el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
-  const pg=document.getElementById('page-'+id);
-  if(pg)pg.classList.add('active');
-  const ni=el||document.querySelector(`.ni[onclick*="'${id}'"]`);
-  if(ni?.classList)ni.classList.add('active');
-  const m=META[id]||[id,''];
-  document.getElementById('tb-title').textContent=m[0];
-  document.getElementById('tb-crumb').textContent='AppaltanteAI · '+m[1];
-  window.scrollTo(0,0);
+
+function nav(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
+  const pg = document.getElementById('page-' + id);
+  if (pg) pg.classList.add('active');
+  const ni = el && el.classList && el.classList.contains('ni')
+    ? el
+    : document.querySelector('.ni[data-page="' + id + '"]');
+  if (ni) ni.classList.add('active');
+  const m = META[id] || [id, ''];
+  const t = document.getElementById('tb-title');
+  const c = document.getElementById('tb-crumb');
+  if (t) t.textContent = m[0];
+  if (c) c.textContent = 'AppaltanteAI · ' + m[1];
+  const main = document.querySelector('.main') || document.body;
+  main.scrollTop = 0;
 }
 
 /* ═══ TABS ═══ */
-function switchTab(group,paneId,btn){
-  const pgId=group==='ng'?'page-nuova':group==='docs'?'page-documenti':'page-'+group;
-  const c=document.getElementById(pgId);
-  if(c){c.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));c.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));}
-  const pane=document.getElementById(paneId);
-  if(pane)pane.classList.add('active');
-  if(btn)btn.classList.add('active');
+function switchTab(group, paneId, btn) {
+  const pgId = group === 'ng' ? 'page-nuova' : group === 'docs' ? 'page-documenti' : 'page-' + group;
+  const c = document.getElementById(pgId);
+  if (c) {
+    c.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    c.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  }
+  const pane = document.getElementById(paneId);
+  if (pane) pane.classList.add('active');
+  if (btn) btn.classList.add('active');
 }
 
 /* ═══ CHECKLIST ═══ */
-function toggle(li){const box=li.querySelector('.cl-check'),txt=li.querySelector('.cl-text');const done=box.classList.toggle('checked');box.textContent=done?'✓':'';if(txt)txt.classList.toggle('done',done);}
+function toggle(li) {
+  const box = li.querySelector('.cl-check');
+  const txt = li.querySelector('.cl-text');
+  const done = box.classList.toggle('checked');
+  box.textContent = done ? '✓' : '';
+  if (txt) txt.classList.toggle('done', done);
+}
 
 /* ═══ FILTER PROCEDURE ═══ */
-function filterP(tipo,btn){
-  document.querySelectorAll('#page-procedure .btn-primary.btn-sm,#page-procedure .btn-ghost.btn-sm').forEach(b=>{if(b.closest('#page-procedure')){b.classList.remove('btn-primary');b.classList.add('btn-ghost');}});
-  if(btn){btn.classList.remove('btn-ghost');btn.classList.add('btn-primary');}
-  document.querySelectorAll('#ptbl tbody tr').forEach(tr=>tr.style.display=(tipo==='all'||tr.dataset.tipo===tipo)?'':'none');
-}
-function searchP(v){const q=v.toLowerCase();document.querySelectorAll('#ptbl tbody tr').forEach(tr=>tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none');}
-
-/* ═══ FILTER BENEFICIARI ═══ */
-function filterBen(f,btn){
-  document.querySelectorAll('#page-beneficiari .btn-primary.btn-sm,#page-beneficiari .btn-ghost.btn-sm').forEach(b=>{if(b.closest('#page-beneficiari')){b.classList.remove('btn-primary');b.classList.add('btn-ghost');}});
-  if(btn){btn.classList.remove('btn-ghost');btn.classList.add('btn-primary');}
-  document.querySelectorAll('#ben-grid .ben-card').forEach(c=>{
-    let show=true;
-    if(f==='alto')show=c.dataset.score==='alto';
-    else if(f==='medio')show=c.dataset.score==='medio';
-    else if(f==='basso')show=c.dataset.score==='basso';
-    else if(f==='alert')show=c.dataset.alert==='si';
-    c.style.display=show?'':'none';
+function filterP(tipo, btn) {
+  document.querySelectorAll('#page-procedure .btn').forEach(b => {
+    if (b.closest('#page-procedure')) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-ghost');
+    }
+  });
+  if (btn) { btn.classList.remove('btn-ghost'); btn.classList.add('btn-primary'); }
+  document.querySelectorAll('#ptbl tbody tr').forEach(tr => {
+    tr.style.display = (tipo === 'all' || tr.dataset.tipo === tipo) ? '' : 'none';
   });
 }
-function searchBen(v){const q=v.toLowerCase();document.querySelectorAll('#ben-grid .ben-card').forEach(c=>c.style.display=c.textContent.toLowerCase().includes(q)?'':'none');}
+function searchP(v) {
+  const q = v.toLowerCase();
+  document.querySelectorAll('#ptbl tbody tr').forEach(tr => {
+    tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+/* ═══ FILTER BENEFICIARI ═══ */
+function filterBen(f, btn) {
+  document.querySelectorAll('#page-beneficiari .btn').forEach(b => {
+    if (b.closest('#page-beneficiari')) {
+      b.classList.remove('btn-primary');
+      b.classList.add('btn-ghost');
+    }
+  });
+  if (btn) { btn.classList.remove('btn-ghost'); btn.classList.add('btn-primary'); }
+  document.querySelectorAll('#ben-grid .ben-card').forEach(c => {
+    let show = true;
+    if (f === 'alto') show = c.dataset.score === 'alto';
+    else if (f === 'medio') show = c.dataset.score === 'medio';
+    else if (f === 'basso') show = c.dataset.score === 'basso';
+    else if (f === 'alert') show = c.dataset.alert === 'si';
+    c.style.display = show ? '' : 'none';
+  });
+}
+function searchBen(v) {
+  const q = v.toLowerCase();
+  document.querySelectorAll('#ben-grid .ben-card').forEach(c => {
+    c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
 
 /* ═══ GENERA BANDO ═══ */
-function generaBando(){
-  const btn=document.querySelector('[onclick="generaBando()"]');
-  btn.textContent='⏳ AI in elaborazione…';btn.disabled=true;btn.style.opacity='.7';
-  toast('Agente AI — generazione bando avviata…','info');
-  setTimeout(()=>{
-    document.querySelectorAll('#page-nuova .tab-pane').forEach(p=>p.classList.remove('active'));
-    document.querySelectorAll('#page-nuova .tab-btn').forEach(b=>b.classList.remove('active'));
-    document.getElementById('ng-prev').classList.add('active');
-    document.querySelectorAll('#page-nuova .tab-btn')[4].classList.add('active');
-    ['sb1','sb2','sb3','sb4'].forEach((id,i)=>{const el=document.getElementById(id);if(el){el.classList.remove('cur');el.classList.add('done');el.textContent='✓';}const ln=document.getElementById(['sl1','sl2l','sl3l','sl4l'][i]);if(ln)ln.classList.add('done');});
-    const s5=document.getElementById('sb5'),sl5=document.getElementById('sl5');if(s5)s5.classList.add('cur');if(sl5)sl5.classList.add('cur');
-    document.getElementById('prev-content').innerHTML=`<div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
-      <div style="text-align:center;padding:14px;background:var(--c800);color:#fff;border-radius:9px;margin-bottom:16px">
-        <div style="font-size:.58rem;opacity:.55;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Comune di Valtorre — Provveditorato OO.PP. · CUP: H89J25000010001</div>
-        <div style="font-size:1.05rem;font-weight:800">BANDO DI GARA — PROCEDURA APERTA</div>
-        <div style="font-size:.74rem;opacity:.72;margin-top:2px">D.Lgs. 36/2023 · OEPV · Settore Sanitario · D.M. 23/06/2022 CAM</div>
-      </div>
-      <p><strong>I — Ente appaltante:</strong> Comune di Valtorre, Provveditorato OO.PP. · Piattaforma: ASMECOMM</p>
-      <p style="margin-top:8px"><strong>II — Oggetto:</strong> Ampliamento e riqualificazione Padiglione C Ospedale Civile. Lavori OG1/OG11. Categoria prevalente OG11 cl.IV.</p>
-      <p style="margin-top:8px"><strong>III — Importo:</strong> € 4.200.000,00 (IVA esclusa) · Oneri sicurezza non ribassabili · Durata: 30 mesi · Fonte: PNRR M6C2</p>
-      <p style="margin-top:8px"><strong>IV — Requisiti:</strong> SOA OG11 cl.IV · Fatturato specifico ≥ € 2M · Contratto analogo ≥ 50% · DGUE elettronico · FVOE–ANAC</p>
-      <p style="margin-top:8px"><strong>V — Criteri OEPV:</strong> Tecnico 60pt (qualità 30+innovazione 15+cronoprogramma 10+team 5) · Economico 40pt</p>
-      <p style="margin-top:8px"><strong>VI — Garanzie:</strong> Provvisoria 2% = € 84.000 · Definitiva 5% con riduzioni rating legalità</p>
-      <p style="margin-top:8px"><strong>VII — Penali:</strong> 1/1000 importo netto/gg ritardo · Tetto 10% → risoluzione ex art. 122 D.Lgs. 36/23</p>
-      <p style="margin-top:8px"><strong>VIII — CAM:</strong> Criteri Ambientali Minimi obbligatori ex art. 57 D.Lgs. 36/23 · D.M. 23/06/2022</p>
-      <p style="margin-top:8px"><strong>IX — PNRR:</strong> Clausola antifrode, DNSH, obbligo pubblicità, tracciabilità conto dedicato</p>
-      <div style="margin-top:14px;padding:9px 13px;background:var(--c100);border-radius:7px;font-size:.66rem;color:var(--c700)">🤖 <strong>Generato da AppaltanteAI Agente</strong> · D.Lgs. 36/2023 conforme · CAM verificati · Verificare prima della pubblicazione ufficiale.</div>
-    </div>`;
-    btn.textContent='🤖 Genera con AI';btn.disabled=false;btn.style.opacity='1';
-    toast('Bando generato con successo!','ok');
-  },2100);
+function generaBando() {
+  const btn = document.querySelector('[onclick="generaBando()"]');
+  btn.textContent = '⏳ AI in elaborazione…';
+  btn.disabled = true;
+  btn.style.opacity = '.7';
+  toast('Agente AI — generazione bando avviata…', 'info');
+  setTimeout(() => {
+    document.querySelectorAll('#page-nuova .tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('#page-nuova .tab-btn').forEach(b => b.classList.remove('active'));
+    const prev = document.getElementById('ng-prev');
+    if (prev) prev.classList.add('active');
+    const btns = document.querySelectorAll('#page-nuova .tab-btn');
+    if (btns[4]) btns[4].classList.add('active');
+    ['sb1','sb2','sb3','sb4'].forEach((id, i) => {
+      const el = document.getElementById(id);
+      if (el) { el.classList.remove('cur'); el.classList.add('done'); el.textContent = '✓'; }
+      const lineIds = ['sl1','sl2l','sl3l','sl4l'];
+      const ln = document.getElementById(lineIds[i]);
+      if (ln) ln.classList.add('done');
+    });
+    const s5 = document.getElementById('sb5');
+    const sl5 = document.getElementById('sl5');
+    if (s5) s5.classList.add('cur');
+    if (sl5) sl5.classList.add('cur');
+    const pc = document.getElementById('prev-content');
+    if (pc) pc.innerHTML = `
+      <div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
+        <div style="text-align:center;padding:14px;background:var(--c800);color:#fff;border-radius:9px;margin-bottom:16px">
+          <div style="font-size:.58rem;opacity:.55;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Comune di Valtorre — Provveditorato OO.PP. · CUP: H89J25000010001</div>
+          <div style="font-size:1.05rem;font-weight:800">BANDO DI GARA — PROCEDURA APERTA</div>
+          <div style="font-size:.74rem;opacity:.72;margin-top:2px">D.Lgs. 36/2023 · OEPV · Settore Sanitario · D.M. 23/06/2022 CAM</div>
+        </div>
+        <p><strong>I — Ente appaltante:</strong> Comune di Valtorre, Provveditorato OO.PP. · Piattaforma: ASMECOMM</p>
+        <p style="margin-top:8px"><strong>II — Oggetto:</strong> Ampliamento e riqualificazione Padiglione C Ospedale Civile. Lavori OG1/OG11. Categoria prevalente OG11 cl.IV.</p>
+        <p style="margin-top:8px"><strong>III — Importo:</strong> € 4.200.000,00 (IVA esclusa) · Oneri sicurezza non ribassabili · Durata: 30 mesi · Fonte: PNRR M6C2</p>
+        <p style="margin-top:8px"><strong>IV — Requisiti:</strong> SOA OG11 cl.IV · Fatturato specifico ≥ € 2M · Contratto analogo ≥ 50% · DGUE elettronico · FVOE–ANAC</p>
+        <p style="margin-top:8px"><strong>V — Criteri OEPV:</strong> Tecnico 60pt (qualità 30+innovazione 15+cronoprogramma 10+team 5) · Economico 40pt</p>
+        <p style="margin-top:8px"><strong>VI — Garanzie:</strong> Provvisoria 2% = € 84.000 · Definitiva 5% con riduzioni rating legalità</p>
+        <p style="margin-top:8px"><strong>VII — Penali:</strong> 1/1000 importo netto/gg ritardo · Tetto 10% → risoluzione ex art. 122 D.Lgs. 36/23</p>
+        <p style="margin-top:8px"><strong>VIII — CAM:</strong> Criteri Ambientali Minimi obbligatori ex art. 57 D.Lgs. 36/23 · D.M. 23/06/2022</p>
+        <p style="margin-top:8px"><strong>IX — PNRR:</strong> Clausola antifrode, DNSH, obbligo pubblicità, tracciabilità conto dedicato</p>
+        <div style="margin-top:14px;padding:9px 13px;background:var(--c100);border-radius:7px;font-size:.66rem;color:var(--c700)">
+          🤖 <strong>Generato da AppaltanteAI Agente</strong> · D.Lgs. 36/2023 conforme · CAM verificati · Verificare prima della pubblicazione ufficiale.
+        </div>
+      </div>`;
+    btn.textContent = '🤖 Genera con AI';
+    btn.disabled = false;
+    btn.style.opacity = '1';
+    toast('Bando generato con successo!', 'ok');
+  }, 2100);
 }
 
 /* ═══ TOAST ═══ */
-function toast(msg,type='info'){
-  const icons={ok:'✅',err:'❌',warn:'⚠️',info:'ℹ️'};
-  const bar=document.getElementById('toasts');
-  const t=document.createElement('div');
-  t.className=`toast${type==='ok'?' ok':type==='err'?' err':type==='warn'?' warn':''}`;
-  t.innerHTML=`<span>${icons[type]||'ℹ️'}</span><span>${msg}</span>`;
+function toast(msg, type='info') {
+  const icons = { ok:'✅', err:'❌', warn:'⚠️', info:'ℹ️' };
+  const bar = document.getElementById('toasts');
+  const t = document.createElement('div');
+  t.className = 'toast' + (type==='ok' ? ' ok' : type==='err' ? ' err' : type==='warn' ? ' warn' : '');
+  t.innerHTML = '<span>' + (icons[type]||'ℹ️') + '</span><span>' + msg + '</span>';
   bar.appendChild(t);
-  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(18px)';t.style.transition='all .28s ease';setTimeout(()=>t.remove(),300);},3200);
+  setTimeout(() => {
+    t.style.opacity = '0';
+    t.style.transform = 'translateX(18px)';
+    t.style.transition = 'all .28s ease';
+    setTimeout(() => t.remove(), 300);
+  }, 3200);
 }
 
 /* ═══ MODAL PROCEDURA ═══ */
-const PROC_DATA={
-  'CIG-2025-0088':{title:'📂 CIG-2025-0088 — Ampliamento Ospedale Civile',html:`<div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div>
-      <div style="background:var(--err-bg);padding:11px;border-radius:8px;border:1px solid #fecaca;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div>
-      <div style="background:var(--ok-bg);padding:11px;border-radius:8px;border:1px solid #a7f3d0;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div>
-    </div>
-    <table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody>
-      <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:130px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr>
-      <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr>
-      <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV (art. 108) — Tecnico 60% / Economico 40%</td></tr>
-      <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Settore</td><td style="padding:5px 8px">Sanitario · Lavori OG1/OG11</td></tr>
-      <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr>
-      <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr>
-    </tbody></table>
-    <div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Scadenza offerte il 14 giugno. Ricevute 4/6 buste — verificare piattaforma ASMECOMM.</div>
-    <div style="margin-top:8px;padding:10px;background:var(--c50);border-radius:7px;border-left:3px solid var(--c400);font-size:.74rem;color:var(--c700)"><strong>🤖 AI:</strong> Ribasso medio atteso 12,3%. Soglia anomalia stimata ~22–25%. Score beneficiari candidati: media 76/100.</div>
-  </div>`},
-  'CIG-2025-0059':{title:'📂 CIG-2025-0059 — Mercato Coperto Storico',html:`<div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:var(--purple-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--purple)">€ 2,9M</div></div>
-      <div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Offerte ammesse</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div>
-      <div style="background:var(--warn-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Anomalie</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn-dk)">1 ⚠️</div></div>
-    </div>
-    <div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Score beneficiario 63/100 (rischio medio). Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div>
-    <div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima in graduatoria:</strong> Restauri Antichi Srl — 89,2/100 punti — ribasso 11,8% — Score beneficiario 87/100. Profilo altamente affidabile.</div>
-  </div>`}
+const PROC_DATA = {
+  'CIG-2025-0088': {
+    title: '📂 CIG-2025-0088 — Ampliamento Ospedale Civile',
+    html: `<div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div>
+        <div style="background:var(--err-bg);padding:11px;border-radius:8px;border:1px solid #fecaca;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div>
+        <div style="background:var(--ok-bg);padding:11px;border-radius:8px;border:1px solid #a7f3d0;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div>
+      </div>
+      <table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody>
+        <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:130px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr>
+        <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr>
+        <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV (art. 108) — Tecnico 60% / Economico 40%</td></tr>
+        <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Settore</td><td style="padding:5px 8px">Sanitario · Lavori OG1/OG11</td></tr>
+        <tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr>
+        <tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr>
+      </tbody></table>
+      <div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Scadenza offerte il 14 giugno. Ricevute 4/6 buste — verificare piattaforma ASMECOMM.</div>
+      <div style="margin-top:8px;padding:10px;background:var(--c50);border-radius:7px;border-left:3px solid var(--c400);font-size:.74rem;color:var(--c700)"><strong>🤖 AI:</strong> Ribasso medio atteso 12,3%. Soglia anomalia stimata ~22–25%.</div>
+    </div>`
+  },
+  'CIG-2025-0059': {
+    title: '📂 CIG-2025-0059 — Mercato Coperto Storico',
+    html: `<div style="font-size:.76rem;line-height:1.8;color:var(--n700)">
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:var(--purple-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--purple)">€ 2,9M</div></div>
+        <div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Offerte ammesse</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div>
+        <div style="background:var(--warn-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px">Anomalie</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn-dk)">1 ⚠️</div></div>
+      </div>
+      <div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Score beneficiario 63/100. Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div>
+      <div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima in graduatoria:</strong> Restauri Antichi Srl — 89,2/100 punti — ribasso 11,8% — Score beneficiario 87/100.</div>
+    </div>`
+  }
 };
-function openProcModal(cig){
-  const d=PROC_DATA[cig]||{title:`📂 ${cig}`,html:'<p style="color:var(--n500);padding:20px">Dettaglio procedura in caricamento…</p>'};
-  document.getElementById('proc-modal-title').textContent=d.title;
-  document.getElementById('proc-modal-body').innerHTML=d.html;
-  document.getElementById('proc-modal').classList.add('open');
+
+function openProcModal(cig) {
+  const d = PROC_DATA[cig] || {
+    title: '📂 ' + cig,
+    html: '<p style="color:var(--n500);padding:20px">Dettaglio procedura in caricamento…</p>'
+  };
+  const pt = document.getElementById('proc-modal-title');
+  const pb = document.getElementById('proc-modal-body');
+  if (pt) pt.textContent = d.title;
+  if (pb) pb.innerHTML = d.html;
+  const m = document.getElementById('proc-modal');
+  if (m) m.classList.add('open');
 }
-function closeProcModal(){document.getElementById('proc-modal').classList.remove('open');}
+function closeProcModal() {
+  const m = document.getElementById('proc-modal');
+  if (m) m.classList.remove('open');
+}
 
 /* ═══ MODAL BENEFICIARIO ═══ */
-const BEN_DATA={
-  'Restauri Antichi Srl':{score:87,tag:'bc',html:`<div style="font-size:.76rem;line-height:1.8">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0">
-      <div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div>
-      <div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div><div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · P.IVA 01234560501 · Firenze (FI)</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC valido</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span><span class="badge b-blue">Rating legalità 2★</span></div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Solidità fin.</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">89</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Storico contratti</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">91</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Compliance norm.</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">82</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Capacità tec.</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">86</div></div>
-    </div>
-    <div style="font-weight:700;margin-bottom:8px;color:var(--n800)">📋 Storico contratti PA</div>
-    <table style="width:100%;border-collapse:collapse;font-size:.73rem">
-      <thead><tr style="background:var(--n50)"><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--n200)">Oggetto</th><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--n200)">SA</th><th style="padding:6px 10px;text-align:right;border-bottom:1px solid var(--n200)">Importo</th><th style="padding:6px 10px;text-align:left;border-bottom:1px solid var(--n200)">Esito</th></tr></thead>
-      <tbody>
-        <tr><td style="padding:6px 10px;border-bottom:1px solid var(--n100)">Restauro Palazzo Medici, Firenze</td><td style="padding:6px 10px;border-bottom:1px solid var(--n100)">Comune FI</td><td style="padding:6px 10px;text-align:right;border-bottom:1px solid var(--n100)">€ 1,2M</td><td style="padding:6px 10px;border-bottom:1px solid var(--n100)"><span class="badge b-green">✅ Completato</span></td></tr>
-        <tr><td style="padding:6px 10px;border-bottom:1px solid var(--n100)">Restauro Colonnato, Roma</td><td style="padding:6px 10px;border-bottom:1px solid var(--n100)">MIBAC</td><td style="padding:6px 10px;text-align:right;border-bottom:1px solid var(--n100)">€ 890k</td><td style="padding:6px 10px;border-bottom:1px solid var(--n100)"><span class="badge b-green">✅ Completato</span></td></tr>
-        <tr><td style="padding:6px 10px">Recupero Borgo Medievale, Siena</td><td style="padding:6px 10px">Comune SI</td><td style="padding:6px 10px;text-align:right">€ 430k</td><td style="padding:6px 10px"><span class="badge b-green">✅ Completato</span></td></tr>
-      </tbody>
-    </table>
-    <div style="margin-top:12px;padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI Valutazione:</strong> Profilo altamente affidabile. Nessuna criticità rilevata. Consigliato per aggiudicazione procedura Mercato Coperto Storico.</div>
-  </div>`},
-  'Ediltech Srl':{score:51,tag:'basso',html:`<div style="font-size:.76rem;line-height:1.8">
-    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca">
-      <div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div>
-      <div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · P.IVA 09876543210 · Palermo (PA)</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali applicate</span><span class="badge b-red">No rating legalità</span></div></div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px">
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Solidità fin.</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">55</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Storico</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">60</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Compliance</div><div style="font-size:1.2rem;font-weight:800;color:var(--err)">38</div></div>
-      <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Capacità tec.</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">51</div></div>
-    </div>
-    <div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 AI Alert:</strong> DURC scaduto dal 31/05/2025. Blocco immediato pagamenti SAL n.3 Fotovoltaico Municipio. Score compliance crollato da 72 a 38 negli ultimi 60 giorni.</div>
-    <div style="padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.73rem;color:var(--warn-dk)"><strong>⚠️ Storico criticità:</strong> Penale applicata in 2 contratti per ritardo consegna (22gg e 8gg). 1 procedura di soccorso istruttorio attivata nel 2024.</div>
-  </div>`},
-  'new':{score:0,tag:'',html:`<div style="font-size:.76rem;line-height:1.8">
-    <div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo beneficiario. Lo score AI verrà calcolato automaticamente in base ai dati inseriti e alle fonti esterne (ANAC, Camera di Commercio, Inps).</div></div>
-    <div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale <span class="req">*</span></label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA / Codice Fiscale</label><input class="fi" placeholder="00000000000"/></div></div>
-    <div class="fr"><div class="fg"><label class="fl-lbl">Settore prevalente</label><select class="fs"><option>Lavori OG1</option><option>Lavori OG2</option><option>Lavori OG6</option><option>Servizi IT</option><option>Forniture</option><option>Servizi energetici</option><option>Beni Culturali</option></select></div><div class="fg"><label class="fl-lbl">Sede legale</label><input class="fi" placeholder="Città (Provincia)"/></div></div>
-    <div class="fr"><div class="fg"><label class="fl-lbl">SOA (categorie)</label><input class="fi" placeholder="Es. OG1 cl.III, OS22 cl.I"/></div><div class="fg"><label class="fl-lbl">Rating legalità ANAC</label><select class="fs"><option>Non richiesto</option><option>★</option><option>★★</option><option>★★★</option></select></div></div>
-    <div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast('Score AI in calcolo automatico…','info')">🤖 Calcola Score AI e Aggiungi</button></div>
-  </div>`}
+const BEN_DATA = {
+  'Restauri Antichi Srl': {
+    score: 87,
+    html: `<div style="font-size:.76rem;line-height:1.8">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0">
+        <div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div>
+        <div>
+          <div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div>
+          <div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · Firenze (FI)</div>
+          <div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">
+            <span class="badge b-green">✅ DURC valido</span>
+            <span class="badge b-green">✅ Antimafia</span>
+            <span class="badge b-teal">SOA OG2 cl.III</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Solidità fin.</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">89</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Storico</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">91</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Compliance</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">82</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Capacità tec.</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok)">86</div></div>
+      </div>
+      <div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)">
+        <strong>🤖 AI Valutazione:</strong> Profilo altamente affidabile. Nessuna criticità rilevata. Consigliato per aggiudicazione procedura Mercato Coperto Storico.
+      </div>
+    </div>`
+  },
+  'Ediltech Srl': {
+    score: 51,
+    html: `<div style="font-size:.76rem;line-height:1.8">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca">
+        <div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div>
+        <div>
+          <div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div>
+          <div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo (PA)</div>
+          <div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">
+            <span class="badge b-red">🚨 DURC scaduto</span>
+            <span class="badge b-amber">⚠️ 2 penali</span>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:14px">
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Solidità fin.</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">55</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Storico</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">60</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Compliance</div><div style="font-size:1.2rem;font-weight:800;color:var(--err)">38</div></div>
+        <div style="background:var(--n50);border-radius:7px;padding:10px;text-align:center"><div style="font-size:.6rem;color:var(--n500);text-transform:uppercase">Capacità tec.</div><div style="font-size:1.2rem;font-weight:800;color:var(--warn)">51</div></div>
+      </div>
+      <div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)">
+        <strong>🚨 AI Alert:</strong> DURC scaduto dal 31/05/2025. Blocco immediato pagamenti SAL n.3 Fotovoltaico Municipio. Score compliance crollato da 72 a 38 negli ultimi 60 giorni.
+      </div>
+    </div>`
+  },
+  'new': {
+    score: 0,
+    html: `<div style="font-size:.76rem;line-height:1.8">
+      <div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo beneficiario. Lo score AI verrà calcolato automaticamente.</div></div>
+      <div class="fr" style="margin-top:14px">
+        <div class="fg"><label class="fl-lbl">Ragione Sociale <span class="req">*</span></label><input class="fi" placeholder="Es. Costruzioni SpA"/></div>
+        <div class="fg"><label class="fl-lbl">P.IVA / Codice Fiscale</label><input class="fi" placeholder="00000000000"/></div>
+      </div>
+      <div class="fr">
+        <div class="fg"><label class="fl-lbl">Settore prevalente</label><select class="fs"><option>Lavori OG1</option><option>Lavori OG2</option><option>Servizi IT</option><option>Forniture</option></select></div>
+        <div class="fg"><label class="fl-lbl">Sede legale</label><input class="fi" placeholder="Città (Provincia)"/></div>
+      </div>
+      <div style="margin-top:14px">
+        <button class="btn btn-primary" style="width:100%" onclick="toast('Score AI in calcolo automatico…','info')">🤖 Calcola Score AI e Aggiungi</button>
+      </div>
+    </div>`
+  }
 };
-function openBenModal(nome){
-  const d=BEN_DATA[nome]||{score:0,tag:'',html:`<p style="color:var(--n500);padding:20px;text-align:center">Dettaglio beneficiario "${nome}" in caricamento...</p>`};
-  document.getElementById('ben-modal-title').textContent=nome==='new'?'➕ Nuovo Beneficiario':`🏢 ${nome}`;
-  document.getElementById('ben-modal-body').innerHTML=d.html;
-  document.getElementById('ben-modal').classList.add('open');
+
+function openBenModal(nome) {
+  const d = BEN_DATA[nome] || {
+    score: 0,
+    html: '<p style="color:var(--n500);padding:20px;text-align:center">Dettaglio beneficiario in caricamento...</p>'
+  };
+  const bt = document.getElementById('ben-modal-title');
+  const bb = document.getElementById('ben-modal-body');
+  if (bt) bt.textContent = nome === 'new' ? '➕ Nuovo Beneficiario' : '🏢 ' + nome;
+  if (bb) bb.innerHTML = d.html;
+  const m = document.getElementById('ben-modal');
+  if (m) m.classList.add('open');
 }
-function closeBenModal(){document.getElementById('ben-modal').classList.remove('open');}
+function closeBenModal() {
+  const m = document.getElementById('ben-modal');
+  if (m) m.classList.remove('open');
+}
 
-/* ═══ AI CHAT — KNOWLEDGE BASE COMPLETA ═══ */
-const KB={
-  '50vs36':`<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023 — Principali differenze:</strong><ul>
-  <li><strong>Qualificazione SA:</strong> Il 36/23 (art. 63) rafforza l'obbligo di iscrizione ANAC</li>
-  <li><strong>Affidamento diretto:</strong> Soglie innalzate: <150k€ per lavori, <140k€ servizi/forniture (art. 50)</li>
-  <li><strong>Digitale:</strong> FVOE e DGUE obbligatori in formato elettronico (art. 91)</li>
-  <li><strong>Cauzioni:</strong> Garanzia provvisoria rimane 2%, definitiva 5% con nuove riduzioni</li>
-  <li><strong>Anomalia:</strong> Art. 110 D.Lgs. 36/23 — metodo OEPV con scarto medio superiore (Soglia = M + 0.15×S)</li>
-  <li><strong>Varianti:</strong> Art. 120 — invariato il 10%/15%, ma più dettagliata la casistica</li>
-  <li><strong>CAM:</strong> Art. 57 — Criteri Ambientali Minimi rafforzati come requisito obbligatorio</li></ul>`,
-
-  'guue':`<strong>Soglie di pubblicazione obbligatoria GUUE — 2025:</strong><ul>
-  <li>🏗️ <strong>Lavori:</strong> € 5.382.000,00</li>
-  <li>📋 <strong>Servizi e forniture (enti pubblici):</strong> € 221.000,00</li>
-  <li>📋 <strong>Servizi e forniture (altri enti):</strong> € 443.000,00</li>
-  <li>🏭 <strong>Settori Speciali:</strong> € 443.000,00 servizi/forniture · € 5.382.000 lavori</li>
-  <li>📄 <strong>Concessioni:</strong> € 5.382.000,00</li></ul>
-  <strong>Procedura:</strong> Trasmissione elettronica a TED (Publications Office UE) → pubblicazione GUUE → dopo 5gg pubblicazione GURI + siti (art. 84 D.Lgs. 36/23).`,
-
-  'competitiva':`<strong>Procedura Competitiva con Negoziazione — Art. 73 D.Lgs. 36/23:</strong><br>
-  <strong>Quando si usa:</strong><ul>
-  <li>Offerte irregolari/inaccettabili in procedura aperta o ristretta precedente</li>
-  <li>Esigenze non soddisfatte da soluzioni standard disponibili</li>
-  <li>Appalto implica progettazione o soluzioni innovative</li>
-  <li>Specifiche tecniche non determinabili con sufficiente precisione</li></ul>
-  <strong>Requisiti:</strong><ul>
-  <li>Minimo 3 candidati selezionati</li>
-  <li>Offerte iniziali → negoziazione → offerte finali (no negoziazione su prezzi finali)</li>
-  <li>Requisiti minimi e criteri aggiudicazione NON soggetti a negoziazione</li>
-  <li>Riserva di aggiudicazione su offerte iniziali se indicata nel bando</li></ul>`,
-
-  'inhouse':`<strong>Affidamento In House — Art. 7 D.Lgs. 36/23:</strong><br>
-  <strong>Requisiti cumulativi:</strong><ul>
-  <li>✅ <strong>Controllo analogo:</strong> la SA esercita un controllo simile a quello sui propri uffici</li>
-  <li>✅ <strong>Attività prevalente:</strong> ≥ 80% del fatturato derivante da prestazioni alla/e controllante/i</li>
-  <li>✅ <strong>Partecipazione privata:</strong> esclusa (salvo forme obbligatorie per legge)</li>
-  <li>✅ <strong>Iscrizione ANAC:</strong> ente affidatario iscritto nell'elenco art. 192 D.Lgs. 50/16 (transitoriamente)</li></ul>
-  <strong>Obblighi:</strong> Motivazione del mancato ricorso al mercato · verifica congruità economica · pubblicazione Amm. Trasparente.`,
-
-  'vigilanza':`<strong>Disciplinare tipo — Servizi di Vigilanza · OEPV · € 800.000 · D.Lgs. 36/23</strong><br>
-  <strong>Struttura:</strong><ol>
-  <li>Ente appaltante + documentazione di gara + piattaforma telematica</li>
-  <li>Oggetto: servizi di vigilanza armata e portierato · durata 36 mesi</li>
-  <li>Importo: € 800.000 IVA esclusa · CPV: 79710000-4</li>
-  <li>Requisiti: iscrizione prefettizia ex L. 69/1935 · fatturato specifico ≥ € 400k · referenza analoga</li>
-  <li>Criteri OEPV: Tecnico 70pt (org. servizio 30+tecnologia 20+personale 15+piano emergenza 5) + Economico 30pt</li>
-  <li>Garanzie: provvisoria 2% = € 16.000 · definitiva 5%</li>
-  <li>Penali: 1/1000 per giorno di inadempimento · tetto 10%</li>
-  <li>Subappalto: ammesso ≤ 50%</li></ol>`,
-
-  'anomalia':`<strong>Calcolo Soglia Anomalia — OEPV (art. 110 D.Lgs. 36/23):</strong><ol>
-  <li>Calcola punteggio totale (tecnico + economico) per ogni offerta ammessa</li>
-  <li>Media aritmetica M di tutti i punteggi totali</li>
-  <li>Scarto medio superiore S = media aritmetica degli scarti (in valore assoluto) tra i punteggi delle offerte con punteggio > M e M stesso</li>
-  <li><strong>Soglia = M + 0,15 × S</strong></li>
-  <li>Offerte con punteggio totale < Soglia → contraddittorio entro 5gg lavorativi (art. 110 c.1)</li>
-  <li>Commissione valuta giustificazioni → esclude se ingiustificata con atto motivato</li></ol>
-  <strong>Nota:</strong> Per appalti con prezzo più basso, la soglia si calcola come media dei ribassi aumentata del 20%.`,
-
-  'oepv-it':`<strong>Criteri OEPV consigliati per Servizi IT — D.Lgs. 36/23:</strong>
-  <strong>Bilanciamento standard 70/30:</strong><ul>
-  <li>A — Approccio metodologico e architettura della soluzione (25pt)</li>
-  <li>B — Livelli di servizio SLA proposti (15pt)</li>
-  <li>C — Piano di migrazione/implementazione e cronoprogramma (10pt)</li>
-  <li>D — Sicurezza informatica e conformità GDPR (10pt)</li>
-  <li>E — Referenze e team (10pt)</li>
-  <li>F — Prezzo (30pt) — formula: 30 × (Pmin/Pi)</li></ul>
-  <strong>Soglia minima tecnica:</strong> 42/70 pt per accedere alla valutazione economica.<br>
-  <strong>Attenzione:</strong> Per appalti IT sopra soglia UE, obbligatorio Criteri Accessibilità (L. 68/99) e clausole open source.`,
-
-  'ddr':`<strong>DdR Investimenti Infrastrutturali — Allegato 11.1 MOP (v.9.0, maggio 2024):</strong><br>
-  <strong>A. Fondamento giuridico (da allegare alla prima DdR utile):</strong><ul>
-  <li>CIG + CUP · Nomina RUP</li>
-  <li>Determina a contrarre</li>
-  <li>Bando/disciplinare/capitolato + pubblicazioni GURI/ANAC</li>
-  <li>Verbali commissione (tutte le sedute)</li>
-  <li>Atto aggiudicazione definitiva + contratto stipulato</li>
-  <li>DURC, Antimafia, garanzia definitiva</li>
-  <li>Eventuali ricorsi e relativi esiti</li></ul>
-  <strong>B. Documentazione giustificativa di spesa (ogni DdR):</strong><ul>
-  <li>SAL approvato dal DL · Certificati di pagamento</li>
-  <li>Fattura elettronica intestata al beneficiario (con CUP+CIG)</li>
-  <li>Ordine di pagamento puntuale alla fattura</li>
-  <li>Aderenza norma tracciabilità (art. 3 L.136/2010)</li></ul>
-  <strong>C. Documentazione giustificativa di pagamento:</strong><ul>
-  <li>Bonifico quietanzato + estratto conto bancario</li>
-  <li>Mandato di pagamento quietanzato (enti pubblici)</li></ul>
-  <strong>D. Subappalti (ogni DdR):</strong><ul>
-  <li>Attestazione regolarità procedura</li>
-  <li>Elenco subappaltatori con denominazione, importo, atto autorizzazione</li></ul>`,
-
-  'variante13':`<strong>Analisi ammissibilità variante 13% — Art. 120 D.Lgs. 36/23:</strong><br>
-  <strong>Per contratti di lavori:</strong> Soglia non sostanziale = <strong>15%</strong> del valore originale.<br>
-  Una variante del 13% rientra nella soglia del 15% e pertanto è potenzialmente <strong>NON SOSTANZIALE</strong>.<br><br>
-  <strong>Tuttavia, occorre verificare:</strong><ol>
-  <li>La modifica non altera la natura generale del contratto</li>
-  <li>Non introduce condizioni che, se inizialmente presenti, avrebbero modificato la platea dei concorrenti</li>
-  <li>Non cambia l'equilibrio economico a favore dell'aggiudicatario in modo non previsto</li>
-  <li>Non estende notevolmente l'ambito di applicazione</li></ol>
-  <strong>Se tutte e 4 le condizioni sono soddisfatte → variante ammissibile senza nuova gara.</strong><br>
-  <strong>Procedura:</strong> Proposta RUP → approvazione SA → perizia suppletiva → atto aggiuntivo → comunicazione ANAC se >10%.`,
-
-  'esclusione':`<strong>Esclusione art. 95 D.Lgs. 36/23 — Cause non automatiche (illeciti professionali):</strong><br>
-  Una condanna di un amministratore per reati fiscali può configurare una causa di esclusione NON automatica ex art. 95 c.1 lett. c se:<ul>
-  <li>La condanna è definitiva (passata in giudicato)</li>
-  <li>L'illecito è commesso nell'esercizio dell'attività professionale</li>
-  <li>Incide sulla affidabilità dell'operatore economico</li></ul>
-  <strong>Valutazione discrezionale della SA:</strong><ul>
-  <li>Gravità e natura dell'illecito</li>
-  <li>Distanza temporale dal fatto</li>
-  <li>Eventuale ravvedimento operoso</li>
-  <li>Misure di self-cleaning adottate (art. 96 D.Lgs. 36/23)</li></ul>
-  <strong>Procedura:</strong> La SA deve motivare analiticamente la decisione di esclusione. In caso di dubbio, attivare contraddittorio con il concorrente prima dell'esclusione.`,
-
-  'scoring':`<strong>Score di affidabilità beneficiari — Metodologia AppaltanteAI:</strong><br>
-  Il punteggio (0–100) è calcolato pesando 4 dimensioni:<ul>
-  <li>🏦 <strong>Solidità finanziaria (25%):</strong> ROE, ROI, Debt/Equity, DSCR, Cash flow operativo</li>
-  <li>📋 <strong>Storico contratti PA (30%):</strong> % contratti completati, ribassi medi, penali applicate, varianti richieste, premi per qualità</li>
-  <li>✅ <strong>Compliance normativa (30%):</strong> Stato DURC, Antimafia, Casellario ANAC, rating legalità, dichiarazioni ex art. 80/94-98</li>
-  <li>🔧 <strong>Capacità tecnica (15%):</strong> SOA possedute, qualifiche personale, certificazioni ISO, attrezzature</li></ul>
-  <strong>Classi di rischio:</strong><ul>
-  <li>🟢 75–100: Profilo affidabile — aggiudicazione consigliata</li>
-  <li>🟡 50–74: Profilo medio — monitoraggio rafforzato durante esecuzione</li>
-  <li>🔴 0–49: Profilo a rischio — esclusione preventiva o cautele contrattuali aggiuntive</li></ul>`,
-
-  'default':`Capito! Ho un'ampia knowledge base sulle procedure di appalto italiano ed europeo. Posso aiutarti su:<br><br>
-  📋 <strong>Normativa:</strong> D.Lgs. 163/06, 50/16, 36/23, Settori Speciali, Reg. UE 1046/2018, Direttive 2014/23-24-25/UE<br>
-  🏗️ <strong>Settori:</strong> Lavori, Sanità, ICT, Energia, Beni Culturali, Ambiente, Trasporti, Progettazione, Vigilanza<br>
-  🛠️ <strong>Attività:</strong> Analisi requisiti, studio mercato, redazione documenti, calcolo penali/anomalie, DdR, scoring beneficiari, varianti<br><br>
-  Specifica pure la tua domanda con dettagli (normativa, importo, settore) e rispondo in modo preciso.`
+/* ═══ AI CHAT ═══ */
+const KB = {
+  '50vs36': `<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023 — Principali differenze:</strong><ul>
+    <li><strong>Affidamento diretto:</strong> soglie innalzate art. 50</li>
+    <li><strong>Digitale:</strong> FVOE e DGUE obbligatori in formato elettronico (art. 91)</li>
+    <li><strong>Anomalia:</strong> art. 110 — Soglia = M + 0.15×S</li>
+    <li><strong>CAM:</strong> art. 57 — Criteri Ambientali Minimi obbligatori</li></ul>`,
+  'guue': `<strong>Soglie GUUE 2025:</strong><ul>
+    <li>🏗️ Lavori: € 5.382.000</li>
+    <li>📋 Servizi/forniture enti pubblici: € 221.000</li>
+    <li>🏭 Settori Speciali: € 443.000 servizi · € 5.382.000 lavori</li></ul>`,
+  'anomalia': `<strong>Soglia Anomalia OEPV (art. 110 D.Lgs. 36/23):</strong><ol>
+    <li>Media M di tutti i punteggi totali</li>
+    <li>Scarto medio superiore S</li>
+    <li><strong>Soglia = M + 0,15 × S</strong></li>
+    <li>Contraddittorio entro 5gg lavorativi</li></ol>`,
+  'ddr': `<strong>DdR Allegato 11.1 MOP:</strong><br>
+    <strong>A. Fondamento giuridico:</strong> CIG+CUP, nomina RUP, bando, verbali, aggiudicazione, contratto, DURC, Antimafia<br>
+    <strong>B. Spesa:</strong> SAL approvato, fattura elettronica (CUP+CIG), ordine pagamento<br>
+    <strong>C. Pagamento:</strong> bonifico quietanzato, estratto conto, mandato pagamento`,
+  'variante13': `<strong>Variante 13% — Art. 120 D.Lgs. 36/23:</strong><br>
+    Soglia non sostanziale lavori = <strong>15%</strong>. Una variante del 13% rientra nella soglia, quindi è potenzialmente ammissibile se non altera la natura del contratto.`,
+  'scoring': `<strong>Score affidabilità beneficiari:</strong><ul>
+    <li>🏦 Solidità finanziaria (25%)</li>
+    <li>📋 Storico contratti PA (30%)</li>
+    <li>✅ Compliance normativa (30%)</li>
+    <li>🔧 Capacità tecnica (15%)</li></ul>
+    🟢 75–100: affidabile · 🟡 50–74: monitorare · 🔴 0–49: attenzione`,
+  'default': `Posso aiutarti su normativa appalti (D.Lgs. 163/06, 50/16, 36/23), calcolo anomalie, DdR, scoring beneficiari, criteri OEPV e molto altro. Specifica pure la tua domanda!`
 };
 
-function getReply(msg){
-  const m=msg.toLowerCase();
-  if(m.includes('50')&&m.includes('36'))return KB['50vs36'];
-  if(m.includes('guue')||m.includes('soglia')||m.includes('pubblicazione')||m.includes('2025'))return KB['guue'];
-  if(m.includes('competitiva')&&m.includes('neg'))return KB['competitiva'];
-  if(m.includes('in house')||m.includes('inhouse'))return KB['inhouse'];
-  if(m.includes('vigilanza'))return KB['vigilanza'];
-  if(m.includes('anomalia')||m.includes('soglia anomalia')||m.includes('art. 110'))return KB['anomalia'];
-  if(m.includes('oepv')&&(m.includes('it')||m.includes('ict')||m.includes('digital')||m.includes('informatico')))return KB['oepv-it'];
-  if(m.includes('oepv')&&m.includes('vigilanza'))return KB['vigilanza'];
-  if(m.includes('ddr')||m.includes('rimborso')||m.includes('rendicont')||m.includes('11.1'))return KB['ddr'];
-  if(m.includes('variante')&&(m.includes('13')||m.includes('10')||m.includes('15')))return KB['variante13'];
-  if(m.includes('variante')||m.includes('modifica'))return KB['variante13'];
-  if(m.includes('esclusione')||m.includes('art. 95')||m.includes('cause non'))return KB['esclusione'];
-  if(m.includes('scoring')||m.includes('score')||m.includes('affidabilità')||m.includes('beneficiari'))return KB['scoring'];
-  if(m.includes('anomalia'))return KB['anomalia'];
+function getReply(msg) {
+  const m = msg.toLowerCase();
+  if (m.includes('50') && m.includes('36')) return KB['50vs36'];
+  if (m.includes('guue') || m.includes('soglia ue') || m.includes('pubblicazione')) return KB['guue'];
+  if (m.includes('anomalia') || m.includes('art. 110')) return KB['anomalia'];
+  if (m.includes('ddr') || m.includes('rimborso') || m.includes('11.1')) return KB['ddr'];
+  if (m.includes('variante')) return KB['variante13'];
+  if (m.includes('scoring') || m.includes('score') || m.includes('affidabilit')) return KB['scoring'];
   return KB['default'];
 }
 
-function sendChat(){
-  const inp=document.getElementById('chat-input'),msg=inp.value.trim();
-  if(!msg)return;
-  appendMsg(msg,'user');inp.value='';
-  const box=document.getElementById('chat-messages');
-  const typing=document.createElement('div');
-  typing.className='msg';typing.id='typing-ind';
-  typing.innerHTML='<div class="mava ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
-  box.appendChild(typing);box.scrollTop=box.scrollHeight;
-  const delay=800+Math.random()*600;
-  setTimeout(()=>{const t=document.getElementById('typing-ind');if(t)t.remove();appendMsg(getReply(msg),'ai');},delay);
+function sendChat() {
+  const inp = document.getElementById('chat-input');
+  const msg = inp.value.trim();
+  if (!msg) return;
+  appendMsg(msg, 'user');
+  inp.value = '';
+  const box = document.getElementById('chat-messages');
+  const typing = document.createElement('div');
+  typing.className = 'msg';
+  typing.id = 'typing-ind';
+  typing.innerHTML = '<div class="mava ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
+  box.appendChild(typing);
+  box.scrollTop = box.scrollHeight;
+  setTimeout(() => {
+    const t = document.getElementById('typing-ind');
+    if (t) t.remove();
+    appendMsg(getReply(msg), 'ai');
+  }, 800 + Math.random() * 600);
 }
-function quickMsg(m){document.getElementById('chat-input').value=m;sendChat();}
-function appendMsg(html,who){
-  const box=document.getElementById('chat-messages');
-  const d=document.createElement('div');
-  d.className='msg'+(who==='user'?' user':'');
-  d.innerHTML=`<div class="mava ${who}">${who==='ai'?'AI':'TU'}</div><div class="mb ${who}">${html}</div>`;
-  box.appendChild(d);box.scrollTop=box.scrollHeight;
+
+function quickMsg(m) {
+  document.getElementById('chat-input').value = m;
+  sendChat();
+}
+
+function appendMsg(html, who) {
+  const box = document.getElementById('chat-messages');
+  const d = document.createElement('div');
+  d.className = 'msg' + (who === 'user' ? ' user' : '');
+  d.innerHTML = '<div class="mava ' + who + '">' + (who === 'ai' ? 'AI' : 'TU') + '</div><div class="mb ' + who + '">' + html + '</div>';
+  box.appendChild(d);
+  box.scrollTop = box.scrollHeight;
 }
 
 /* ═══ PROGRESS BARS ANIMATION ═══ */
-window.addEventListener('load',()=>{
-  setTimeout(()=>{
-    document.querySelectorAll('.pf,.bc-fill').forEach(el=>{const w=el.style.width;el.style.width='0';requestAnimationFrame(()=>requestAnimationFrame(()=>{el.style.width=w;}));});
-  },200);
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.pf, .bc-fill').forEach(el => {
+      const w = el.style.width;
+      el.style.width = '0';
+      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.width = w; }));
+    });
+  }, 200);
 });
 
 /* ═══ KEYBOARD SHORTCUTS ═══ */
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){closeProcModal();closeBenModal();}
-  if(e.ctrlKey&&e.key==='k'){e.preventDefault();document.querySelector('.tb-search input').focus();}
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeProcModal(); closeBenModal(); }
+});
+
+/* ═══ INIT ═══ */
+document.addEventListener('DOMContentLoaded', () => {
+  nav('dashboard', null);
 });
 </script>
-</body>
-</html>
-
 							<script>
                             	
 							</script>
