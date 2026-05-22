@@ -425,6 +425,71 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   <div class="tb-search">
     <span style="color:var(--n400)">🔍</span>
     <input type="text" placeholder="Cerca gara, CIG, beneficiario…"/>
+	  <div style="position:relative;">
+  <input id="gs-input" onclick="apriSearch()" readonly
+    placeholder="🔍 Cerca procedura, CIG, impresa...  ⌘K"
+    style="width:260px; padding:8px 14px; border-radius:8px;
+      border:1px solid #e5e7eb; background:#f9fafb;
+      color:#6b7280; font-size:0.85rem; cursor:pointer;"/>
+
+  <div id="gs-modal" style="display:none; position:fixed; inset:0;
+    background:rgba(0,0,0,0.45); z-index:9999;
+    align-items:flex-start; justify-content:center; padding-top:80px;">
+    <div style="background:white; width:520px; border-radius:16px;
+      box-shadow:0 20px 60px rgba(0,0,0,0.2); overflow:hidden;">
+      <input id="gs-query" placeholder="Cerca procedura, CIG, impresa..."
+        oninput="filtraSearch(this.value)"
+        style="width:100%; padding:16px 20px; font-size:1rem;
+          border:none; border-bottom:1px solid #f3f4f6; outline:none; box-sizing:border-box;"/>
+      <div id="gs-results" style="max-height:320px; overflow-y:auto;"></div>
+      <div style="padding:8px 16px; font-size:0.72rem; color:#9ca3af;
+        border-top:1px solid #f3f4f6;">Esc per chiudere</div>
+    </div>
+  </div>
+</div>
+
+<script>
+const searchData = [
+  { label:'🏥 Ospedale Civile Pad.C', sub:'CIG-2025-0088 · € 4,2M · Scadenza 14 giu' },
+  { label:'🏛️ Mercato Coperto Storico', sub:'CIG-2025-0059 · In valutazione' },
+  { label:'🖥️ IT Tributi Comunali', sub:'CIG-2025-0071 · Accordo Quadro' },
+  { label:'⚡ Gestione Calore', sub:'CIG-2025-0038 · Ristretta · 15 ago' },
+  { label:'🏢 Ediltech Srl', sub:'Score 51 · ⚠️ DURC scaduto' },
+  { label:'🏗️ Edilizia Storica SpA', sub:'Score 91 · Profilo affidabile' },
+  { label:'📄 Bando Ospedale REV1', sub:'Firmato · Pubblicato ANAC' },
+  { label:'🧾 Rendicontazione Fondi', sub:'DdR PNRR/PON/FSC' },
+  { label:'✅ Conformità & ANAC', sub:'80% score · 2 anomalie critiche' },
+  { label:'📈 Report & Analisi', sub:'KPI · Ribassi · Top aggiudicatari' },
+];
+function apriSearch() {
+  const m = document.getElementById('gs-modal');
+  m.style.display = 'flex';
+  setTimeout(() => document.getElementById('gs-query').focus(), 50);
+  filtraSearch('');
+}
+function chiudiSearch() {
+  document.getElementById('gs-modal').style.display = 'none';
+  document.getElementById('gs-query').value = '';
+}
+function filtraSearch(q) {
+  const res = q ? searchData.filter(d =>
+    d.label.toLowerCase().includes(q.toLowerCase()) ||
+    d.sub.toLowerCase().includes(q.toLowerCase())) : searchData;
+  document.getElementById('gs-results').innerHTML = res.map(d => `
+    <div style="padding:12px 20px; cursor:pointer; border-bottom:1px solid #f9fafb;"
+      onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
+      <div style="font-size:0.9rem; font-weight:500;">${d.label}</div>
+      <div style="font-size:0.75rem; color:#6b7280;">${d.sub}</div>
+    </div>`).join('') || '<div style="padding:20px; color:#9ca3af; text-align:center;">Nessun risultato</div>';
+}
+document.addEventListener('keydown', e => {
+  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); apriSearch(); }
+  if (e.key === 'Escape') chiudiSearch();
+});
+document.getElementById('gs-modal')?.addEventListener('click', e => {
+  if (e.target === document.getElementById('gs-modal')) chiudiSearch();
+});
+</script>
   </div>
   <div class="tb-acts">
     <div class="tb-ico" onclick="toast('Hai 3 notifiche non lette','warn')">🔔<div class="tb-dot"></div></div>
@@ -502,6 +567,50 @@ document.addEventListener('click', e => {
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">💶</div><div class="kpi-trend up">+11%</div></div><div class="kpi-val" style="font-size:1.35rem">€14,8M</div><div class="kpi-lbl">Portafoglio</div><div class="kpi-sub">PNRR, PON, FSC, bilancio</div></div>
     <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🚨</div><div class="kpi-trend dn">+1</div></div><div class="kpi-val" style="color:var(--err)">2</div><div class="kpi-lbl">Alert Critici</div><div class="kpi-sub">Intervento richiesto</div></div>
     <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div><div class="kpi-trend up">ON</div></div><div class="kpi-val" style="color:var(--purple)">24</div><div class="kpi-lbl">Task AI</div><div class="kpi-sub">Completati questa settimana</div></div>
+	  <!-- KPI ANIMATI — inserisci subito dopo i 6 card KPI statici -->
+<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:20px 0;">
+  <div style="background:#eff6ff; border-radius:12px; padding:16px; text-align:center;">
+    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Valore Portafoglio</div>
+    <div id="kpi1" style="font-size:1.7rem; font-weight:700; color:#1d4ed8;">€ 0</div>
+    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +11% vs 2024</div>
+  </div>
+  <div style="background:#f0fdf4; border-radius:12px; padding:16px; text-align:center;">
+    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Ribasso Medio</div>
+    <div id="kpi2" style="font-size:1.7rem; font-weight:700; color:#16a34a;">0%</div>
+    <div style="font-size:0.7rem; color:#6b7280; margin-top:2px;">Tutti i settori</div>
+  </div>
+  <div style="background:#fefce8; border-radius:12px; padding:16px; text-align:center;">
+    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Offerenti medi/gara</div>
+    <div id="kpi3" style="font-size:1.7rem; font-weight:700; color:#d97706;">0</div>
+    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +0,9 vs 2024</div>
+  </div>
+  <div style="background:#fdf4ff; border-radius:12px; padding:16px; text-align:center;">
+    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Tasso Esclusione</div>
+    <div id="kpi4" style="font-size:1.7rem; font-weight:700; color:#7c3aed;">0%</div>
+    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▼ In miglioramento</div>
+  </div>
+</div>
+
+<script>
+function animaContatore(id, fine, durata, formato) {
+  const el = document.getElementById(id);
+  let inizio = 0;
+  const step = fine / (durata / 16);
+  const t = setInterval(() => {
+    inizio = Math.min(inizio + step, fine);
+    el.textContent = formato(inizio);
+    if (inizio >= fine) clearInterval(t);
+  }, 16);
+}
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    animaContatore('kpi1', 14.8, 1200, v => '€ ' + v.toFixed(1) + 'M');
+    animaContatore('kpi2', 11.8, 1000, v => v.toFixed(1) + '%');
+    animaContatore('kpi3', 5.4,  900,  v => v.toFixed(1));
+    animaContatore('kpi4', 5.8,  900,  v => v.toFixed(1) + '%');
+  }, 400);
+});
+</script>
   </div>
 
   <div class="g73 mb6">
@@ -748,8 +857,62 @@ document.addEventListener('click', e => {
       </div></div>
     </div>
   </div>
-  <div class="tab-pane" id="ng-prev"><div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">👁</div><div class="card-title">Preview Bando Generato</div></div><div class="ai-pill"><div class="ai-dot"></div>Redatto dall'agente</div></div><div id="prev-content" class="card-body"><div style="display:flex;flex-direction:column;align-items:center;padding:38px;color:var(--n400)"><div style="font-size:2.4rem;opacity:.4">📄</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Nessun documento generato</div><div style="font-size:.73rem;margin-top:4px">Clicca "🤖 Genera con AI" per creare il bando automaticamente</div></div></div><div class="card-foot"><button class="btn btn-secondary btn-sm" onclick="toast('Download avviato','ok')">📥 Esporta PDF</button><button class="btn btn-secondary btn-sm" onclick="toast('Trasmissione ANAC avviata','ok')">📤 Pubblica ANAC</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="toast('Bando pubblicato!','ok')">✅ Approva & Pubblica</button></div></div></div>
+ <div id="preview-area" style="padding:16px;">
+  <div id="preview-placeholder" style="text-align:center; color:#9ca3af;
+    padding:40px; border:2px dashed #e5e7eb; border-radius:12px;">
+    📄 Nessun documento generato<br>
+    <small>Clicca "🤖 Genera con AI" per creare il bando automaticamente</small>
+  </div>
+  <div id="preview-doc" style="display:none; opacity:0; transition:opacity 0.4s;">
+    <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+      <span style="background:#dcfce7; color:#16a34a; padding:3px 10px;
+        border-radius:20px; font-size:0.75rem;">✅ Conforme D.Lgs. 36/23</span>
+      <span style="background:#dbeafe; color:#1d4ed8; padding:3px 10px;
+        border-radius:20px; font-size:0.75rem;">🤖 AI-generato</span>
+      <span style="background:#fef9c3; color:#854d0e; padding:3px 10px;
+        border-radius:20px; font-size:0.75rem;">📝 Bozza</span>
+    </div>
+    <div style="border:1px solid #e5e7eb; border-radius:12px; padding:20px;
+      font-size:0.85rem; line-height:1.7; max-height:360px; overflow-y:auto;">
+      <h3 style="color:#1e40af; margin:0 0 6px 0;">BANDO DI GARA — PROCEDURA APERTA
+        <br><small style="font-weight:400; color:#6b7280;">D.Lgs. 36/2023 · OEPV · PNRR M6C2</small>
+      </h3>
+      <hr style="border-color:#f3f4f6; margin:10px 0;">
+      <p><strong>Oggetto:</strong> Ampliamento Padiglione C Ospedale Civile — lavori edili, impianti.</p>
+      <p><strong>CIG:</strong> CIG-2025-0088 &nbsp;|&nbsp; <strong>CUP:</strong> H89J25000010001</p>
+      <p><strong>Importo:</strong> € 4.200.000,00 (IVA esclusa)</p>
+      <p><strong>Criterio:</strong> OEPV · Tecnico 60 pt · Economico 40 pt</p>
+      <p><strong>Requisiti:</strong> SOA OG11 cl.IV+ · OG1 cl.III · DGUE ex art. 91</p>
+      <p><strong>Scadenza:</strong> 14 giugno 2025 ore 12:00</p>
+      <p><strong>Clausola PNRR:</strong> ✅ Antifrode · ✅ DNSH · ✅ Tracciabilità L.136/2010</p>
+      <div style="background:#fef9c3; border-radius:8px; padding:10px 14px; margin-top:10px; font-size:0.82rem;">
+        💡 <strong>AI:</strong> Importo sotto soglia UE — pubblicazione GURI + ANAC sufficiente.
+      </div>
+    </div>
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <button onclick="alert('PDF in generazione...')" style="background:#1d4ed8; color:white;
+        border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">
+        📥 Esporta PDF</button>
+      <button onclick="if(confirm('Pubblicare su ANAC?')) alert('✅ Inviato ad ANAC — CIG-2025-0088')"
+        style="background:#16a34a; color:white; border:none; padding:9px 16px;
+        border-radius:8px; cursor:pointer; font-size:0.82rem;">📤 Pubblica ANAC</button>
+    </div>
+  </div>
 </div>
+
+<script>
+// Aggancia il bottone "Genera con AI" già esistente nella pagina
+document.querySelectorAll('button').forEach(btn => {
+  if (btn.textContent.includes('Genera con AI')) {
+    btn.addEventListener('click', () => {
+      document.getElementById('preview-placeholder').style.display = 'none';
+      const doc = document.getElementById('preview-doc');
+      doc.style.display = 'block';
+      setTimeout(() => doc.style.opacity = '1', 30);
+    });
+  }
+});
+</script>
 
 <!-- ══════════ VALUTAZIONE ══════════ -->
 <div class="page" id="page-valutazione">
@@ -1174,11 +1337,83 @@ document.addEventListener('click', e => {
 <!-- ═══ MODAL PROCEDURA ═══ -->
 <div class="modal-overlay" id="proc-modal" onclick="if(event.target===this)closeProcModal()">
   <div class="modal">
-    <div class="modal-hd"><div class="modal-title" id="proc-modal-title">Dettaglio Procedura</div><button class="modal-close" onclick="closeProcModal()">✕</button></div>
-    <div class="modal-body" id="proc-modal-body"></div>
-    <div class="modal-foot"><button class="btn btn-ghost" onclick="closeProcModal()">Chiudi</button><button class="btn btn-secondary btn-sm" onclick="toast('Export generato','ok')">📥 Esporta</button><button class="btn btn-primary btn-sm" onclick="nav('valutazione',null);closeProcModal()">⚖️ Valutazione</button></div>
+   <div id="dettaglio-modal" style="display:none; position:fixed; inset:0;
+  background:rgba(0,0,0,0.5); z-index:9998;
+  align-items:center; justify-content:center;">
+  <div style="background:white; width:580px; border-radius:16px;
+    box-shadow:0 20px 60px rgba(0,0,0,0.2); padding:28px; position:relative; max-height:90vh; overflow-y:auto;">
+    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:18px;">
+      <h3 style="margin:0; font-size:1rem;">📋 Dettaglio Procedura</h3>
+      <button onclick="document.getElementById('dettaglio-modal').style.display='none'"
+        style="border:none; background:none; font-size:1.3rem; cursor:pointer;">✕</button>
+    </div>
+    <div id="modal-proc-body">— seleziona una procedura —</div>
   </div>
 </div>
+
+<script>
+const procedureDB = {
+  'CIG-2025-0088': { titolo:'🏥 Ospedale Civile Pad. C', normativa:'D.Lgs. 36/23',
+    importo:'€ 4.200.000', scadenza:'14 giu 2025', stato:'⚠️ Ricezione',
+    offerte:6, tipo:'Aperta Ordinaria', fonte:'PNRR M6C2', cup:'H89J25000010001',
+    note:'Verificare ricezione 2 buste mancanti entro scadenza.' },
+  'CIG-2025-0059': { titolo:'🏛️ Mercato Coperto Storico', normativa:'D.Lgs. 36/23',
+    importo:'€ 2.900.000', scadenza:'Scaduta', stato:'⏳ Valutazione',
+    offerte:7, tipo:'Aperta Ordinaria', fonte:'PNRR BC', cup:'F81B24000320006',
+    note:'Verifica anomalia Costruzioni Sud 2020 in corso.' },
+  'CIG-2025-0071': { titolo:'🖥️ IT Tributi Comunali', normativa:'D.Lgs. 50/16',
+    importo:'€ 1.800.000', scadenza:'28 giu 2025', stato:'✅ Pubblicata',
+    offerte:3, tipo:'Accordo Quadro', fonte:'FSC 21-27', cup:'—',
+    note:'11 operatori idonei · ribasso atteso 7–12%.' },
+  'CIG-2025-0038': { titolo:'⚡ Gestione Calore Edifici', normativa:'D.Lgs. 50/16 Sp.',
+    importo:'€ 3.100.000', scadenza:'15 ago 2025', stato:'📨 Inviti inviati',
+    offerte:5, tipo:'Ristretta', fonte:'Bilancio', cup:'—',
+    note:'Settori Speciali — attesa ricezione offerte.' },
+  'CIG-2025-0031': { titolo:'💧 Manutenzione Rete Idrica', normativa:'D.Lgs. 50/16 Sp.',
+    importo:'€ 890.000', scadenza:'20 lug 2025', stato:'📬 Ricezione',
+    offerte:4, tipo:'Negoziata s.b.', fonte:'Bilancio', cup:'—',
+    note:'Settori Speciali — negoziata senza bando.' },
+};
+
+function apriDettaglioProcedura(cig) {
+  const d = procedureDB[cig];
+  if (!d) return;
+  document.getElementById('modal-proc-body').innerHTML = `
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; font-size:0.85rem;">
+      <div><strong>Oggetto</strong><br>${d.titolo}</div>
+      <div><strong>Stato</strong><br>${d.stato}</div>
+      <div><strong>CIG</strong><br><code>${cig}</code></div>
+      <div><strong>CUP</strong><br>${d.cup}</div>
+      <div><strong>Normativa</strong><br>${d.normativa}</div>
+      <div><strong>Tipo procedura</strong><br>${d.tipo}</div>
+      <div><strong>Importo</strong><br>${d.importo}</div>
+      <div><strong>Scadenza</strong><br>${d.scadenza}</div>
+      <div><strong>Offerte ricevute</strong><br>${d.offerte}</div>
+      <div><strong>Fonte</strong><br>${d.fonte}</div>
+    </div>
+    <div style="margin-top:14px; padding:10px 14px; background:#fef9c3;
+      border-radius:8px; font-size:0.82rem;">
+      🤖 <strong>AI Note:</strong> ${d.note}
+    </div>
+    <div style="display:flex; gap:10px; margin-top:14px;">
+      <button style="background:#1d4ed8; color:white; border:none; padding:9px 16px;
+        border-radius:8px; cursor:pointer; font-size:0.82rem;">⚖️ Vai a Valutazione</button>
+      <button style="background:#f3f4f6; color:#374151; border:none; padding:9px 16px;
+        border-radius:8px; cursor:pointer; font-size:0.82rem;">📥 Esporta</button>
+    </div>`;
+  document.getElementById('dettaglio-modal').style.display = 'flex';
+}
+
+// Aggancia tutti i pulsanti → della tabella procedure
+document.querySelectorAll('td').forEach(td => {
+  const m = td.textContent.match(/CIG-2025-\d+/);
+  if (m) td.closest('tr')?.querySelectorAll('button, a').forEach(btn => {
+    if (btn.textContent.includes('→')) {
+      btn.onclick = () => apriDettaglioProcedura(m[0]);
+    }
+  });
+});
+</script>
 
 <!-- ═══ MODAL BENEFICIARIO ═══ -->
 <div class="modal-overlay" id="ben-modal" onclick="if(event.target===this)closeBenModal()">
