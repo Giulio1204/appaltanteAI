@@ -378,43 +378,39 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     <div class="sb-mark">🏛️</div>
     <div><div class="sb-name">AppaltanteAI</div><div class="sb-ed">Stazione Appaltante</div></div>
   </div>
-
   <div class="ai-banner">
     <div class="ai-tag"><div class="ai-dot"></div>Agente AI</div>
     <p>Analizza requisiti, studia mercato, redige documenti, interpreta penali su tutte le normative e tutti i settori.</p>
     <button class="ai-btn" onclick="nav('agente',this)">🤖 Avvia Agente</button>
   </div>
-
   <div class="ng">
     <div class="ng-label">Principale</div>
-    <div class="ni active" onclick="nav('dashboard',this)"><span class="ico">📊</span><span class="lbl">Dashboard</span></div>
-    <div class="ni" onclick="nav('agente',this)"><span class="ico">🤖</span><span class="lbl">Agente AI</span><span class="nbadge p">AI</span></div>
-    <div class="ni" onclick="nav('procedure',this)"><span class="ico">📂</span><span class="lbl">Procedure di Gara</span><span class="nbadge">9</span></div>
-    <div class="ni" onclick="nav('nuova',this)"><span class="ico">✍️</span><span class="lbl">Genera Bando</span></div>
+    <div class="ni active" data-page="dashboard"      onclick="nav('dashboard',this)"><span class="ico">📊</span><span class="lbl">Dashboard</span></div>
+    <div class="ni"        data-page="agente"         onclick="nav('agente',this)"><span class="ico">🤖</span><span class="lbl">Agente AI</span><span class="nbadge p">AI</span></div>
+    <div class="ni"        data-page="procedure"      onclick="nav('procedure',this)"><span class="ico">📂</span><span class="lbl">Procedure di Gara</span><span class="nbadge">9</span></div>
+    <div class="ni"        data-page="nuova"          onclick="nav('nuova',this)"><span class="ico">✍️</span><span class="lbl">Genera Bando</span></div>
   </div>
   <div class="ng">
     <div class="ng-label">Valutazione</div>
-    <div class="ni" onclick="nav('valutazione',this)"><span class="ico">⚖️</span><span class="lbl">Valuta Offerte</span><span class="nbadge d">4</span></div>
-    <div class="ni" onclick="nav('commissioni',this)"><span class="ico">👥</span><span class="lbl">Commissioni</span></div>
-    <div class="ni" onclick="nav('documenti',this)"><span class="ico">📄</span><span class="lbl">Archivio Documenti</span></div>
+    <div class="ni" data-page="valutazione"  onclick="nav('valutazione',this)"><span class="ico">⚖️</span><span class="lbl">Valuta Offerte</span><span class="nbadge d">4</span></div>
+    <div class="ni" data-page="commissioni"  onclick="nav('commissioni',this)"><span class="ico">👥</span><span class="lbl">Commissioni</span></div>
+    <div class="ni" data-page="documenti"    onclick="nav('documenti',this)"><span class="ico">📄</span><span class="lbl">Archivio Documenti</span></div>
   </div>
   <div class="ng">
     <div class="ng-label">Esecuzione & Controllo</div>
-    <div class="ni" onclick="nav('esecuzione',this)"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
-    <div class="ni" onclick="nav('beneficiari',this)"><span class="ico">🏢</span><span class="lbl">Database Beneficiari</span><span class="nbadge p">NEW</span></div>
-    <div class="ni" onclick="nav('rendicontazione',this)"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
-    <div class="ni" onclick="nav('conformita',this)"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
-    <div class="ni" onclick="nav('report',this)"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
+    <div class="ni" data-page="esecuzione"      onclick="nav('esecuzione',this)"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
+    <div class="ni" data-page="beneficiari"     onclick="nav('beneficiari',this)"><span class="ico">🏢</span><span class="lbl">Database Beneficiari</span><span class="nbadge p">NEW</span></div>
+    <div class="ni" data-page="rendicontazione" onclick="nav('rendicontazione',this)"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
+    <div class="ni" data-page="conformita"      onclick="nav('conformita',this)"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
+    <div class="ni" data-page="report"          onclick="nav('report',this)"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
   </div>
-
   <div class="sb-foot">
     <div class="upill">
       <div class="uava">GR</div>
-      <div><div class="uname">Ing. G. Majo</div><div class="urole">RUP · Provveditorato OO.PP.</div></div>
+      <div><div class="uname">Ing. G. Romanelli</div><div class="urole">RUP · Provveditorato OO.PP.</div></div>
     </div>
   </div>
 </aside>
-</div>
 <!-- ═══ MAIN ═══ -->
 <main class="main">
 <header class="topbar">
