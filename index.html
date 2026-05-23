@@ -1,16 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body {
-background-color: white;
-}
-</style>
-</head>
-<body>
-<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8"/>
@@ -577,7 +565,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </aside>
-
 <!-- ═══ MAIN ═══ -->
 <main class="main">
 <header class="topbar">
@@ -588,14 +575,12 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     <div class="tb-title" id="tb-title">Dashboard</div>
     <div class="tb-crumb" id="tb-crumb">AppaltanteAI · Panoramica generale</div>
   </div>
-
   <!-- Search -->
   <input id="gs-input" onclick="apriSearch()" readonly
     placeholder="🔍 Cerca procedura, CIG, impresa...  ⌘K"
     style="width:260px;padding:8px 14px;border-radius:8px;border:1px solid #e5e7eb;
     background:#f9fafb;color:#6b7280;font-size:0.85rem;cursor:pointer;"/>
   <button class="mobile-search-btn" onclick="apriSearch()">🔍</button>
-
   <div id="gs-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);
     z-index:9999;align-items:flex-start;justify-content:center;padding-top:60px;">
     <div style="background:white;width:min(520px,94vw);border-radius:16px;
@@ -649,7 +634,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     if(e.target===document.getElementById('gs-modal'))chiudiSearch();
   });
   </script>
-
   <!-- Notifiche -->
   <div style="position:relative;display:inline-block;flex-shrink:0">
     <button id="notif-btn" onclick="toggleNotifiche()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;position:relative;">
@@ -700,11 +684,9 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       panel.style.display='none';
   });
   </script>
-
   <div class="tb-ico" onclick="toast('Impostazioni — prossimamente','info')">⚙️</div>
   <button class="btn btn-primary tb-new-btn" onclick="nav('nuova',null)">+ Nuova Procedura</button>
 </header>
-
 <!-- ══ BOTTOM NAV ══ -->
 <nav class="bottom-nav">
   <div class="bottom-nav-inner">
@@ -728,7 +710,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </button>
   </div>
 </nav>
-
 <!-- ══════════════════════════════════════
      DASHBOARD
 ══════════════════════════════════════ -->
@@ -738,8 +719,10 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div><div class="kpi-trend up">+4</div></div><div class="kpi-val">21</div><div class="kpi-lbl">Aggiudicate YTD</div><div class="kpi-sub">Tasso successo 88%</div></div>
     <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">⏳</div><div class="kpi-trend fl">—</div></div><div class="kpi-val">4</div><div class="kpi-lbl">Offerte da Valutare</div><div class="kpi-sub">Commissione in riunione</div></div>
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">💶</div><div class="kpi-trend up">+11%</div></div><div class="kpi-val" style="font-size:1.35rem">€14,8M</div><div class="kpi-lbl">Portafoglio</div><div class="kpi-sub">PNRR, PON, FSC, bilancio</div></div>
-    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🚨</div><div class="kpi-trend dn">+1</div></div><div class="kpi-val" style="color:var(--err)">2</div><div class="kpi-lbl">Alert Critici</div><div class="kpi-sub">Intervento richiesto</div>
-    </div>
+    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🚨</div><div class="kpi-trend dn">+1</div></div><div class="kpi-val" style="color:var(--err)">2</div><div class="kpi-lbl">Alert Critici</div><div class="kpi-sub">Intervento richiesto</div></div>
+    <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div><div class="kpi-trend up">ON</div></div><div class="kpi-val" style="color:var(--purple)">24</div><div class="kpi-lbl">Task AI</div><div class="kpi-sub">Completati settimana</div></div>
+  </div>
+  <!-- CHIUSURA CORRETTA DEL KPI-GRID -->
   <div class="g73 mb6">
     <div class="card">
       <div class="card-hd">
@@ -828,13 +811,11 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </div>
-
 <!-- ══════════════════════════════════════
      PROCEDURE DI GARA — STRUTTURA A
      Accordion per progetto
 ══════════════════════════════════════ -->
 <div class="page" id="page-procedure">
-
   <!-- INTESTAZIONE -->
   <div class="sh">
     <div class="sh-l">
@@ -848,7 +829,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       <button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova Procedura</button>
     </div>
   </div>
-
   <!-- KPI SOMMARIO PROGETTI -->
   <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(150px,1fr));margin-bottom:18px">
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">🗂️</div></div><div class="kpi-val">5</div><div class="kpi-lbl">Progetti attivi</div></div>
@@ -858,7 +838,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🚨</div></div><div class="kpi-val" style="color:var(--err)">2</div><div class="kpi-lbl">Alert attivi</div></div>
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">💶</div></div><div class="kpi-val" style="font-size:1.1rem">€22,8M</div><div class="kpi-lbl">Budget totale</div></div>
   </div>
-
   <!-- FILTRI -->
   <div class="card mb4">
     <div class="proj-filters">
@@ -875,7 +854,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div>
-
   <!-- ════════ PROGETTO 1: OSPEDALE CIVILE ════════ -->
   <div class="proj-card pnrr" data-fonte="pnrr" data-alert="si" id="proj-ospedale">
     <div class="proj-hd" onclick="toggleProject('proj-ospedale')">
@@ -913,7 +891,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
       <div class="proj-chevron">▼</div>
     </div>
-
     <div class="proj-body">
       <!-- Sommario rapido -->
       <div class="proj-summary">
@@ -923,7 +900,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
         <div class="proj-summary-item">🤖 AI: <strong>Analisi mercato in corso</strong></div>
         <button class="btn btn-ghost btn-xs" onclick="quickMsg('Analizza lo stato del progetto Ospedale Civile e suggerisci azioni prioritarie.');nav('agente',null)" style="margin-left:auto">🤖 Chiedi all\'AI →</button>
       </div>
-
       <!-- Tabella procedure -->
       <div class="tw">
         <table>
@@ -1004,7 +980,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
           </tbody>
         </table>
       </div>
-
       <div class="proj-foot">
         <span style="font-size:.68rem;color:var(--n500)">Budget impegnato: <strong style="color:var(--n900)">€ 4,48M</strong> / € 12,4M totali · Residuo: € 7,92M</span>
         <div style="margin-left:auto;display:flex;gap:7px">
@@ -1014,7 +989,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div><!-- fine proj-ospedale -->
-
   <!-- ════════ PROGETTO 2: MERCATO COPERTO ════════ -->
   <div class="proj-card pnrr" data-fonte="pnrr" data-alert="no" id="proj-mercato">
     <div class="proj-hd" onclick="toggleProject('proj-mercato')">
@@ -1040,7 +1014,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
       <div class="proj-chevron">▼</div>
     </div>
-
     <div class="proj-body">
       <div class="proj-summary">
         <div class="proj-summary-item">🏛️ RUP: <strong>Arch. M. Ferrari</strong></div>
@@ -1091,7 +1064,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div><!-- fine proj-mercato -->
-
   <!-- ════════ PROGETTO 3: IT TRIBUTI ════════ -->
   <div class="proj-card fsc" data-fonte="fsc" data-alert="no" id="proj-it">
     <div class="proj-hd" onclick="toggleProject('proj-it')">
@@ -1117,7 +1089,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
       <div class="proj-chevron">▼</div>
     </div>
-
     <div class="proj-body">
       <div class="proj-summary">
         <div class="proj-summary-item">🏛️ RUP: <strong>Dott. L. Verdi</strong></div>
@@ -1154,7 +1125,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div><!-- fine proj-it -->
-
   <!-- ════════ PROGETTO 4: GESTIONE CALORE ════════ -->
   <div class="proj-card bil" data-fonte="bil" data-alert="no" id="proj-calore">
     <div class="proj-hd" onclick="toggleProject('proj-calore')">
@@ -1180,7 +1150,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
       <div class="proj-chevron">▼</div>
     </div>
-
     <div class="proj-body">
       <div class="proj-summary">
         <div class="proj-summary-item">🏛️ RUP: <strong>Geom. P. Russo</strong></div>
@@ -1213,7 +1182,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div><!-- fine proj-calore -->
-
   <!-- ════════ PROGETTO 5: VERDE URBANO ════════ -->
   <div class="proj-card bil" data-fonte="bil" data-alert="no" id="proj-verde">
     <div class="proj-hd" onclick="toggleProject('proj-verde')">
@@ -1239,7 +1207,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
       <div class="proj-chevron">▼</div>
     </div>
-
     <div class="proj-body">
       <div class="proj-summary">
         <div class="proj-summary-item">🏛️ RUP: <strong>Ing. S. Bianchi</strong></div>
@@ -1276,9 +1243,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       </div>
     </div>
   </div><!-- fine proj-verde -->
-
 </div><!-- fine page-procedure -->
-
 <!-- ══════════ AGENTE AI ══════════ -->
 <div class="page" id="page-agente">
   <div class="sh">
@@ -1333,7 +1298,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </div>
-
 <!-- ══════════ GENERA BANDO ══════════ -->
 <div class="page" id="page-nuova">
   <div class="sh"><div class="sh-l"><div class="sh-title">Genera Bando & Capitolato</div><div class="sh-sub">L'agente AI redige documenti conformi in qualsiasi settore</div></div><div class="sh-r"><button class="btn btn-ghost" onclick="toast('Bozza salvata','ok')">💾 Salva</button><button class="btn btn-primary" onclick="generaBando()">🤖 Genera con AI</button></div></div>
@@ -1450,7 +1414,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </div>
-
 <!-- ══════════ VALUTAZIONE ══════════ -->
 <div class="page" id="page-valutazione">
   <div class="sh"><div class="sh-l"><div class="sh-title">Valutazione Offerte</div><div class="sh-sub">Mercato Coperto — CIG-2025-0059 · Det. n. 231/2025</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Punteggi AI calcolati</div><button class="btn btn-primary" onclick="toast('Verbale in generazione…','info')">📄 Verbale</button></div></div>
@@ -1499,7 +1462,6 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div></div>
   </div>
 </div>
-
 <!-- Pagine sintetiche per il resto -->
 <div class="page" id="page-commissioni">
   <div class="sh"><div class="sh-l"><div class="sh-title">Commissioni di Gara</div><div class="sh-sub">Nomina, sedute, conflitti di interesse</div></div></div>
@@ -1529,13 +1491,11 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   <div class="sh"><div class="sh-l"><div class="sh-title">Report & Analisi</div><div class="sh-sub">KPI di performance e benchmark</div></div><div class="sh-r"><button class="btn btn-primary" onclick="toast('Report AI in generazione…','info')">🤖 Report AI</button></div></div>
   <div class="card"><div class="card-body" style="text-align:center;padding:60px;color:var(--n400)"><div style="font-size:2.5rem">📈</div><div style="margin-top:12px;font-size:.9rem;font-weight:600;color:var(--n600)">Analytics disponibili nella versione completa</div></div></div>
 </div>
-
 <footer>
   <div>AppaltanteAI MVP v2.4 · D.Lgs. 163/06 | 50/16 | 36/23 · Struttura A — Procedure per Progetto</div>
   <div style="display:flex;align-items:center;gap:5px"><span style="color:var(--ok)">●</span>Sistema operativo · Agente AI attivo</div>
 </footer>
 </main>
-
 <!-- ═══ MODAL PROCEDURA ═══ -->
 <div class="modal-overlay" id="proc-modal" onclick="if(event.target===this)closeProcModal()">
   <div class="modal">
@@ -1551,9 +1511,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </div>
-
 <div class="toast-bar" id="toasts"></div>
-
 <script>
 /* ══ SIDEBAR MOBILE ══ */
 function toggleSidebar(){
@@ -1571,7 +1529,6 @@ function closeSidebar(){
   document.getElementById('hamburger').classList.remove('open');
   document.body.style.overflow='';
 }
-
 /* ══ BOTTOM NAV ══ */
 function updateBottomNav(page){
   ['dashboard','agente','procedure','valutazione'].forEach(p=>{
@@ -1579,7 +1536,6 @@ function updateBottomNav(page){
     if(el)el.classList.toggle('active',p===page);
   });
 }
-
 /* ══ NAVIGATION ══ */
 const META={
   dashboard:['Dashboard','Panoramica generale'],
@@ -1611,7 +1567,6 @@ function nav(id,el){
   window.scrollTo(0,0);
   updateBottomNav(id);
 }
-
 /* ══ TABS ══ */
 function switchTab(group,paneId,btn){
   const pgId=group==='ng'?'page-nuova':'page-'+group;
@@ -1624,7 +1579,6 @@ function switchTab(group,paneId,btn){
   if(pane)pane.classList.add('active');
   if(btn)btn.classList.add('active');
 }
-
 /* ══ CHECKLIST ══ */
 function toggle(li){
   const box=li.querySelector('.cl-check');
@@ -1633,7 +1587,6 @@ function toggle(li){
   box.textContent=done?'✓':'';
   if(txt)txt.classList.toggle('done',done);
 }
-
 /* ══════════════════════════════
    ACCORDION PROGETTI — CORE
 ══════════════════════════════ */
@@ -1650,7 +1603,6 @@ function toggleProject(id){
     });
   }
 }
-
 function toggleAllProjects(open){
   document.querySelectorAll('.proj-card').forEach(card=>{
     if(open){
@@ -1670,7 +1622,6 @@ function toggleAllProjects(open){
     },50);
   }
 }
-
 /* ══ FILTRI PROGETTO ══ */
 function filterProj(f,btn){
   // Reset bottoni
@@ -1690,14 +1641,12 @@ function filterProj(f,btn){
     card.style.display=show?'':'none';
   });
 }
-
 function searchProj(v){
   const q=v.toLowerCase();
   document.querySelectorAll('.proj-card').forEach(card=>{
     card.style.display=card.textContent.toLowerCase().includes(q)?'':'none';
   });
 }
-
 /* ══ TOAST ══ */
 function toast(msg,type='info'){
   const icons={ok:'✅',err:'❌',warn:'⚠️',info:'ℹ️'};
@@ -1712,7 +1661,6 @@ function toast(msg,type='info'){
     setTimeout(()=>t.remove(),300);
   },3200);
 }
-
 /* ══ MODAL PROCEDURA ══ */
 const PROC_DATA={
   'CIG-2025-0088':{
@@ -1774,7 +1722,6 @@ function openProcModal(cig){
 function closeProcModal(){
   document.getElementById('proc-modal').classList.remove('open');
 }
-
 /* ══ GENERA BANDO ══ */
 function generaBando(){
   let btn=null;
@@ -1803,7 +1750,6 @@ function generaBando(){
     toast('Bando generato con successo!','ok');
   },2100);
 }
-
 /* ══ CHAT AI ══ */
 const KB={
   '50vs36':'<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023:</strong><ul><li>Soglie innalzate per affidamento diretto (art. 50)</li><li>FVOE e DGUE obbligatori formato elettronico</li><li>Anomalia: Soglia = M + 0,15 × S (art. 110)</li><li>CAM obbligatori art. 57</li></ul>',
@@ -1859,7 +1805,6 @@ function appendMsg(html,who){
   box.appendChild(d);
   box.scrollTop=box.scrollHeight;
 }
-
 /* ══ PROGRESS BARS ══ */
 window.addEventListener('load',()=>{
   setTimeout(()=>{
@@ -1869,7 +1814,6 @@ window.addEventListener('load',()=>{
     });
   },200);
 });
-
 /* ══ SWIPE ══ */
 let touchStartX=0;
 document.addEventListener('touchstart',e=>{touchStartX=e.touches[0].clientX;},{passive:true});
@@ -1877,12 +1821,10 @@ document.addEventListener('touchend',e=>{
   const dx=e.changedTouches[0].clientX-touchStartX;
   if(document.getElementById('sidebar').classList.contains('open')&&dx<-60)closeSidebar();
 },{passive:true});
-
 /* ══ KEYBOARD ══ */
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){closeProcModal();closeSidebar();}
 });
-
 /* ══ INIT ══ */
 document.addEventListener('DOMContentLoaded',()=>{
   nav('dashboard',null);
@@ -1890,7 +1832,5 @@ document.addEventListener('DOMContentLoaded',()=>{
   setTimeout(()=>toggleProject('proj-ospedale'),400);
 });
 </script>
-</body>
-</html>
 </body>
 </html>
