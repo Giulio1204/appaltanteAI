@@ -488,7 +488,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   <div class="ng">
     <div class="ng-label">Esecuzione & Controllo</div>
     <div class="ni" data-page="esecuzione"      onclick="nav('esecuzione',this);closeSidebar()"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
-    <div class="ni" data-page="beneficiari"     onclick="nav('beneficiari',this);closeSidebar()"><span class="ico">🏢</span><span class="lbl">Database Beneficiari</span><span class="nbadge p">NEW</span></div>
+    <div class="ni" data-page="beneficiari"     onclick="nav('operatori economici',this);closeSidebar()"><span class="ico">🏢</span><span class="lbl">Database Operatori Economici</span><span class="nbadge p">NEW</span></div>
     <div class="ni" data-page="rendicontazione" onclick="nav('rendicontazione',this);closeSidebar()"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
     <div class="ni" data-page="conformita"      onclick="nav('conformita',this);closeSidebar()"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
     <div class="ni" data-page="report"          onclick="nav('report',this);closeSidebar()"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
@@ -705,7 +705,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
       <div class="card">
         <div class="card-hd"><div class="card-hd-l"><div class="card-ico">🔔</div><div class="card-title">Alert Prioritari</div></div><span class="badge b-red">2 urgenti</span></div>
         <div class="card-body" style="padding-top:12px">
-          <div class="callout err"><span class="ci">🚨</span><div class="cb"><strong>DURC scaduto:</strong> Ediltech Srl — subappaltatore Fotovoltaico. Score beneficiario calato a 51/100. Bloccare SAL n.3.</div></div>
+          <div class="callout err"><span class="ci">🚨</span><div class="cb"><strong>DURC scaduto:</strong> Ediltech Srl — subappaltatore Fotovoltaico. Score Operatore calato a 51/100. Bloccare SAL n.3.</div></div>
           <div class="callout warn"><span class="ci">⚠️</span><div class="cb"><strong>Scadenza 14 giu:</strong> Ospedale Civile — ricevute 4/6 buste. Verificare piattaforma.</div></div>
           <div class="callout ok"><span class="ci">✅</span><div class="cb"><strong>AI completato:</strong> 11 operatori idonei per Servizi IT Tributi. Ribasso atteso 7–12%.</div></div>
         </div>
@@ -729,7 +729,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
           <div class="tl-item"><div class="tll"><div class="tld tl-g"></div><div class="tlline"></div></div><div class="tlbody"><div class="tlt">Aggiudicazione definitiva</div><div class="tld-desc">Verde Urbano — Giardinaggio Bianco Srl, ribasso 9,4%</div></div><div class="tldate">Oggi</div></div>
           <div class="tl-item"><div class="tll"><div class="tld tl-b"></div><div class="tlline"></div></div><div class="tlbody"><div class="tlt">Bando pubblicato ANAC + GURI</div><div class="tld-desc">Ospedale Civile Pad. C — CIG-2025-0088</div></div><div class="tldate">Ieri</div></div>
           <div class="tl-item"><div class="tll"><div class="tld tl-p"></div><div class="tlline"></div></div><div class="tlbody"><div class="tlt">AI — Analisi mercato IT completata</div><div class="tld-desc">11 operatori qualificati · ribasso medio atteso 9,5%</div></div><div class="tldate">Ieri</div></div>
-          <div class="tl-item"><div class="tll"><div class="tld tl-r"></div></div><div class="tlbody"><div class="tlt">Alert — DURC scaduto Ediltech Srl</div><div class="tld-desc">Score beneficiario aggiornato · pagamenti sospesi</div></div><div class="tldate">3 giu</div></div>
+          <div class="tl-item"><div class="tll"><div class="tld tl-r"></div></div><div class="tlbody"><div class="tlt">Alert — DURC scaduto Ediltech Srl</div><div class="tld-desc">Score operatore aggiornato · pagamenti sospesi</div></div><div class="tldate">3 giu</div></div>
         </div>
       </div>
     </div>
@@ -805,7 +805,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
           <div style="font-size:.61rem;font-weight:700;color:var(--n400);text-transform:uppercase;letter-spacing:.8px;padding-top:5px">🧾 Controllo & Rendicontazione</div>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Elenca tutta la documentazione richiesta per la prima DdR di un investimento infrastrutturale su fondi europei (Allegato 11.1 MOP).')">📑 Checklist DdR Allegato 11.1</button>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Una variante contrattuale del 13% sull\'importo originale per lavori è ammissibile? Analizza secondo art. 120 D.Lgs. 36/23.')">🔄 Verifica variante 13%</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si calcola il punteggio di solidità di un beneficiario?')">🏢 Scoring beneficiari</button>
+          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si calcola il punteggio di solidità di un operatore?')">🏢 Scoring Operatori</button>
         </div>
       </div>
     </div>
@@ -1004,10 +1004,10 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   </div>
 </div>
 
-<!-- ══════════ DATABASE BENEFICIARI ══════════ -->
+<!-- ══════════ DATABASE OPERATORI ECONOMICI ══════════ -->
 <div class="page" id="page-beneficiari">
   <div class="sh">
-    <div class="sh-l"><div class="sh-title">🏢 Database Beneficiari</div><div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa</div></div>
+    <div class="sh-l"><div class="sh-title">🏢 Database Operatori Economici</div><div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa</div></div>
     <div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div><button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo</button></div>
   </div>
   <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)">
@@ -1300,14 +1300,14 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 <div class="modal-overlay" id="ben-modal" onclick="if(event.target===this)closeBenModal()">
   <div class="modal" style="max-width:760px">
     <div class="modal-hd">
-      <div class="modal-title" id="ben-modal-title">Dettaglio Beneficiario</div>
+      <div class="modal-title" id="ben-modal-title">Dettaglio Operatore</div>
       <button class="modal-close" onclick="closeBenModal()">✕</button>
     </div>
     <div class="modal-body" id="ben-modal-body"></div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeBenModal()">Chiudi</button>
       <button class="btn btn-secondary btn-sm" onclick="toast('Report esportato','ok')">📥 Report</button>
-      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo del beneficiario e suggerisci azioni di monitoraggio.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
+      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo dell'operatore e suggerisci azioni di monitoraggio.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
     </div>
   </div>
 </div>
@@ -1362,7 +1362,7 @@ const META={
   commissioni:['Commissioni di Gara','Nomina, sedute e conflitti'],
   documenti:['Archivio Documenti','Bandi, capitolati, disciplinari'],
   esecuzione:['Contratti in Esecuzione','SAL, subappalti, varianti'],
-  beneficiari:['Database Beneficiari','Score affidabilità operatori economici'],
+  beneficiari:['Database Operatori Economici','Score affidabilità operatori economici'],
   rendicontazione:['Rendicontazione Fondi','DdR · Allegato 11.1/11.2 MOP'],
   conformita:['Conformità & ANAC','Controlli automatici multi-normativa'],
   report:['Report & Analisi','KPI, storico e benchmark multi-settore'],
@@ -1535,12 +1535,12 @@ const BEN_DATA = {
     html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca;flex-wrap:wrap"><div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></div></div><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)"><strong>🚨 AI Alert:</strong> DURC scaduto. Blocco pagamenti SAL n.3 raccomandato.</div></div>'
   },
   'new': {
-    html: '<div style="font-size:.76rem;line-height:1.8"><div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo beneficiario.</div></div><div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale</label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA</label><input class="fi" placeholder="00000000000"/></div></div><div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast(\'Score AI in calcolo…\',\'info\')">🤖 Calcola Score AI e Aggiungi</button></div></div>'
+    html: '<div style="font-size:.76rem;line-height:1.8"><div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo operatore.</div></div><div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale</label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA</label><input class="fi" placeholder="00000000000"/></div></div><div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast(\'Score AI in calcolo…\',\'info\')">🤖 Calcola Score AI e Aggiungi</button></div></div>'
   }
 };
 function openBenModal(nome) {
   const d = BEN_DATA[nome] || { html: '<p style="color:var(--n500);padding:20px;text-align:center">Caricamento...</p>' };
-  document.getElementById('ben-modal-title').textContent = nome === 'new' ? '➕ Nuovo Beneficiario' : '🏢 ' + nome;
+  document.getElementById('ben-modal-title').textContent = nome === 'new' ? '➕ Nuovo Operatore' : '🏢 ' + nome;
   document.getElementById('ben-modal-body').innerHTML = d.html;
   document.getElementById('ben-modal').classList.add('open');
 }
