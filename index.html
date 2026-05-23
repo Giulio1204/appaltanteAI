@@ -1,19 +1,16 @@
-
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-							<style>
-								body {
-									background-color: white; /* Ensure the iframe has a white background */
-								}
-
-								
-							</style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+background-color: white;
+}
+</style>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="it">
 <head>
 <meta charset="UTF-8"/>
@@ -36,6 +33,7 @@
   --sm:0 4px 8px rgba(10,32,96,.09),0 2px 4px rgba(0,0,0,.05);
   --md:0 10px 20px rgba(10,32,96,.11),0 4px 8px rgba(0,0,0,.04);
   --t:.18s cubic-bezier(.4,0,.2,1);
+  --bottom-nav-h: 60px;
 }
 html{scroll-behavior:smooth}
 body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--n50);color:var(--n900);min-height:100vh;display:flex;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
@@ -43,7 +41,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 ::-webkit-scrollbar-thumb{background:var(--c200);border-radius:20px}
 
 /* ══ SIDEBAR ══ */
-.sb{width:var(--sb);min-height:100vh;background:var(--c950);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:200;box-shadow:2px 0 20px rgba(0,0,0,.22);overflow-y:auto;overflow-x:hidden}
+.sb{width:var(--sb);min-height:100vh;background:var(--c950);display:flex;flex-direction:column;position:fixed;inset:0 auto 0 0;z-index:200;box-shadow:2px 0 20px rgba(0,0,0,.22);overflow-y:auto;overflow-x:hidden;transition:transform var(--t)}
 .sb-logo{display:flex;align-items:center;gap:11px;padding:17px 15px 15px;border-bottom:1px solid rgba(255,255,255,.05);flex-shrink:0}
 .sb-mark{width:35px;height:35px;background:linear-gradient(135deg,var(--c600),var(--c400));border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;box-shadow:0 4px 12px rgba(37,99,235,.42)}
 .sb-name{font-size:.94rem;font-weight:800;color:var(--W);letter-spacing:-.3px}
@@ -70,22 +68,35 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .uname{font-size:.74rem;font-weight:700;color:var(--W)}
 .urole{font-size:.61rem;color:rgba(255,255,255,.35)}
 
+/* ══ SIDEBAR OVERLAY (mobile) ══ */
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:199;backdrop-filter:blur(2px)}
+.sb-overlay.open{display:block;animation:fi .2s ease}
+
+/* ══ HAMBURGER ══ */
+.hamburger{display:none;flex-direction:column;justify-content:center;align-items:center;width:38px;height:38px;border-radius:var(--r);border:1.5px solid var(--n200);background:var(--W);cursor:pointer;gap:4px;flex-shrink:0;transition:all var(--t)}
+.hamburger:hover{border-color:var(--c300);background:var(--c50)}
+.hamburger span{display:block;width:18px;height:2px;background:var(--n700);border-radius:2px;transition:all var(--t)}
+.hamburger.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hamburger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
 /* ══ MAIN ══ */
 .main{margin-left:var(--sb);flex:1;display:flex;flex-direction:column;min-height:100vh}
 
 /* ══ TOPBAR ══ */
 .topbar{height:var(--tb);background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--n200);display:flex;align-items:center;padding:0 22px;gap:11px;position:sticky;top:0;z-index:100;box-shadow:var(--sx)}
-.tb-l{flex:1}
-.tb-title{font-size:.92rem;font-weight:700;color:var(--c800);line-height:1.1}
-.tb-crumb{font-size:.65rem;color:var(--n500);margin-top:1px}
+.tb-l{flex:1;min-width:0}
+.tb-title{font-size:.92rem;font-weight:700;color:var(--c800);line-height:1.1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tb-crumb{font-size:.65rem;color:var(--n500);margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .tb-search{display:flex;align-items:center;gap:7px;background:var(--n100);border:1.5px solid var(--n200);border-radius:var(--r);padding:6px 12px;transition:all var(--t)}
 .tb-search:focus-within{border-color:var(--c400);background:var(--W);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
 .tb-search input{width:200px;border:none;background:transparent;font-size:.77rem;color:var(--n900);outline:none;font-family:inherit}
 .tb-search input::placeholder{color:var(--n400)}
 .tb-acts{display:flex;align-items:center;gap:7px}
-.tb-ico{width:33px;height:33px;border-radius:var(--r);border:1.5px solid var(--n200);background:var(--W);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;position:relative;transition:all var(--t)}
+.tb-ico{width:33px;height:33px;border-radius:var(--r);border:1.5px solid var(--n200);background:var(--W);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;position:relative;transition:all var(--t);flex-shrink:0}
 .tb-ico:hover{border-color:var(--c300);background:var(--c50);transform:translateY(-1px)}
 .tb-dot{position:absolute;top:4px;right:4px;width:6px;height:6px;background:var(--err);border-radius:50%;border:1.5px solid #fff;animation:pulse 2s infinite}
+.tb-new-btn{display:inline-flex;}
 
 /* ══ BUTTONS ══ */
 .btn{display:inline-flex;align-items:center;gap:5px;border-radius:var(--r);font-size:.77rem;font-weight:700;cursor:pointer;transition:all var(--t);white-space:nowrap;border:none;font-family:inherit}
@@ -103,7 +114,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .btn-xs{padding:3px 7px!important;font-size:.64rem!important}
 
 /* ══ PAGES ══ */
-.page{display:none;padding:22px;animation:fi .2s ease both}
+.page{display:none;padding:22px;animation:fi .2s ease both;padding-bottom:calc(22px + var(--bottom-nav-h))}
 .page.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 
@@ -111,7 +122,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 .sh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:14px;flex-wrap:wrap}
 .sh-l .sh-title{font-size:1.04rem;font-weight:800;color:var(--c800)}
 .sh-l .sh-sub{font-size:.73rem;color:var(--n500);margin-top:2px}
-.sh-r{display:flex;gap:7px;align-items:center;flex-shrink:0}
+.sh-r{display:flex;gap:7px;align-items:center;flex-shrink:0;flex-wrap:wrap}
 
 /* ══ KPI GRID ══ */
 .kpi-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:12px;margin-bottom:22px}
@@ -135,9 +146,9 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 /* ══ CARD ══ */
 .card{background:var(--W);border-radius:var(--r2);border:1px solid var(--n200);box-shadow:var(--sx);overflow:hidden;transition:box-shadow var(--t)}
 .card:hover{box-shadow:var(--sm)}
-.card-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 17px;border-bottom:1px solid var(--n100)}
+.card-hd{display:flex;align-items:center;justify-content:space-between;padding:14px 17px;border-bottom:1px solid var(--n100);flex-wrap:wrap;gap:8px}
 .card-hd-l{display:flex;align-items:center;gap:8px}
-.card-ico{width:29px;height:29px;background:var(--n50);border:1px solid var(--n200);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all var(--t)}
+.card-ico{width:29px;height:29px;background:var(--n50);border:1px solid var(--n200);border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:.82rem;transition:all var(--t);flex-shrink:0}
 .card:hover .card-ico{background:var(--c50);border-color:var(--c200)}
 .card-title{font-size:.83rem;font-weight:700;color:var(--c800)}
 .card-sub{font-size:.67rem;color:var(--n500);margin-top:1px}
@@ -154,7 +165,7 @@ body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--
 @media(max-width:1100px){.g73,.g64,.g2,.g3{grid-template-columns:1fr}}
 
 /* ══ TABLE ══ */
-.tw{overflow-x:auto}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 table{width:100%;border-collapse:collapse}
 thead tr{background:var(--n50)}
 th{text-align:left;padding:8px 13px;font-size:.62rem;font-weight:700;color:var(--n500);text-transform:uppercase;letter-spacing:.9px;border-bottom:1px solid var(--n200);white-space:nowrap}
@@ -184,8 +195,8 @@ tbody tr:hover{background:var(--c50)}
 .pf-p{background:linear-gradient(90deg,#6d28d9,#7c3aed)}
 
 /* ══ TABS ══ */
-.tabs-wrap{border-bottom:1px solid var(--n200);margin-bottom:18px}
-.tabs{display:flex;gap:2px}
+.tabs-wrap{border-bottom:1px solid var(--n200);margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tabs{display:flex;gap:2px;min-width:max-content}
 .tab-btn{padding:9px 15px;font-size:.75rem;font-weight:600;color:var(--n500);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--t);white-space:nowrap;font-family:inherit}
 .tab-btn:hover{color:var(--c600);background:var(--c50);border-radius:var(--r) var(--r) 0 0}
 .tab-btn.active{color:var(--c700);border-bottom-color:var(--c600)}
@@ -241,12 +252,12 @@ tbody tr:hover{background:var(--c50)}
 .cl-text.done{text-decoration:line-through;color:var(--n400)}
 
 /* ══ AI PILL ══ */
-.ai-pill{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(90deg,var(--c800),var(--purple));color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.4px;padding:3px 10px;border-radius:20px;box-shadow:0 2px 7px rgba(37,99,235,.22)}
+.ai-pill{display:inline-flex;align-items:center;gap:5px;background:linear-gradient(90deg,var(--c800),var(--purple));color:#fff;font-size:.62rem;font-weight:700;letter-spacing:.4px;padding:3px 10px;border-radius:20px;box-shadow:0 2px 7px rgba(37,99,235,.22);white-space:nowrap}
 
 /* ══ AGENT CARD ══ */
 .agent-card{background:linear-gradient(135deg,var(--c950),var(--c800));border-radius:var(--r2);padding:17px;margin-bottom:13px;border:1px solid rgba(255,255,255,.05)}
-.agent-hd{display:flex;align-items:center;gap:8px;margin-bottom:11px}
-.agent-ico{width:33px;height:33px;background:rgba(37,99,235,.28);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.92rem}
+.agent-hd{display:flex;align-items:center;gap:8px;margin-bottom:11px;flex-wrap:wrap}
+.agent-ico{width:33px;height:33px;background:rgba(37,99,235,.28);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.92rem;flex-shrink:0}
 .agent-ttl{font-weight:700;color:#fff;font-size:.82rem}
 .agent-sub{font-size:.65rem;color:rgba(255,255,255,.42)}
 .steps{display:flex;flex-direction:column;gap:5px}
@@ -255,14 +266,14 @@ tbody tr:hover{background:var(--c50)}
 .astep.done .sn{background:rgba(16,185,129,.38)}
 .astep.active .sn{background:var(--c600);animation:pulse 1.5s infinite}
 .astep.done{color:rgba(255,255,255,.88)}
-.aacts{margin-top:11px;display:flex;gap:6px}
-.aa{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.86);border-radius:var(--r);padding:7px;font-size:.69rem;font-weight:700;cursor:pointer;text-align:center;transition:all var(--t);font-family:inherit}
+.aacts{margin-top:11px;display:flex;gap:6px;flex-wrap:wrap}
+.aa{flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.86);border-radius:var(--r);padding:7px;font-size:.69rem;font-weight:700;cursor:pointer;text-align:center;transition:all var(--t);font-family:inherit;min-width:80px}
 .aa:hover{background:rgba(255,255,255,.13);transform:translateY(-1px)}
 .aa.primary{background:var(--c600);border-color:var(--c500)}
 .aa.primary:hover{background:var(--c500)}
 
 /* ══ CHAT ══ */
-#chat-messages{height:310px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding:13px;background:var(--n50);border-radius:var(--r);margin-bottom:9px;border:1px solid var(--n200);scroll-behavior:smooth}
+#chat-messages{height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:9px;padding:13px;background:var(--n50);border-radius:var(--r);margin-bottom:9px;border:1px solid var(--n200);scroll-behavior:smooth}
 .msg{display:flex;gap:7px;animation:fi .18s ease both}
 .msg.user{flex-direction:row-reverse}
 .mava{width:27px;height:27px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.62rem;font-weight:800;flex-shrink:0}
@@ -334,8 +345,8 @@ tbody tr:hover{background:var(--c50)}
 .d-acts{display:flex;gap:5px;flex-shrink:0}
 
 /* ══ STEP WIZARD ══ */
-.step-track{display:flex;align-items:center;margin-bottom:20px;overflow-x:auto}
-.step-item{display:flex;align-items:center;flex:1;min-width:90px}
+.step-track{display:flex;align-items:center;margin-bottom:20px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px}
+.step-item{display:flex;align-items:center;flex:1;min-width:80px}
 .step-bub{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:800;border:2px solid var(--n200);background:var(--W);color:var(--n500);flex-shrink:0;transition:all var(--t)}
 .step-bub.done{background:var(--ok);border-color:var(--ok);color:#fff;box-shadow:0 0 0 3px var(--ok-bg)}
 .step-bub.cur{background:var(--c600);border-color:var(--c600);color:#fff;box-shadow:0 0 0 3px rgba(37,99,235,.15)}
@@ -354,26 +365,104 @@ tbody tr:hover{background:var(--c50)}
 .modal-close{width:27px;height:27px;border-radius:var(--r);border:none;background:var(--n100);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--n600);transition:all var(--t);font-family:inherit}
 .modal-close:hover{background:var(--n200);color:var(--n900)}
 .modal-body{padding:20px;overflow-y:auto;flex:1}
-.modal-foot{padding:13px 20px;border-top:1px solid var(--n100);display:flex;justify-content:flex-end;gap:7px;background:var(--n50)}
+.modal-foot{padding:13px 20px;border-top:1px solid var(--n100);display:flex;justify-content:flex-end;gap:7px;background:var(--n50);flex-wrap:wrap}
 
 /* ══ TOASTS ══ */
-.toast-bar{position:fixed;bottom:18px;right:22px;z-index:500;display:flex;flex-direction:column;gap:7px;pointer-events:none}
+.toast-bar{position:fixed;bottom:calc(18px + var(--bottom-nav-h));right:22px;z-index:500;display:flex;flex-direction:column;gap:7px;pointer-events:none}
 .toast{background:var(--n900);color:#fff;border-radius:var(--r2);padding:10px 16px;font-size:.77rem;font-weight:600;box-shadow:var(--md);display:flex;align-items:center;gap:8px;pointer-events:all;animation:toastIn .28s ease;min-width:250px;max-width:340px}
 @keyframes toastIn{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
 .toast.ok{background:var(--ok)} .toast.err{background:var(--err)} .toast.warn{background:#b45309}
 
+/* ══ BOTTOM NAV (mobile) ══ */
+.bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;height:var(--bottom-nav-h);background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--n200);z-index:150;box-shadow:0 -4px 20px rgba(0,0,0,.08)}
+.bottom-nav-inner{display:flex;align-items:stretch;height:100%}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;border:none;background:transparent;color:var(--n500);font-size:.58rem;font-weight:600;transition:all var(--t);font-family:inherit;padding:4px 2px;position:relative;-webkit-tap-highlight-color:transparent}
+.bn-item:active{background:var(--c50)}
+.bn-item.active{color:var(--c600)}
+.bn-item.active::after{content:'';position:absolute;top:0;left:20%;right:20%;height:2px;background:var(--c600);border-radius:0 0 3px 3px}
+.bn-ico{font-size:1.25rem;line-height:1}
+.bn-badge{position:absolute;top:4px;right:calc(50% - 14px);background:var(--err);color:#fff;font-size:.48rem;font-weight:800;border-radius:20px;padding:1px 4px;min-width:14px;text-align:center;line-height:1.4}
+.bn-badge.p{background:var(--purple)}
+.bn-badge.w{background:var(--warn);color:#000}
+
 /* ══ MISC ══ */
 code{font-family:'Fira Code',monospace;font-size:.71rem;background:var(--c100);color:var(--c700);padding:1px 5px;border-radius:4px}
 .divider{height:1px;background:var(--n100);margin:14px 0}
-.tag-pill{display:inline-flex;align-items:center;background:var(--c50);border:1px solid var(--c200);color:var(--c700);font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:20px}
+.tag-pill{display:inline-flex;align-items:background:var(--c50);border:1px solid var(--c200);color:var(--c700);font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:20px}
 .req{color:var(--err);margin-left:2px}
-footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid var(--n200);display:flex;align-items:center;justify-content:space-between;font-size:.67rem;color:var(--n400);backdrop-filter:blur(8px)}
+footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid var(--n200);display:flex;align-items:center;justify-content:space-between;font-size:.67rem;color:var(--n400);backdrop-filter:blur(8px);flex-wrap:wrap;gap:6px}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — TABLET (≤ 900px)
+══════════════════════════════════════ */
+@media(max-width:900px){
+  .sb{transform:translateX(-100%)}
+  .sb.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .hamburger{display:flex}
+  .bottom-nav{display:block}
+  .page{padding-bottom:calc(16px + var(--bottom-nav-h))}
+  .tb-search{display:none}
+  .tb-new-btn{display:none}
+  .topbar{padding:0 14px;gap:8px}
+  .tb-crumb{display:none}
+  .toast-bar{right:50%;transform:translateX(50%);bottom:calc(14px + var(--bottom-nav-h));align-items:center}
+  .toast{min-width:200px;max-width:90vw}
+  @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE — MOBILE (≤ 600px)
+══════════════════════════════════════ */
+@media(max-width:600px){
+  .page{padding:14px;padding-bottom:calc(14px + var(--bottom-nav-h))}
+  .kpi-grid{grid-template-columns:1fr 1fr;gap:9px}
+  .kpi{padding:12px}
+  .kpi-val{font-size:1.35rem}
+  .sh{flex-direction:column;gap:10px;margin-bottom:14px}
+  .sh-r{width:100%;justify-content:flex-start}
+  .fr{grid-template-columns:1fr}
+  .fr3{grid-template-columns:1fr}
+  .g2,.g3,.g73,.g64{grid-template-columns:1fr}
+  .bc-lbl{width:80px;font-size:.64rem}
+  .card-body{padding:12px}
+  .card-hd{padding:11px 13px}
+  .card-foot{padding:8px 13px}
+  #chat-messages{height:220px}
+  .chat-row{flex-direction:row}
+  .chat-row .fi{font-size:.75rem}
+  .aacts{flex-direction:row;flex-wrap:wrap}
+  .kpi-grid[style*="repeat(4"]{grid-template-columns:1fr 1fr!important}
+  .kpi-grid[style*="repeat(5"]{grid-template-columns:1fr 1fr!important}
+  .gc-stats{grid-template-columns:1fr 1fr}
+  .modal{border-radius:var(--r2) var(--r2) 0 0;max-height:92vh;margin-top:auto}
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal-foot{justify-content:stretch}
+  .modal-foot .btn{flex:1;justify-content:center}
+  #ben-grid{grid-template-columns:1fr!important}
+  .ben-hd{gap:8px}
+  .score-ring{width:56px;height:56px}
+  .sr-val{font-size:1.1rem}
+  .step-track{gap:0}
+  .step-lbl{display:none}
+  .step-item{min-width:40px}
+  footer{flex-direction:column;align-items:flex-start;font-size:.62rem}
+  .tb-title{font-size:.82rem}
+  /* Mobile search trigger */
+  .mobile-search-btn{display:flex!important}
+}
+
+/* ══ MOBILE SEARCH BUTTON ══ */
+.mobile-search-btn{display:none;width:33px;height:33px;border-radius:var(--r);border:1.5px solid var(--n200);background:var(--W);align-items:center;justify-content:center;cursor:pointer;font-size:.88rem;flex-shrink:0}
 </style>
 </head>
 <body>
 
+<!-- ═══ SIDEBAR OVERLAY ═══ -->
+<div class="sb-overlay" id="sb-overlay" onclick="closeSidebar()"></div>
+
 <!-- ═══ SIDEBAR ═══ -->
-<aside class="sb">
+<aside class="sb" id="sidebar">
   <div class="sb-logo">
     <div class="sb-mark">🏛️</div>
     <div><div class="sb-name">AppaltanteAI</div><div class="sb-ed">Stazione Appaltante</div></div>
@@ -381,28 +470,28 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   <div class="ai-banner">
     <div class="ai-tag"><div class="ai-dot"></div>Agente AI</div>
     <p>Analizza requisiti, studia mercato, redige documenti, interpreta penali su tutte le normative e tutti i settori.</p>
-    <button class="ai-btn" onclick="nav('agente',this)">🤖 Avvia Agente</button>
+    <button class="ai-btn" onclick="nav('agente',this);closeSidebar()">🤖 Avvia Agente</button>
   </div>
   <div class="ng">
     <div class="ng-label">Principale</div>
-    <div class="ni active" data-page="dashboard"      onclick="nav('dashboard',this)"><span class="ico">📊</span><span class="lbl">Dashboard</span></div>
-    <div class="ni"        data-page="agente"         onclick="nav('agente',this)"><span class="ico">🤖</span><span class="lbl">Agente AI</span><span class="nbadge p">AI</span></div>
-    <div class="ni"        data-page="procedure"      onclick="nav('procedure',this)"><span class="ico">📂</span><span class="lbl">Procedure di Gara</span><span class="nbadge">9</span></div>
-    <div class="ni"        data-page="nuova"          onclick="nav('nuova',this)"><span class="ico">✍️</span><span class="lbl">Genera Bando</span></div>
+    <div class="ni active" data-page="dashboard"      onclick="nav('dashboard',this);closeSidebar()"><span class="ico">📊</span><span class="lbl">Dashboard</span></div>
+    <div class="ni"        data-page="agente"         onclick="nav('agente',this);closeSidebar()"><span class="ico">🤖</span><span class="lbl">Agente AI</span><span class="nbadge p">AI</span></div>
+    <div class="ni"        data-page="procedure"      onclick="nav('procedure',this);closeSidebar()"><span class="ico">📂</span><span class="lbl">Procedure di Gara</span><span class="nbadge">9</span></div>
+    <div class="ni"        data-page="nuova"          onclick="nav('nuova',this);closeSidebar()"><span class="ico">✍️</span><span class="lbl">Genera Bando</span></div>
   </div>
   <div class="ng">
     <div class="ng-label">Valutazione</div>
-    <div class="ni" data-page="valutazione"  onclick="nav('valutazione',this)"><span class="ico">⚖️</span><span class="lbl">Valuta Offerte</span><span class="nbadge d">4</span></div>
-    <div class="ni" data-page="commissioni"  onclick="nav('commissioni',this)"><span class="ico">👥</span><span class="lbl">Commissioni</span></div>
-    <div class="ni" data-page="documenti"    onclick="nav('documenti',this)"><span class="ico">📄</span><span class="lbl">Archivio Documenti</span></div>
+    <div class="ni" data-page="valutazione"  onclick="nav('valutazione',this);closeSidebar()"><span class="ico">⚖️</span><span class="lbl">Valuta Offerte</span><span class="nbadge d">4</span></div>
+    <div class="ni" data-page="commissioni"  onclick="nav('commissioni',this);closeSidebar()"><span class="ico">👥</span><span class="lbl">Commissioni</span></div>
+    <div class="ni" data-page="documenti"    onclick="nav('documenti',this);closeSidebar()"><span class="ico">📄</span><span class="lbl">Archivio Documenti</span></div>
   </div>
   <div class="ng">
     <div class="ng-label">Esecuzione & Controllo</div>
-    <div class="ni" data-page="esecuzione"      onclick="nav('esecuzione',this)"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
-    <div class="ni" data-page="beneficiari"     onclick="nav('beneficiari',this)"><span class="ico">🏢</span><span class="lbl">Database Beneficiari</span><span class="nbadge p">NEW</span></div>
-    <div class="ni" data-page="rendicontazione" onclick="nav('rendicontazione',this)"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
-    <div class="ni" data-page="conformita"      onclick="nav('conformita',this)"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
-    <div class="ni" data-page="report"          onclick="nav('report',this)"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
+    <div class="ni" data-page="esecuzione"      onclick="nav('esecuzione',this);closeSidebar()"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
+    <div class="ni" data-page="beneficiari"     onclick="nav('beneficiari',this);closeSidebar()"><span class="ico">🏢</span><span class="lbl">Database Beneficiari</span><span class="nbadge p">NEW</span></div>
+    <div class="ni" data-page="rendicontazione" onclick="nav('rendicontazione',this);closeSidebar()"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
+    <div class="ni" data-page="conformita"      onclick="nav('conformita',this);closeSidebar()"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
+    <div class="ni" data-page="report"          onclick="nav('report',this);closeSidebar()"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
   </div>
   <div class="sb-foot">
     <div class="upill">
@@ -411,23 +500,35 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     </div>
   </div>
 </aside>
+
 <!-- ═══ MAIN ═══ -->
 <main class="main">
 <header class="topbar">
+  <!-- Hamburger -->
+  <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+
   <div class="tb-l">
     <div class="tb-title" id="tb-title">Dashboard</div>
     <div class="tb-crumb" id="tb-crumb">AppaltanteAI · Panoramica generale</div>
   </div>
+
+  <!-- Search desktop -->
   <input id="gs-input" onclick="apriSearch()" readonly
     placeholder="🔍 Cerca procedura, CIG, impresa...  ⌘K"
     style="width:260px; padding:8px 14px; border-radius:8px;
       border:1px solid #e5e7eb; background:#f9fafb;
       color:#6b7280; font-size:0.85rem; cursor:pointer;"/>
 
+  <!-- Mobile search icon -->
+  <button class="mobile-search-btn" onclick="apriSearch()" aria-label="Cerca">🔍</button>
+
+  <!-- Search Modal -->
   <div id="gs-modal" style="display:none; position:fixed; inset:0;
     background:rgba(0,0,0,0.45); z-index:9999;
-    align-items:flex-start; justify-content:center; padding-top:80px;">
-    <div style="background:white; width:520px; border-radius:16px;
+    align-items:flex-start; justify-content:center; padding-top:60px;">
+    <div style="background:white; width:min(520px, 94vw); border-radius:16px;
       box-shadow:0 20px 60px rgba(0,0,0,0.2); overflow:hidden;">
       <input id="gs-query" placeholder="Cerca procedura, CIG, impresa..."
         oninput="filtraSearch(this.value)"
@@ -435,122 +536,149 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
           border:none; border-bottom:1px solid #f3f4f6; outline:none; box-sizing:border-box;"/>
       <div id="gs-results" style="max-height:320px; overflow-y:auto;"></div>
       <div style="padding:8px 16px; font-size:0.72rem; color:#9ca3af;
-        border-top:1px solid #f3f4f6;">Esc per chiudere</div>
+        border-top:1px solid #f3f4f6;">Esc per chiudere · tocca fuori per chiudere</div>
     </div>
   </div>
-</div>
 
-<script>
-const searchData = [
-  { label:'🏥 Ospedale Civile Pad.C', sub:'CIG-2025-0088 · € 4,2M · Scadenza 14 giu' },
-  { label:'🏛️ Mercato Coperto Storico', sub:'CIG-2025-0059 · In valutazione' },
-  { label:'🖥️ IT Tributi Comunali', sub:'CIG-2025-0071 · Accordo Quadro' },
-  { label:'⚡ Gestione Calore', sub:'CIG-2025-0038 · Ristretta · 15 ago' },
-  { label:'🏢 Ediltech Srl', sub:'Score 51 · ⚠️ DURC scaduto' },
-  { label:'🏗️ Edilizia Storica SpA', sub:'Score 91 · Profilo affidabile' },
-  { label:'📄 Bando Ospedale REV1', sub:'Firmato · Pubblicato ANAC' },
-  { label:'🧾 Rendicontazione Fondi', sub:'DdR PNRR/PON/FSC' },
-  { label:'✅ Conformità & ANAC', sub:'80% score · 2 anomalie critiche' },
-  { label:'📈 Report & Analisi', sub:'KPI · Ribassi · Top aggiudicatari' },
-];
-function apriSearch() {
-  const m = document.getElementById('gs-modal');
-  m.style.display = 'flex';
-  setTimeout(() => document.getElementById('gs-query').focus(), 50);
-  filtraSearch('');
-}
-function chiudiSearch() {
-  document.getElementById('gs-modal').style.display = 'none';
-  document.getElementById('gs-query').value = '';
-}
-function filtraSearch(q) {
-  const res = q ? searchData.filter(d =>
-    d.label.toLowerCase().includes(q.toLowerCase()) ||
-    d.sub.toLowerCase().includes(q.toLowerCase())) : searchData;
-  document.getElementById('gs-results').innerHTML = res.map(d => `
-    <div style="padding:12px 20px; cursor:pointer; border-bottom:1px solid #f9fafb;"
-      onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-      <div style="font-size:0.9rem; font-weight:500;">${d.label}</div>
-      <div style="font-size:0.75rem; color:#6b7280;">${d.sub}</div>
-    </div>`).join('') || '<div style="padding:20px; color:#9ca3af; text-align:center;">Nessun risultato</div>';
-}
-document.addEventListener('keydown', e => {
-  if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); apriSearch(); }
-  if (e.key === 'Escape') chiudiSearch();
-});
-document.getElementById('gs-modal')?.addEventListener('click', e => {
-  if (e.target === document.getElementById('gs-modal')) chiudiSearch();
-});
-</script>
-  </div>
-	  <div style="position:relative; display:inline-block;">
-  <button id="notif-btn" onclick="toggleNotifiche()" style="
-    background:none; border:none; font-size:1.3rem; cursor:pointer; position:relative;">
-    🔔
-    <span id="notif-badge" style="
-      position:absolute; top:-4px; right:-6px; background:#ef4444; color:white;
-      font-size:0.6rem; border-radius:50%; width:16px; height:16px;
-      display:flex; align-items:center; justify-content:center;">3</span>
-  </button>
-
-  <div id="notif-panel" style="
-    display:none; position:absolute; right:0; top:110%; width:340px;
-    background:white; border:1px solid #e5e7eb; border-radius:12px;
-    box-shadow:0 8px 32px rgba(0,0,0,0.13); z-index:999;">
-    <div style="padding:12px 16px; border-bottom:1px solid #f3f4f6;
-      display:flex; justify-content:space-between; align-items:center;">
-      <strong>🔔 Notifiche</strong>
-      <button onclick="segnaLette()" style="font-size:0.75rem; color:#3b82f6;
-        border:none; background:none; cursor:pointer;">Segna tutte lette</button>
-    </div>
-    <div id="notif-list">
-      <div class="notif-item unread" style="padding:12px 16px;
-        border-bottom:1px solid #f9fafb; background:#eff6ff;">
-        <div style="font-size:0.85rem; font-weight:600;">🚨 DURC scaduto — Ediltech Srl</div>
-        <div style="font-size:0.75rem; color:#6b7280;">Score calato a 51/100 · Bloccare SAL n.3</div>
-        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 09:41</div>
-      </div>
-      <div class="notif-item unread" style="padding:12px 16px;
-        border-bottom:1px solid #f9fafb; background:#eff6ff;">
-        <div style="font-size:0.85rem; font-weight:600;">⚠️ Scadenza — Ospedale Civile</div>
-        <div style="font-size:0.75rem; color:#6b7280;">14 giu · mancano 2 buste su 6</div>
-        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 08:15</div>
-      </div>
-      <div class="notif-item" style="padding:12px 16px;">
-        <div style="font-size:0.85rem;">✅ Analisi IT Tributi completata</div>
-        <div style="font-size:0.75rem; color:#6b7280;">11 operatori · ribasso atteso 7–12%</div>
-        <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Ieri, 17:22</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-function toggleNotifiche() {
-  const p = document.getElementById('notif-panel');
-  p.style.display = p.style.display === 'none' ? 'block' : 'none';
-}
-function segnaLette() {
-  document.querySelectorAll('.notif-item.unread').forEach(el => {
-    el.style.background = 'white';
-    el.classList.remove('unread');
+  <script>
+  const searchData = [
+    { label:'🏥 Ospedale Civile Pad.C', sub:'CIG-2025-0088 · € 4,2M · Scadenza 14 giu' },
+    { label:'🏛️ Mercato Coperto Storico', sub:'CIG-2025-0059 · In valutazione' },
+    { label:'🖥️ IT Tributi Comunali', sub:'CIG-2025-0071 · Accordo Quadro' },
+    { label:'⚡ Gestione Calore', sub:'CIG-2025-0038 · Ristretta · 15 ago' },
+    { label:'🏢 Ediltech Srl', sub:'Score 51 · ⚠️ DURC scaduto' },
+    { label:'🏗️ Edilizia Storica SpA', sub:'Score 91 · Profilo affidabile' },
+    { label:'📄 Bando Ospedale REV1', sub:'Firmato · Pubblicato ANAC' },
+    { label:'🧾 Rendicontazione Fondi', sub:'DdR PNRR/PON/FSC' },
+    { label:'✅ Conformità & ANAC', sub:'80% score · 2 anomalie critiche' },
+    { label:'📈 Report & Analisi', sub:'KPI · Ribassi · Top aggiudicatari' },
+  ];
+  function apriSearch() {
+    const m = document.getElementById('gs-modal');
+    m.style.display = 'flex';
+    setTimeout(() => document.getElementById('gs-query').focus(), 50);
+    filtraSearch('');
+  }
+  function chiudiSearch() {
+    document.getElementById('gs-modal').style.display = 'none';
+    document.getElementById('gs-query').value = '';
+  }
+  function filtraSearch(q) {
+    const res = q ? searchData.filter(d =>
+      d.label.toLowerCase().includes(q.toLowerCase()) ||
+      d.sub.toLowerCase().includes(q.toLowerCase())) : searchData;
+    document.getElementById('gs-results').innerHTML = res.map(d => `
+      <div style="padding:12px 20px; cursor:pointer; border-bottom:1px solid #f9fafb;"
+        onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
+        <div style="font-size:0.9rem; font-weight:500;">${d.label}</div>
+        <div style="font-size:0.75rem; color:#6b7280;">${d.sub}</div>
+      </div>`).join('') || '<div style="padding:20px; color:#9ca3af; text-align:center;">Nessun risultato</div>';
+  }
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); apriSearch(); }
+    if (e.key === 'Escape') chiudiSearch();
   });
-  document.getElementById('notif-badge').style.display = 'none';
-}
-document.addEventListener('click', e => {
-  const btn = document.getElementById('notif-btn');
-  if (btn && !btn.contains(e.target))
-    document.getElementById('notif-panel').style.display = 'none';
-});
-</script>
-    <div class="tb-ico" onclick="toast('Impostazioni — prossimamente','info')">⚙️</div>
-    <button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova Procedura</button>
+  document.getElementById('gs-modal')?.addEventListener('click', e => {
+    if (e.target === document.getElementById('gs-modal')) chiudiSearch();
+  });
+  </script>
+
+  <!-- Notifiche -->
+  <div style="position:relative; display:inline-block; flex-shrink:0">
+    <button id="notif-btn" onclick="toggleNotifiche()" style="
+      background:none; border:none; font-size:1.3rem; cursor:pointer; position:relative;">
+      🔔
+      <span id="notif-badge" style="
+        position:absolute; top:-4px; right:-6px; background:#ef4444; color:white;
+        font-size:0.6rem; border-radius:50%; width:16px; height:16px;
+        display:flex; align-items:center; justify-content:center;">3</span>
+    </button>
+    <div id="notif-panel" style="
+      display:none; position:fixed; right:10px; top:68px; width:min(340px,92vw);
+      background:white; border:1px solid #e5e7eb; border-radius:12px;
+      box-shadow:0 8px 32px rgba(0,0,0,0.13); z-index:999;">
+      <div style="padding:12px 16px; border-bottom:1px solid #f3f4f6;
+        display:flex; justify-content:space-between; align-items:center;">
+        <strong>🔔 Notifiche</strong>
+        <button onclick="segnaLette()" style="font-size:0.75rem; color:#3b82f6;
+          border:none; background:none; cursor:pointer;">Segna tutte lette</button>
+      </div>
+      <div id="notif-list">
+        <div class="notif-item unread" style="padding:12px 16px;
+          border-bottom:1px solid #f9fafb; background:#eff6ff;">
+          <div style="font-size:0.85rem; font-weight:600;">🚨 DURC scaduto — Ediltech Srl</div>
+          <div style="font-size:0.75rem; color:#6b7280;">Score calato a 51/100 · Bloccare SAL n.3</div>
+          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 09:41</div>
+        </div>
+        <div class="notif-item unread" style="padding:12px 16px;
+          border-bottom:1px solid #f9fafb; background:#eff6ff;">
+          <div style="font-size:0.85rem; font-weight:600;">⚠️ Scadenza — Ospedale Civile</div>
+          <div style="font-size:0.75rem; color:#6b7280;">14 giu · mancano 2 buste su 6</div>
+          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 08:15</div>
+        </div>
+        <div class="notif-item" style="padding:12px 16px;">
+          <div style="font-size:0.85rem;">✅ Analisi IT Tributi completata</div>
+          <div style="font-size:0.75rem; color:#6b7280;">11 operatori · ribasso atteso 7–12%</div>
+          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Ieri, 17:22</div>
+        </div>
+      </div>
+    </div>
   </div>
+  <script>
+  function toggleNotifiche() {
+    const p = document.getElementById('notif-panel');
+    p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  }
+  function segnaLette() {
+    document.querySelectorAll('.notif-item.unread').forEach(el => {
+      el.style.background = 'white';
+      el.classList.remove('unread');
+    });
+    document.getElementById('notif-badge').style.display = 'none';
+  }
+  document.addEventListener('click', e => {
+    const btn = document.getElementById('notif-btn');
+    const panel = document.getElementById('notif-panel');
+    if (btn && panel && !btn.contains(e.target) && !panel.contains(e.target))
+      panel.style.display = 'none';
+  });
+  </script>
+
+  <div class="tb-ico" onclick="toast('Impostazioni — prossimamente','info')">⚙️</div>
+  <button class="btn btn-primary tb-new-btn" onclick="nav('nuova',null)">+ Nuova Procedura</button>
 </header>
+
+<!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
+<nav class="bottom-nav">
+  <div class="bottom-nav-inner">
+    <button class="bn-item active" id="bn-dashboard" onclick="nav('dashboard',null);updateBottomNav('dashboard')" aria-label="Dashboard">
+      <span class="bn-ico">📊</span>
+      <span>Home</span>
+    </button>
+    <button class="bn-item" id="bn-agente" onclick="nav('agente',null);updateBottomNav('agente')" aria-label="Agente AI">
+      <span class="bn-ico">🤖</span>
+      <span>AI</span>
+      <span class="bn-badge p">AI</span>
+    </button>
+    <button class="bn-item" id="bn-procedure" onclick="nav('procedure',null);updateBottomNav('procedure')" aria-label="Procedure">
+      <span class="bn-ico">📂</span>
+      <span>Gare</span>
+      <span class="bn-badge">9</span>
+    </button>
+    <button class="bn-item" id="bn-valutazione" onclick="nav('valutazione',null);updateBottomNav('valutazione')" aria-label="Valutazione">
+      <span class="bn-ico">⚖️</span>
+      <span>Valuta</span>
+      <span class="bn-badge" style="background:var(--err)">4</span>
+    </button>
+    <button class="bn-item" id="bn-more" onclick="toggleSidebar()" aria-label="Altro">
+      <span class="bn-ico">☰</span>
+      <span>Altro</span>
+    </button>
+  </div>
+</nav>
 
 <!-- ══════════ DASHBOARD ══════════ -->
 <div class="page active" id="page-dashboard">
-
   <div class="kpi-grid">
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">📂</div><div class="kpi-trend up">+3</div></div><div class="kpi-val">9</div><div class="kpi-lbl">Procedure Attive</div><div class="kpi-sub">Multi-settore e normativa</div></div>
     <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div><div class="kpi-trend up">+4</div></div><div class="kpi-val">21</div><div class="kpi-lbl">Aggiudicate YTD</div><div class="kpi-sub">Tasso successo 88%</div></div>
@@ -558,8 +686,7 @@ document.addEventListener('click', e => {
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">💶</div><div class="kpi-trend up">+11%</div></div><div class="kpi-val" style="font-size:1.35rem">€14,8M</div><div class="kpi-lbl">Portafoglio</div><div class="kpi-sub">PNRR, PON, FSC, bilancio</div></div>
     <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🚨</div><div class="kpi-trend dn">+1</div></div><div class="kpi-val" style="color:var(--err)">2</div><div class="kpi-lbl">Alert Critici</div><div class="kpi-sub">Intervento richiesto</div></div>
     <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div><div class="kpi-trend up">ON</div></div><div class="kpi-val" style="color:var(--purple)">24</div><div class="kpi-lbl">Task AI</div><div class="kpi-sub">Completati questa settimana</div></div>
-  </div><!-- ✅ CHIUDE kpi-grid -->
-
+  </div>
   <div class="g73 mb6">
     <div class="card">
       <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📂</div><div><div class="card-title">Ultime Procedure</div><div class="card-sub">Multi-settore · tutti i tipi di affidamento</div></div></div><button class="btn btn-secondary btn-sm" onclick="nav('procedure',null)">Vedi tutte →</button></div>
@@ -593,8 +720,7 @@ document.addEventListener('click', e => {
         </div>
       </div>
     </div>
-  </div><!-- chiude g73 -->
-
+  </div>
   <div class="g2">
     <div class="card">
       <div class="card-hd"><div class="card-hd-l"><div class="card-ico">🕐</div><div class="card-title">Attività Recenti</div></div></div>
@@ -625,9 +751,8 @@ document.addEventListener('click', e => {
         </div>
       </div>
     </div>
-  </div><!-- chiude g2 -->
-
-</div><!-- ✅ CHIUDE page-dashboard -->
+  </div>
+</div>
 
 <!-- ══════════ AGENTE AI ══════════ -->
 <div class="page" id="page-agente">
@@ -652,21 +777,19 @@ document.addEventListener('click', e => {
           <div class="aa primary" onclick="toast('Report in apertura…','info')">📄 Vedi report →</div>
         </div>
       </div>
-
       <div class="card">
-        <div class="card-hd"><div class="card-hd-l"><div class="card-ico">💬</div><div><div class="card-title">Chat con l'Agente AI</div><div class="card-sub">Knowledge base completa su tutte le normative e tutti i settori</div></div></div><div class="ai-pill"><div class="ai-dot"></div>Online</div></div>
+        <div class="card-hd"><div class="card-hd-l"><div class="card-ico">💬</div><div><div class="card-title">Chat con l'Agente AI</div><div class="card-sub">Knowledge base completa su tutte le normative</div></div></div><div class="ai-pill"><div class="ai-dot"></div>Online</div></div>
         <div class="card-body">
           <div id="chat-messages">
-            <div class="msg"><div class="mava ai">AI</div><div class="mb ai">Ciao! Sono l'agente AI di <strong>AppaltanteAI</strong>. Ho una knowledge base completa su:<br><br>📋 <strong>Normative:</strong> D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · Reg. UE 1046/2018 · Direttive 2014/23-24-25/UE<br><br>🏗️ <strong>Settori:</strong> Lavori, Sanità, ICT, Energia, Beni Culturali, Ambiente, Trasporti, Istruzione, Progettazione, Vigilanza, Ristorazione<br><br>🛠️ <strong>Attività:</strong> Analisi requisiti, studio mercato, redazione documenti, calcolo penali/soglie anomalia, verifica ammissibilità varianti, gestione DdR, check list, conformità ANAC, check beneficiari<br><br>Cosa posso fare per te oggi?</div></div>
+            <div class="msg"><div class="mava ai">AI</div><div class="mb ai">Ciao! Sono l'agente AI di <strong>AppaltanteAI</strong>. Ho una knowledge base completa su:<br><br>📋 <strong>Normative:</strong> D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · Reg. UE 1046/2018<br><br>🏗️ <strong>Settori:</strong> Lavori, Sanità, ICT, Energia, Beni Culturali, Ambiente, Trasporti<br><br>Cosa posso fare per te oggi?</div></div>
           </div>
           <div class="chat-row">
-            <input type="text" class="fi" id="chat-input" placeholder="Chiedi qualcosa: soglia anomalia, D.Lgs. 36/23, OEPV, DdR, varianti, beneficiari…" onkeydown="if(event.key==='Enter')sendChat()"/>
-            <button class="btn btn-primary" onclick="sendChat()">Invia</button>
+            <input type="text" class="fi" id="chat-input" placeholder="Chiedi qualcosa…" onkeydown="if(event.key==='Enter')sendChat()" style="font-size:16px"/>
+            <button class="btn btn-primary" onclick="sendChat()">↑</button>
           </div>
         </div>
       </div>
     </div>
-
     <div class="col">
       <div class="card">
         <div class="card-hd"><div class="card-hd-l"><div class="card-ico">⚡</div><div class="card-title">Domande Rapide</div></div></div>
@@ -674,29 +797,15 @@ document.addEventListener('click', e => {
           <div style="font-size:.61rem;font-weight:700;color:var(--n400);text-transform:uppercase;letter-spacing:.8px">📋 Procedure & Normativa</div>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Quali sono le differenze principali tra D.Lgs. 50/2016 e D.Lgs. 36/2023 per le procedure aperte?')">📚 D.Lgs. 50/16 vs D.Lgs. 36/23</button>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Quando è obbligatoria la pubblicazione sulla GUUE e quando basta la GURI? Indica le soglie 2025.')">🌐 Soglie GUUE 2025</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come funziona la procedura competitiva con negoziazione ex art. 73 D.Lgs. 36/23? Quando si usa e quali sono i requisiti minimi?')">🔄 Procedura competitiva c. neg.</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si configura un affidamento in house ex art. 7 D.Lgs. 36/23? Quali requisiti deve avere la società?')">🏠 Affidamento In House 36/23</button>
+          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come funziona la procedura competitiva con negoziazione ex art. 73 D.Lgs. 36/23?')">🔄 Procedura competitiva c. neg.</button>
+          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si configura un affidamento in house ex art. 7 D.Lgs. 36/23?')">🏠 Affidamento In House 36/23</button>
           <div style="font-size:.61rem;font-weight:700;color:var(--n400);text-transform:uppercase;letter-spacing:.8px;padding-top:5px">📄 Redazione & Valutazione</div>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Redigi la struttura completa di un disciplinare di gara per servizi di vigilanza, importo 800.000€, OEPV, D.Lgs. 36/23.')">✍️ Disciplinare vigilanza OEPV</button>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Calcola la soglia di anomalia OEPV con 7 offerte ammesse. Spiega il metodo art. 110 D.Lgs. 36/23 passo per passo.')">📐 Calcola soglia anomalia OEPV</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Quali sono i criteri OEPV consigliati per un appalto di servizi informatici? Illustra un bilanciamento standard tecnico/economico.')">⚖️ Criteri OEPV per servizi IT</button>
           <div style="font-size:.61rem;font-weight:700;color:var(--n400);text-transform:uppercase;letter-spacing:.8px;padding-top:5px">🧾 Controllo & Rendicontazione</div>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Elenca tutta la documentazione richiesta per la prima DdR di un investimento infrastrutturale su fondi europei (Allegato 11.1 MOP).')">📑 Checklist DdR Allegato 11.1</button>
           <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Una variante contrattuale del 13% sull\'importo originale per lavori è ammissibile? Analizza secondo art. 120 D.Lgs. 36/23.')">🔄 Verifica variante 13%</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Un beneficiario ha precedenti penali a carico di un suo amministratore per reati fiscali. Come si applica l\'art. 95 D.Lgs. 36/23 (cause non automatiche di esclusione)?')">🔍 Esclusione art. 95 D.Lgs. 36/23</button>
-          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si calcola il punteggio di solidità di un beneficiario? Quali indicatori considerare per costruire uno scoring affidabilità?')">🏢 Scoring beneficiari</button>
-        </div>
-      </div>
-
-      <div class="card">
-        <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📋</div><div><div class="card-title">Task AI Recenti</div><div class="card-sub">Completati questa settimana</div></div></div></div>
-        <div class="card-body" style="padding-top:8px">
-          <div class="timeline">
-            <div class="tl-item"><div class="tll"><div class="tld tl-g"></div></div><div class="tlbody"><div class="tlt" style="font-size:.72rem">Capitolato pulizie — 28 pag.</div><div class="tld-desc">D.Lgs. 36/23 · OEPV · 18 mesi</div></div><div class="tldate">Oggi</div></div>
-            <div class="tl-item"><div class="tll"><div class="tld tl-g"></div></div><div class="tlbody"><div class="tlt" style="font-size:.72rem">Analisi mercato ICT Tributi</div><div class="tld-desc">11 operatori · ribasso atteso 7–12%</div></div><div class="tldate">Ieri</div></div>
-            <div class="tl-item"><div class="tll"><div class="tld tl-g"></div></div><div class="tlbody"><div class="tlt" style="font-size:.72rem">Verifica score Ediltech Srl</div><div class="tld-desc">DURC scaduto → score 51/100 ⚠️</div></div><div class="tldate">3 giu</div></div>
-            <div class="tl-item"><div class="tll"><div class="tld tl-b"></div></div><div class="tlbody"><div class="tlt" style="font-size:.72rem">Report OG11 Ospedale — In corso</div><div class="tld-desc">ETA 2 min</div></div><div class="tldate">Ora</div></div>
-          </div>
+          <button class="btn btn-secondary" style="text-align:left;justify-content:flex-start;font-weight:500;font-size:.73rem" onclick="quickMsg('Come si calcola il punteggio di solidità di un beneficiario?')">🏢 Scoring beneficiari</button>
         </div>
       </div>
     </div>
@@ -705,8 +814,8 @@ document.addEventListener('click', e => {
 
 <!-- ══════════ PROCEDURE ══════════ -->
 <div class="page" id="page-procedure">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Procedure di Gara</div><div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button><button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova Procedura</button></div></div>
-  <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap"><span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span><button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button><button class="btn btn-ghost btn-sm" onclick="filterP('aperta',this)">Aperta (4)</button><button class="btn btn-ghost btn-sm" onclick="filterP('ristretta',this)">Ristretta (1)</button><button class="btn btn-ghost btn-sm" onclick="filterP('negoziata',this)">Negoziata (2)</button><button class="btn btn-ghost btn-sm" onclick="filterP('aq',this)">Acc. Quadro (1)</button><button class="btn btn-ghost btn-sm" onclick="filterP('diretto',this)">Aff. Diretto (1)</button><div style="margin-left:auto"><input type="text" class="fi" style="width:190px" placeholder="🔍 CIG, oggetto…" oninput="searchP(this.value)"/></div></div></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Procedure di Gara</div><div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button><button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova</button></div></div>
+  <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap"><span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span><button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button><button class="btn btn-ghost btn-sm" onclick="filterP('aperta',this)">Aperta</button><button class="btn btn-ghost btn-sm" onclick="filterP('ristretta',this)">Ristretta</button><button class="btn btn-ghost btn-sm" onclick="filterP('negoziata',this)">Negoziata</button><button class="btn btn-ghost btn-sm" onclick="filterP('aq',this)">Acc.Q.</button><button class="btn btn-ghost btn-sm" onclick="filterP('diretto',this)">Diretto</button><div style="margin-left:auto"><input type="text" class="fi" style="width:160px" placeholder="🔍 CIG, oggetto…" oninput="searchP(this.value)"/></div></div></div></div>
   <div class="card">
     <div class="tw"><table id="ptbl">
       <thead><tr><th>Oggetto / Settore</th><th>CIG</th><th>Normativa</th><th>Procedura</th><th>Importo</th><th>Offerte</th><th>Scadenza</th><th>Stato</th><th></th></tr></thead>
@@ -727,12 +836,12 @@ document.addEventListener('click', e => {
 
 <!-- ══════════ GENERA BANDO ══════════ -->
 <div class="page" id="page-nuova">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Genera Bando & Capitolato</div><div class="sh-sub">L'agente AI redige documenti conformi alla normativa applicabile in qualsiasi settore</div></div><div class="sh-r"><button class="btn btn-ghost" onclick="toast('Bozza salvata','ok')">💾 Salva bozza</button><button class="btn btn-primary" onclick="generaBando()">🤖 Genera con AI</button></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Genera Bando & Capitolato</div><div class="sh-sub">L'agente AI redige documenti conformi alla normativa applicabile in qualsiasi settore</div></div><div class="sh-r"><button class="btn btn-ghost" onclick="toast('Bozza salvata','ok')">💾 Salva</button><button class="btn btn-primary" onclick="generaBando()">🤖 Genera con AI</button></div></div>
   <div class="step-track mb6">
     <div class="step-item"><div class="step-bub cur" id="sb1">1</div><div class="step-lbl cur">Dati base</div><div class="step-line" id="sl1"></div></div>
     <div class="step-item"><div class="step-bub" id="sb2">2</div><div class="step-lbl" id="sl2">Requisiti</div><div class="step-line" id="sl2l"></div></div>
     <div class="step-item"><div class="step-bub" id="sb3">3</div><div class="step-lbl" id="sl3">Criteri OEPV</div><div class="step-line" id="sl3l"></div></div>
-    <div class="step-item"><div class="step-bub" id="sb4">4</div><div class="step-lbl" id="sl4">Penali & Garanzie</div><div class="step-line" id="sl4l"></div></div>
+    <div class="step-item"><div class="step-bub" id="sb4">4</div><div class="step-lbl" id="sl4">Penali</div><div class="step-line" id="sl4l"></div></div>
     <div class="step-item"><div class="step-bub" id="sb5">5</div><div class="step-lbl" id="sl5">Preview</div></div>
   </div>
   <div class="tabs-wrap"><div class="tabs">
@@ -745,11 +854,11 @@ document.addEventListener('click', e => {
   <div class="tab-pane active" id="ng-base">
     <div class="g64">
       <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🏛️</div><div class="card-title">Dati Amministrativi</div></div><div class="ai-pill"><div class="ai-dot"></div>AI assistita</div></div><div class="card-body">
-        <div class="fr"><div class="fg"><label class="fl-lbl">Ente Appaltante <span class="req">*</span></label><input class="fi" value="Comune di Valtorre — Provveditorato OO.PP."/></div><div class="fg"><label class="fl-lbl">Settore merceologico</label><select class="fs"><option>Lavori pubblici</option><option>Servizi IT / Digitale</option><option>Forniture tecnologiche</option><option>Servizi sanitari</option><option>Servizi energetici</option><option>Beni culturali</option><option>Ambiente / Verde urbano</option><option>Trasporti e mobilità</option><option>Progettazione / Ingegneria</option><option>Vigilanza e sicurezza</option><option>Ristorazione / Refezione</option></select></div></div>
-        <div class="fr"><div class="fg"><label class="fl-lbl">Normativa applicabile <span class="req">*</span></label><select class="fs"><option>D.Lgs. 36/2023 (nuovo Codice)</option><option>D.Lgs. 50/2016</option><option>D.Lgs. 163/2006</option><option>Settori Speciali D.Lgs. 50/16</option></select></div><div class="fg"><label class="fl-lbl">Tipo di procedura <span class="req">*</span></label><select class="fs"><option>Procedura Aperta — Settori Ordinari</option><option>Procedura Aperta — Settori Speciali</option><option>Procedura Ristretta</option><option>Negoziata con Bando</option><option>Negoziata senza Bando</option><option>Procedura Competitiva con Negoziazione</option><option>Dialogo Competitivo</option><option>Affidamento Diretto (art. 50 D.Lgs.36/23)</option><option>Accordo Quadro</option><option>Concessione / PPP</option><option>Convenzione CONSIP / MEPA</option><option>In House</option></select></div></div>
+        <div class="fr"><div class="fg"><label class="fl-lbl">Ente Appaltante <span class="req">*</span></label><input class="fi" value="Comune di Valtorre — Provveditorato OO.PP."/></div><div class="fg"><label class="fl-lbl">Settore merceologico</label><select class="fs"><option>Lavori pubblici</option><option>Servizi IT / Digitale</option><option>Forniture tecnologiche</option><option>Servizi sanitari</option><option>Servizi energetici</option><option>Beni culturali</option><option>Ambiente / Verde urbano</option></select></div></div>
+        <div class="fr"><div class="fg"><label class="fl-lbl">Normativa applicabile <span class="req">*</span></label><select class="fs"><option>D.Lgs. 36/2023 (nuovo Codice)</option><option>D.Lgs. 50/2016</option><option>D.Lgs. 163/2006</option><option>Settori Speciali D.Lgs. 50/16</option></select></div><div class="fg"><label class="fl-lbl">Tipo di procedura <span class="req">*</span></label><select class="fs"><option>Procedura Aperta — Settori Ordinari</option><option>Procedura Ristretta</option><option>Negoziata con Bando</option><option>Affidamento Diretto</option><option>Accordo Quadro</option></select></div></div>
         <div class="fr"><div class="fg"><label class="fl-lbl">Criterio aggiudicazione</label><select class="fs"><option>OEPV — Miglior rapporto qualità/prezzo</option><option>Prezzo più basso</option></select></div><div class="fg"><label class="fl-lbl">Importo a base d'asta (€)</label><input class="fi" type="number" placeholder="Es. 4200000"/></div></div>
         <div class="fg"><label class="fl-lbl">Oggetto dell'appalto <span class="req">*</span></label><textarea class="fta">Ampliamento e riqualificazione Padiglione C Ospedale Civile di Valtorre — lavori edili, impianti meccanici, elettrici, idraulici e antincendio.</textarea></div>
-        <div class="fr"><div class="fg"><label class="fl-lbl">Fonte di finanziamento</label><select class="fs"><option>PNRR</option><option>PON / PR UE 2021-2027</option><option>FSC 2021-2027</option><option>Bilancio proprio</option><option>Mutuo BEI / CDP</option></select></div><div class="fg"><label class="fl-lbl">CUP</label><input class="fi" placeholder="Es. H89J25000010001"/></div></div>
+        <div class="fr"><div class="fg"><label class="fl-lbl">Fonte di finanziamento</label><select class="fs"><option>PNRR</option><option>PON / PR UE 2021-2027</option><option>FSC 2021-2027</option><option>Bilancio proprio</option></select></div><div class="fg"><label class="fl-lbl">CUP</label><input class="fi" placeholder="Es. H89J25000010001"/></div></div>
         <div class="fr"><div class="fg"><label class="fl-lbl">Scadenza offerte</label><input class="fi" type="date"/></div><div class="fg"><label class="fl-lbl">Durata contratto</label><input class="fi" value="30 mesi"/></div></div>
       </div></div>
       <div class="col">
@@ -774,8 +883,7 @@ document.addEventListener('click', e => {
     <div class="fg"><label class="fl-lbl">Requisiti generali (art. 94-98 D.Lgs. 36/23)</label><textarea class="fta">Assenza cause esclusione automatica (art. 94) e non automatica (art. 95). Verifica tramite FVOE–ANAC. DGUE in formato elettronico obbligatorio ex art. 91.</textarea></div>
     <div class="fr"><div class="fg"><label class="fl-lbl">Iscrizione CCIAA</label><input class="fi" value="Per attività coerenti con l'oggetto"/></div><div class="fg"><label class="fl-lbl">Attestazione SOA</label><select class="fs"><option>OG11 cl.IV (> 1,032M€)</option><option>OG1 cl.III</option><option>OG2 cl.III</option><option>Non richiesta</option></select></div></div>
     <div class="fr"><div class="fg"><label class="fl-lbl">Fatturato specifico (€)</label><input class="fi" value="€ 2.000.000 nel triennio precedente"/></div><div class="fg"><label class="fl-lbl">Contratti analoghi</label><input class="fi" value="≥ 1 contratto analogo ≥ 50% importo"/></div></div>
-    <div class="fr"><div class="fg"><label class="fl-lbl">Avvalimento</label><select class="fs"><option>Ammesso (art. 104 D.Lgs. 36/23)</option><option>Escluso</option></select></div><div class="fg"><label class="fl-lbl">Subappalto</label><select class="fs"><option>Ammesso ≤ 50% importo</option><option>Ammesso senza limite</option><option>Escluso</option></select></div></div>
-  </div><div class="card-foot"><div class="ai-pill"><div class="ai-dot"></div>AI: Requisiti conformi D.Lgs. 36/23 · FVOE verificato</div></div></div></div>
+  </div></div></div>
   <div class="tab-pane" id="ng-crit"><div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">⚖️</div><div class="card-title">Criteri OEPV — Tot. 100 punti</div></div><div class="ai-pill"><div class="ai-dot"></div>Bilanciamento OK</div></div>
     <div class="tw"><table><thead><tr><th>Criterio</th><th>Tipo</th><th>Peso</th><th>Metodo</th><th>AI</th></tr></thead><tbody>
       <tr><td><strong>A — Qualità tecnica e metodologia</strong></td><td><span class="badge b-blue">Tecnico</span></td><td><strong>30 pt</strong></td><td>Discrezionale commissione</td><td><span class="badge b-green">✓ OK</span></td></tr>
@@ -783,7 +891,7 @@ document.addEventListener('click', e => {
       <tr><td><strong>C — Piano lavori e cronoprogramma</strong></td><td><span class="badge b-blue">Tecnico</span></td><td><strong>10 pt</strong></td><td>Tabellare</td><td><span class="badge b-green">✓ OK</span></td></tr>
       <tr><td><strong>D — Team e referenze</strong></td><td><span class="badge b-blue">Tecnico</span></td><td><strong>5 pt</strong></td><td>Tabellare</td><td><span class="badge b-green">✓ OK</span></td></tr>
       <tr><td><strong>E — Prezzo offerto</strong></td><td><span class="badge b-green">Economico</span></td><td><strong>40 pt</strong></td><td>Formula inversamente prop.</td><td><span class="badge b-amber">⚠ Verifica soglia</span></td></tr>
-      <tr style="background:var(--c50)"><td colspan="2"><strong>TOTALE</strong></td><td><strong style="color:var(--ok)">100 pt ✅</strong></td><td colspan="2"><span style="font-size:.69rem;color:var(--n500)">Tecnico 60% · Economico 40% · Conforme LG ANAC n.2</span></td></tr>
+      <tr style="background:var(--c50)"><td colspan="2"><strong>TOTALE</strong></td><td><strong style="color:var(--ok)">100 pt ✅</strong></td><td colspan="2"><span style="font-size:.69rem;color:var(--n500)">Tecnico 60% · Economico 40%</span></td></tr>
     </tbody></table></div>
   </div></div>
   <div class="tab-pane" id="ng-pen">
@@ -805,79 +913,65 @@ document.addEventListener('click', e => {
       </div></div>
     </div>
   </div>
- <div class="tab-pane" id="ng-prev">
-<div id="preview-area" style="padding:16px;">
-  <div id="preview-placeholder" style="text-align:center; color:#9ca3af;
-    padding:40px; border:2px dashed #e5e7eb; border-radius:12px;">
-    📄 Nessun documento generato<br>
-    <small>Clicca "🤖 Genera con AI" per creare il bando automaticamente</small>
-  </div>
-  <div id="preview-doc" style="display:none; opacity:0; transition:opacity 0.4s;">
-    <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
-      <span style="background:#dcfce7; color:#16a34a; padding:3px 10px;
-        border-radius:20px; font-size:0.75rem;">✅ Conforme D.Lgs. 36/23</span>
-      <span style="background:#dbeafe; color:#1d4ed8; padding:3px 10px;
-        border-radius:20px; font-size:0.75rem;">🤖 AI-generato</span>
-      <span style="background:#fef9c3; color:#854d0e; padding:3px 10px;
-        border-radius:20px; font-size:0.75rem;">📝 Bozza</span>
-    </div>
-    <div style="border:1px solid #e5e7eb; border-radius:12px; padding:20px;
-      font-size:0.85rem; line-height:1.7; max-height:360px; overflow-y:auto;">
-      <h3 style="color:#1e40af; margin:0 0 6px 0;">BANDO DI GARA — PROCEDURA APERTA
-        <br><small style="font-weight:400; color:#6b7280;">D.Lgs. 36/2023 · OEPV · PNRR M6C2</small>
-      </h3>
-      <hr style="border-color:#f3f4f6; margin:10px 0;">
-      <p><strong>Oggetto:</strong> Ampliamento Padiglione C Ospedale Civile — lavori edili, impianti.</p>
-      <p><strong>CIG:</strong> CIG-2025-0088 &nbsp;|&nbsp; <strong>CUP:</strong> H89J25000010001</p>
-      <p><strong>Importo:</strong> € 4.200.000,00 (IVA esclusa)</p>
-      <p><strong>Criterio:</strong> OEPV · Tecnico 60 pt · Economico 40 pt</p>
-      <p><strong>Requisiti:</strong> SOA OG11 cl.IV+ · OG1 cl.III · DGUE ex art. 91</p>
-      <p><strong>Scadenza:</strong> 14 giugno 2025 ore 12:00</p>
-      <p><strong>Clausola PNRR:</strong> ✅ Antifrode · ✅ DNSH · ✅ Tracciabilità L.136/2010</p>
-      <div style="background:#fef9c3; border-radius:8px; padding:10px 14px; margin-top:10px; font-size:0.82rem;">
-        💡 <strong>AI:</strong> Importo sotto soglia UE — pubblicazione GURI + ANAC sufficiente.
+  <div class="tab-pane" id="ng-prev">
+    <div id="preview-area" style="padding:16px;">
+      <div id="preview-placeholder" style="text-align:center; color:#9ca3af;
+        padding:40px; border:2px dashed #e5e7eb; border-radius:12px;">
+        📄 Nessun documento generato<br>
+        <small>Clicca "🤖 Genera con AI" per creare il bando automaticamente</small>
+      </div>
+      <div id="preview-doc" style="display:none; opacity:0; transition:opacity 0.4s;">
+        <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
+          <span style="background:#dcfce7; color:#16a34a; padding:3px 10px; border-radius:20px; font-size:0.75rem;">✅ Conforme D.Lgs. 36/23</span>
+          <span style="background:#dbeafe; color:#1d4ed8; padding:3px 10px; border-radius:20px; font-size:0.75rem;">🤖 AI-generato</span>
+          <span style="background:#fef9c3; color:#854d0e; padding:3px 10px; border-radius:20px; font-size:0.75rem;">📝 Bozza</span>
+        </div>
+        <div style="border:1px solid #e5e7eb; border-radius:12px; padding:20px; font-size:0.85rem; line-height:1.7; max-height:360px; overflow-y:auto;">
+          <h3 style="color:#1e40af; margin:0 0 6px 0;">BANDO DI GARA — PROCEDURA APERTA<br><small style="font-weight:400; color:#6b7280;">D.Lgs. 36/2023 · OEPV · PNRR M6C2</small></h3>
+          <hr style="border-color:#f3f4f6; margin:10px 0;">
+          <p><strong>Oggetto:</strong> Ampliamento Padiglione C Ospedale Civile — lavori edili, impianti.</p>
+          <p><strong>CIG:</strong> CIG-2025-0088 &nbsp;|&nbsp; <strong>CUP:</strong> H89J25000010001</p>
+          <p><strong>Importo:</strong> € 4.200.000,00 (IVA esclusa)</p>
+          <p><strong>Criterio:</strong> OEPV · Tecnico 60 pt · Economico 40 pt</p>
+          <p><strong>Requisiti:</strong> SOA OG11 cl.IV+ · OG1 cl.III · DGUE ex art. 91</p>
+          <p><strong>Scadenza:</strong> 14 giugno 2025 ore 12:00</p>
+          <p><strong>Clausola PNRR:</strong> ✅ Antifrode · ✅ DNSH · ✅ Tracciabilità L.136/2010</p>
+          <div style="background:#fef9c3; border-radius:8px; padding:10px 14px; margin-top:10px; font-size:0.82rem;">💡 <strong>AI:</strong> Importo sotto soglia UE — pubblicazione GURI + ANAC sufficiente.</div>
+        </div>
+        <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
+          <button onclick="alert('PDF in generazione...')" style="background:#1d4ed8; color:white; border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">📥 Esporta PDF</button>
+          <button onclick="if(confirm('Pubblicare su ANAC?')) alert('✅ Inviato ad ANAC — CIG-2025-0088')" style="background:#16a34a; color:white; border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">📤 Pubblica ANAC</button>
+        </div>
       </div>
     </div>
-    <div style="display:flex; gap:10px; margin-top:14px;">
-      <button onclick="alert('PDF in generazione...')" style="background:#1d4ed8; color:white;
-        border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">
-        📥 Esporta PDF</button>
-      <button onclick="if(confirm('Pubblicare su ANAC?')) alert('✅ Inviato ad ANAC — CIG-2025-0088')"
-        style="background:#16a34a; color:white; border:none; padding:9px 16px;
-        border-radius:8px; cursor:pointer; font-size:0.82rem;">📤 Pubblica ANAC</button>
-    </div>
+    <script>
+    document.querySelectorAll('button').forEach(btn => {
+      if (btn.textContent.includes('Genera con AI')) {
+        btn.addEventListener('click', () => {
+          document.getElementById('preview-placeholder').style.display = 'none';
+          const doc = document.getElementById('preview-doc');
+          doc.style.display = 'block';
+          setTimeout(() => doc.style.opacity = '1', 30);
+        });
+      }
+    });
+    </script>
   </div>
 </div>
 
-<script>
-// Aggancia il bottone "Genera con AI" già esistente nella pagina
-document.querySelectorAll('button').forEach(btn => {
-  if (btn.textContent.includes('Genera con AI')) {
-    btn.addEventListener('click', () => {
-      document.getElementById('preview-placeholder').style.display = 'none';
-      const doc = document.getElementById('preview-doc');
-      doc.style.display = 'block';
-      setTimeout(() => doc.style.opacity = '1', 30);
-    });
-  }
-});
-</script>
-  </div>
-</div>
-</div>
 <!-- ══════════ VALUTAZIONE ══════════ -->
 <div class="page" id="page-valutazione">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Valutazione Offerte</div><div class="sh-sub">Mercato Coperto Storico — CIG-2025-0059 · Commissione Det. n. 231/2025</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Punteggi AI calcolati</div><button class="btn btn-primary" onclick="toast('Verbale in generazione…','info')">📄 Genera Verbale</button></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Valutazione Offerte</div><div class="sh-sub">Mercato Coperto Storico — CIG-2025-0059 · Commissione Det. n. 231/2025</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Punteggi AI calcolati</div><button class="btn btn-primary" onclick="toast('Verbale in generazione…','info')">📄 Verbale</button></div></div>
   <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">📬</div></div><div class="kpi-val">7</div><div class="kpi-lbl">Offerte ricevute</div></div>
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">6</div><div class="kpi-lbl">Ammesse</div><div class="kpi-sub">1 esclusa — vizio formale</div></div>
-    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">⚠️</div></div><div class="kpi-val" style="font-size:1.2rem">€ 2.233.000</div><div class="kpi-lbl">Soglia Anomalia</div><div class="kpi-sub" style="color:var(--err)">1 offerta sotto soglia</div></div>
-    <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🏆</div></div><div class="kpi-val" style="font-size:.95rem;color:var(--purple)">Restauri Antichi</div><div class="kpi-lbl">Prima graduatoria</div><div class="kpi-sub">89,2 / 100 punti</div></div>
-  </div><!-- ✅ chiude kpi-grid — NO </div> extra dopo! -->
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">6</div><div class="kpi-lbl">Ammesse</div><div class="kpi-sub">1 esclusa</div></div>
+    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">⚠️</div></div><div class="kpi-val" style="font-size:1.2rem">€ 2.233.000</div><div class="kpi-lbl">Soglia Anomalia</div><div class="kpi-sub" style="color:var(--err)">1 sotto soglia</div></div>
+    <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🏆</div></div><div class="kpi-val" style="font-size:.95rem;color:var(--purple)">Restauri Pirrelli</div><div class="kpi-lbl">Prima graduatoria</div><div class="kpi-sub">89,2 / 100</div></div>
+  </div>
   <div class="card mb6">
-    <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div class="card-title">Graduatoria Provvisoria</div></div><span class="badge b-amber">⏳ Verifica anomalia in corso</span></div>
+    <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div class="card-title">Graduatoria Provvisoria</div></div><span class="badge b-amber">⏳ Verifica anomalia</span></div>
     <div class="tw"><table>
-      <thead><tr><th>#</th><th>Concorrente</th><th>P. Tecnico (60)</th><th>P. Economico (40)</th><th>Totale</th><th>Ribasso %</th><th>Anomalia</th><th>Score beneficiario</th><th>Stato</th></tr></thead>
+      <thead><tr><th>#</th><th>Concorrente</th><th>P. Tecnico (60)</th><th>P. Economico (40)</th><th>Totale</th><th>Ribasso %</th><th>Anomalia</th><th>Score</th><th>Stato</th></tr></thead>
       <tbody>
         <tr class="hr-row"><td>🥇 <strong>1°</strong></td><td><strong>Restauri Antichi Srl</strong></td><td>54,1 / 60</td><td>35,1 / 40</td><td><strong style="color:var(--c600);font-size:.98rem">89,2</strong></td><td>11,8%</td><td><span class="badge b-green">Regolare</span></td><td><span class="badge b-green">🏢 87/100</span></td><td><span class="badge b-green">Ammessa</span></td></tr>
         <tr><td>2°</td><td>Edilizia Storica SpA</td><td>50,3 / 60</td><td>33,8 / 40</td><td><strong>84,1</strong></td><td>9,9%</td><td><span class="badge b-green">Regolare</span></td><td><span class="badge b-green">🏢 91/100</span></td><td><span class="badge b-green">Ammessa</span></td></tr>
@@ -886,228 +980,94 @@ document.querySelectorAll('button').forEach(btn => {
         <tr><td>—</td><td>Consorzio Alfa Restauri</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><span class="badge b-red">🏢 41/100</span></td><td><span class="badge b-red">Esclusa</span></td></tr>
       </tbody>
     </table></div>
-    <div class="card-foot"><button class="btn btn-secondary btn-sm">📄 Scarica graduatoria</button><button class="btn btn-danger btn-sm" onclick="toast('Sub-procedimento avviato','warn')">🚨 Avvia sub-proc. anomalia</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="toast('Proposta inviata al RUP','ok')">✅ Proponi aggiudicazione</button></div>
-  </div><!-- chiude card mb6 -->
+    <div class="card-foot"><button class="btn btn-secondary btn-sm">📄 Scarica</button><button class="btn btn-danger btn-sm" onclick="toast('Sub-procedimento avviato','warn')">🚨 Avvia sub-proc.</button><button class="btn btn-primary btn-sm" style="margin-left:auto" onclick="toast('Proposta inviata al RUP','ok')">✅ Proponi aggiudicazione</button></div>
+  </div>
   <div class="g64">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">📋</div><div class="card-title">Checklist Commissione</div></div><span class="badge b-amber">5/9</span></div><div class="card-body">
       <div class="checklist">
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">1ª Seduta — Apertura buste amministrative</div><div style="font-size:.63rem;color:var(--n400)">12 mag</div></div>
-        <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">Verifica DGUE e requisiti via FVOE</div><div style="font-size:.63rem;color:var(--n400)">13 mag</div></div>
+        <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">Verifica DGUE e requisiti via FVOE</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">2ª Seduta — Valutazione offerte tecniche</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">Attribuzione punteggi tecnici</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check checked">✓</div><div class="cl-text done">3ª Seduta — Apertura buste economiche</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Calcolo e verifica soglia anomalia</div></div>
-        <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Sub-proc. verifica anomalia — Costruzioni Sud 2020</div></div>
+        <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Sub-proc. verifica anomalia</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Graduatoria definitiva e proposta aggiudicazione</div></div>
         <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Comunicazione esiti ex art. 90 D.Lgs. 36/23</div></div>
       </div>
     </div></div>
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🤖</div><div class="card-title">Raccomandazioni AI</div></div></div><div class="card-body">
-      <div class="callout err"><span class="ci">🚨</span><div class="cb"><strong>Offerta anomala:</strong> Costruzioni Sud 2020 ribasso 30,1% — Score beneficiario 63/100 (rischio medio). Richiedere giustificazioni entro 5gg (art. 110 D.Lgs. 36/23).</div></div>
-      <div class="callout info"><span class="ci">💡</span><div class="cb">Restauri Antichi Srl ha score 87/100 e 3 contratti analoghi completati. Profilo solido, aggiudicazione consigliata se giustificazioni KO.</div></div>
-      <div class="callout ok"><span class="ci">✅</span><div class="cb">Commissione regolare — Det. 231/2025 · nessun conflitto dichiarato · verbali 3 sedute completi.</div></div>
+      <div class="callout err"><span class="ci">🚨</span><div class="cb"><strong>Offerta anomala:</strong> Costruzioni Sud 2020 ribasso 30,1% — Score 63/100. Richiedere giustificazioni entro 5gg (art. 110 D.Lgs. 36/23).</div></div>
+      <div class="callout info"><span class="ci">💡</span><div class="cb">Restauri Antichi Srl ha score 87/100 e 3 contratti analoghi completati. Profilo solido.</div></div>
+      <div class="callout ok"><span class="ci">✅</span><div class="cb">Commissione regolare — Det. 231/2025 · nessun conflitto dichiarato.</div></div>
     </div></div>
-  </div><!-- chiude g64 -->
-</div><!-- ✅ CHIUDE page-valutazione -->
+  </div>
+</div>
 
 <!-- ══════════ DATABASE BENEFICIARI ══════════ -->
 <div class="page" id="page-beneficiari">
   <div class="sh">
-    <div class="sh-l"><div class="sh-title">🏢 Database Beneficiari & Operatori Economici</div><div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa, indici finanziari e precedenti</div></div>
-    <div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div><button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo beneficiario</button></div>
+    <div class="sh-l"><div class="sh-title">🏢 Database Beneficiari</div><div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa</div></div>
+    <div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div><button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo</button></div>
   </div>
-
-  <!-- KPI -->
   <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)">
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🏢</div></div><div class="kpi-val">47</div><div class="kpi-lbl">Beneficiari totali</div><div class="kpi-sub">In archivio</div></div>
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">28</div><div class="kpi-lbl">Score Alto (>75)</div><div class="kpi-sub">Profilo affidabile</div></div>
-    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">⚠️</div></div><div class="kpi-val">12</div><div class="kpi-lbl">Score Medio (50–75)</div><div class="kpi-sub">Monitorare</div></div>
-    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🔴</div></div><div class="kpi-val">7</div><div class="kpi-lbl">Score Basso (<50)</div><div class="kpi-sub">Attenzione</div></div>
-    <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div></div><div class="kpi-val">3</div><div class="kpi-lbl">Alert AI attivi</div><div class="kpi-sub">DURC / penali</div></div>
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🏢</div></div><div class="kpi-val">47</div><div class="kpi-lbl">Totali</div></div>
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">28</div><div class="kpi-lbl">Score Alto</div></div>
+    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">⚠️</div></div><div class="kpi-val">12</div><div class="kpi-lbl">Score Medio</div></div>
+    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🔴</div></div><div class="kpi-val">7</div><div class="kpi-lbl">Score Basso</div></div>
+    <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div></div><div class="kpi-val">3</div><div class="kpi-lbl">Alert AI</div></div>
   </div>
-
-  <!-- Filtri e ricerca -->
   <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
     <span style="font-size:.61rem;font-weight:700;color:var(--n500)">FILTRO:</span>
-    <button class="btn btn-primary btn-sm" onclick="filterBen('all',this)">Tutti (47)</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('alto',this)">Score Alto</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('medio',this)">Score Medio</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('basso',this)">Score Basso</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('alert',this)">⚠️ Alert AI</button>
-    <div style="margin-left:auto"><input type="text" class="fi" style="width:210px" placeholder="🔍 Cerca per nome, CF, settore…" oninput="searchBen(this.value)"/></div>
+    <button class="btn btn-primary btn-sm" onclick="filterBen('all',this)">Tutti</button>
+    <button class="btn btn-ghost btn-sm" onclick="filterBen('alto',this)">Alto</button>
+    <button class="btn btn-ghost btn-sm" onclick="filterBen('medio',this)">Medio</button>
+    <button class="btn btn-ghost btn-sm" onclick="filterBen('basso',this)">Basso</button>
+    <button class="btn btn-ghost btn-sm" onclick="filterBen('alert',this)">⚠️ Alert</button>
+    <div style="margin-left:auto"><input type="text" class="fi" style="width:170px" placeholder="🔍 Cerca…" oninput="searchBen(this.value)"/></div>
   </div></div></div>
-
-  <!-- Cards beneficiari -->
-  <div id="ben-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px">
-
-    <!-- CARD 1 -->
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Edilizia Storica SpA')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--c100)">🏗️</div>
-        <div style="flex:1">
-          <div class="ben-name">Edilizia Storica SpA</div>
-          <div class="ben-type">Lavori OG1/OG2 · Settori Ordinari · Bologna</div>
-        </div>
-        <div class="score-ring sr-ok"><div class="sr-val">91</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">94</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG2 cl.IV</span><span class="badge b-blue">12 contratti</span></div>
+  <div id="ben-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
+    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Edilizia Storica Felicetti SpA')">
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--c100)">🏗️</div><div style="flex:1"><div class="ben-name">Edilizia Storica SpA</div><div class="ben-type">Lavori OG1/OG2 · Bologna</div></div><div class="score-ring sr-ok"><div class="sr-val">91</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">94</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG2 cl.IV</span></div>
     </div>
-
-    <!-- CARD 2 -->
     <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Restauri Antichi Srl')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:#fef3c7">🏛️</div>
-        <div style="flex:1">
-          <div class="ben-name">Restauri Antichi Srl</div>
-          <div class="ben-type">Beni Culturali OG2 · Firenze</div>
-        </div>
-        <div class="score-ring sr-ok"><div class="sr-val">87</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">89</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span><span class="badge b-blue">7 contratti BC</span></div>
+      <div class="ben-hd"><div class="ben-ava" style="background:#fef3c7">🏛️</div><div style="flex:1"><div class="ben-name">Restauri Antichi Srl</div><div class="ben-type">Beni Culturali OG2 · Firenze</div></div><div class="score-ring sr-ok"><div class="sr-val">87</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">89</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">SOA OG2 cl.III</span><span class="badge b-blue">7 contratti BC</span></div>
     </div>
-
-    <!-- CARD 3 -->
     <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('TechPublic Srl')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--purple-bg)">💻</div>
-        <div style="flex:1">
-          <div class="ben-name">TechPublic Srl</div>
-          <div class="ben-type">Servizi IT · SaaS · Milano</div>
-        </div>
-        <div class="score-ring sr-ok"><div class="sr-val">84</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--purple-bg)">💻</div><div style="flex:1"><div class="ben-name">TechPublic Srl</div><div class="ben-type">Servizi IT · SaaS · Milano</div></div><div class="score-ring sr-ok"><div class="sr-val">84</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div></div>
       <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-blue">ISO 27001</span><span class="badge b-purple">5 Accordi Quadro PA</span></div>
     </div>
-
-    <!-- CARD 4 -->
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('EcoEnergia SpA')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:#fef9c3">⚡</div>
-        <div style="flex:1">
-          <div class="ben-name">EcoEnergia SpA</div>
-          <div class="ben-type">Impianti energetici · EPC · Torino</div>
-        </div>
-        <div class="score-ring sr-ok"><div class="sr-val">79</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">81</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">77</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">79</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG11 cl.III</span><span class="badge b-teal">8 contratti EPC</span></div>
-    </div>
-
-    <!-- CARD 5 MEDIO -->
     <div class="ben-card" data-score="medio" data-alert="no" onclick="openBenModal('Costruzioni Sud 2020 Srl')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--warn-bg)">🏚️</div>
-        <div style="flex:1">
-          <div class="ben-name">Costruzioni Sud 2020 Srl</div>
-          <div class="ben-type">Lavori OG1 · Napoli · Fondata 2019</div>
-        </div>
-        <div class="score-ring sr-warn"><div class="sr-val">63</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">58</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">71</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-amber">⚠️ Rating legalità 1★</span><span class="badge b-gray">3 contratti</span><span class="badge b-amber">1 penale applicata</span></div>
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--warn-bg)">🏚️</div><div style="flex:1"><div class="ben-name">Costruzioni Sud 2020 Srl</div><div class="ben-type">Lavori OG1 · Napoli</div></div><div class="score-ring sr-warn"><div class="sr-val">63</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">58</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">71</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-amber">⚠️ Rating legalità 1★</span><span class="badge b-amber">1 penale</span></div>
     </div>
-
-    <!-- CARD 6 MEDIO -->
-    <div class="ben-card" data-score="medio" data-alert="no" onclick="openBenModal('ATI Marmi Arte')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:#f0fdf4">🎨</div>
-        <div style="flex:1">
-          <div class="ben-name">ATI Marmi & Arte</div>
-          <div class="ben-type">Beni Culturali / Restauro · Roma</div>
-        </div>
-        <div class="score-ring sr-warn"><div class="sr-val">72</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">74</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">68</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">74</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-blue">SOA OG2 cl.II</span><span class="badge b-gray">5 contratti</span></div>
-    </div>
-
-    <!-- CARD 7 BASSO + ALERT -->
     <div class="ben-card" data-score="basso" data-alert="si" onclick="openBenModal('Ediltech Srl')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--err-bg)">⚠️</div>
-        <div style="flex:1">
-          <div class="ben-name">Ediltech Srl</div>
-          <div class="ben-type">Lavori OG6 / Sub-appaltatore · Palermo</div>
-        </div>
-        <div class="score-ring sr-err"><div class="sr-val">51</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">55</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span><span class="badge b-gray">4 contratti</span></div>
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--err-bg)">⚠️</div><div style="flex:1"><div class="ben-name">Ediltech Srl</div><div class="ben-type">Lavori OG6 · Palermo</div></div><div class="score-ring sr-err"><div class="sr-val">51</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">55</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div>
     </div>
-
-    <!-- CARD 8 BASSO -->
     <div class="ben-card" data-score="basso" data-alert="si" onclick="openBenModal('Consorzio Alfa Restauri')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--err-bg)">🚫</div>
-        <div style="flex:1">
-          <div class="ben-name">Consorzio Alfa Restauri</div>
-          <div class="ben-type">Consorzi di Cooperative · Catania</div>
-        </div>
-        <div class="score-ring sr-err"><div class="sr-val">41</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">52</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--err)">33</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-red">🚫 Escluso 2 gare</span><span class="badge b-red">⚠️ Procedura concorsuale</span><span class="badge b-gray">1 contratto</span></div>
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--err-bg)">🚫</div><div style="flex:1"><div class="ben-name">Consorzio Alfa Restauri</div><div class="ben-type">Cooperative · Catania</div></div><div class="score-ring sr-err"><div class="sr-val">41</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">52</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">33</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-red">🚫 Escluso 2 gare</span><span class="badge b-red">⚠️ Proc. concorsuale</span></div>
     </div>
-
-    <!-- CARD 9 ALTO -->
     <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Giardinaggio Bianco')">
-      <div class="ben-hd">
-        <div class="ben-ava" style="background:var(--ok-bg)">🌿</div>
-        <div style="flex:1">
-          <div class="ben-name">Giardinaggio Bianco Srl</div>
-          <div class="ben-type">Servizi ambiente · Verde urbano · Bari</div>
-        </div>
-        <div class="score-ring sr-ok"><div class="sr-val">82</div><div class="sr-lbl">Score</div></div>
-      </div>
-      <div class="ben-scores">
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Solidità fin.</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">86</div><div class="ben-score-lbl">Storico</div></div>
-        <div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Compliance</div></div>
-      </div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">6 contratti PA</span><span class="badge b-teal">Rating 3★</span></div>
+      <div class="ben-hd"><div class="ben-ava" style="background:var(--ok-bg)">🌿</div><div style="flex:1"><div class="ben-name">Giardinaggio Bianco Srl</div><div class="ben-type">Ambiente · Verde urbano · Bari</div></div><div class="score-ring sr-ok"><div class="sr-val">82</div><div class="sr-lbl">Score</div></div></div>
+      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">86</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Compliance</div></div></div>
+      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">Rating 3★</span><span class="badge b-blue">6 contratti PA</span></div>
     </div>
-
   </div>
 </div>
 
 <!-- ══════════ COMMISSIONI ══════════ -->
 <div class="page" id="page-commissioni">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Commissioni di Gara</div><div class="sh-sub">Nomina, composizione, conflitti di interesse e calendario sedute</div></div><div class="sh-r"><button class="btn btn-primary" onclick="toast('Procedura nomina avviata','info')">+ Nomina Commissione</button></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Commissioni di Gara</div><div class="sh-sub">Nomina, composizione, conflitti di interesse e calendario sedute</div></div><div class="sh-r"><button class="btn btn-primary" onclick="toast('Procedura nomina avviata','info')">+ Nomina</button></div></div>
   <div class="g64">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">👥</div><div><div class="card-title">Commissione Attiva — Mercato Coperto</div><div class="card-sub">CIG-2025-0059 · Det. n. 231/2025 del 08/05/2025</div></div></div><span class="badge b-green">Regolare</span></div>
       <div class="tw"><table><thead><tr><th>Membro</th><th>Ruolo</th><th>Qualifica</th><th>Tipo</th><th>Compenso</th></tr></thead><tbody>
@@ -1140,40 +1100,39 @@ document.querySelectorAll('button').forEach(btn => {
 
 <!-- ══════════ DOCUMENTI ══════════ -->
 <div class="page" id="page-documenti">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Archivio Documenti</div><div class="sh-sub">Bandi, capitolati, disciplinari, verbali, contratti — tutti i settori</div></div><div class="sh-r"><button class="btn btn-primary" onclick="nav('nuova',null)">🤖 Genera nuovo</button></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Archivio Documenti</div><div class="sh-sub">Bandi, capitolati, disciplinari, verbali, contratti</div></div><div class="sh-r"><button class="btn btn-primary" onclick="nav('nuova',null)">🤖 Genera nuovo</button></div></div>
   <div class="tabs-wrap"><div class="tabs"><button class="tab-btn active" onclick="switchTab('docs','docs-all',this)">📁 Tutti (14)</button><button class="tab-btn" onclick="switchTab('docs','docs-bandi',this)">📢 Bandi (6)</button><button class="tab-btn" onclick="switchTab('docs','docs-cap',this)">📋 Capitolati (5)</button><button class="tab-btn" onclick="switchTab('docs','docs-disc',this)">📑 Disciplinari (3)</button></div></div>
   <div class="tab-pane active" id="docs-all">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">📁</div><div class="card-title">Tutti i documenti</div></div><div class="ai-pill"><div class="ai-dot"></div>10 generati da AI</div></div><div class="card-body">
-      <div class="doc-item" onclick="toast('Apertura bando…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Bando_Ospedale_Civile_CIG-2025-0088_REV1.pdf</div><div class="d-meta">Bando · D.Lgs. 36/23 · Firmato · <span class="badge b-green" style="font-size:.58rem">Pubblicato ANAC</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
-      <div class="doc-item" onclick="toast('Apertura disciplinare…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Disciplinare_Ospedale_Civile_REV3.pdf</div><div class="d-meta">Disciplinare · 52 pag · AI-generato · <span class="badge b-green" style="font-size:.58rem">Pubblicato</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
-      <div class="doc-item" onclick="toast('Apertura capitolato…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Capitolato_Speciale_Mercato_Coperto.pdf</div><div class="d-meta">Capitolato · 68 pag · Beni Culturali · <span class="badge b-green" style="font-size:.58rem">Approvato</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
-      <div class="doc-item" style="cursor:pointer"><div class="dico di-word">📘</div><div style="flex:1;min-width:0"><div class="d-name">Bando_Digitalizzazione_Archivi_BOZZA.docx</div><div class="d-meta">Bando · AI-generato · <span class="badge b-gray" style="font-size:.58rem">Bozza</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="toast('Modifica aperta','info')">✏️</button><button class="btn btn-primary btn-xs" onclick="toast('Documento approvato!','ok')">Approva</button></div></div>
-      <div class="doc-item" style="cursor:pointer"><div class="dico di-xlsx">📗</div><div style="flex:1;min-width:0"><div class="d-name">QTE_Fotovoltaico_Municipio_Rev3.xlsx</div><div class="d-meta">Quadro Tecnico-Economico · <span class="badge b-amber" style="font-size:.58rem">In revisione</span></div></div><div class="d-acts"><button class="btn btn-secondary btn-xs" onclick="toast('Download avviato','ok')">📥</button></div></div>
-      <div class="doc-item" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Contratto_Verde_Urbano_Bianchi_Srl.pdf</div><div class="d-meta">Contratto · Firmato digitalmente · <span class="badge b-green" style="font-size:.58rem">Vigente</span></div></div><div class="d-acts"><button class="btn btn-secondary btn-xs" onclick="toast('Download avviato','ok')">📥</button></div></div>
+      <div class="doc-item" onclick="toast('Apertura bando…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Bando_Ospedale_Civile_CIG-2025-0088_REV1.pdf</div><div class="d-meta">Bando · D.Lgs. 36/23 · <span class="badge b-green" style="font-size:.58rem">Pubblicato ANAC</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
+      <div class="doc-item" onclick="toast('Apertura disciplinare…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Disciplinare_Ospedale_Civile_REV3.pdf</div><div class="d-meta">Disciplinare · 52 pag · <span class="badge b-green" style="font-size:.58rem">Pubblicato</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
+      <div class="doc-item" onclick="toast('Apertura capitolato…','info')" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Capitolato_Speciale_Mercato_Coperto.pdf</div><div class="d-meta">Capitolato · 68 pag · <span class="badge b-green" style="font-size:.58rem">Approvato</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="event.stopPropagation();toast('Download avviato','ok')">📥</button></div></div>
+      <div class="doc-item" style="cursor:pointer"><div class="dico di-word">📘</div><div style="flex:1;min-width:0"><div class="d-name">Bando_Digitalizzazione_Archivi_BOZZA.docx</div><div class="d-meta">Bando · <span class="badge b-gray" style="font-size:.58rem">Bozza</span></div></div><div class="d-acts"><button class="btn btn-ghost btn-xs" onclick="toast('Modifica aperta','info')">✏️</button><button class="btn btn-primary btn-xs" onclick="toast('Documento approvato!','ok')">Approva</button></div></div>
+      <div class="doc-item" style="cursor:pointer"><div class="dico di-pdf">📕</div><div style="flex:1;min-width:0"><div class="d-name">Contratto_Verde_Urbano_Bianchi_Srl.pdf</div><div class="d-meta">Contratto · <span class="badge b-green" style="font-size:.58rem">Vigente</span></div></div><div class="d-acts"><button class="btn btn-secondary btn-xs" onclick="toast('Download avviato','ok')">📥</button></div></div>
     </div></div>
   </div>
-  <div class="tab-pane" id="docs-bandi"><div class="card"><div style="display:flex;flex-direction:column;align-items:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📢</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Bandi — 6 documenti</div></div></div></div>
-  <div class="tab-pane" id="docs-cap"><div class="card"><div style="display:flex;flex-direction:column;align-items:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📋</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Capitolati — 5 documenti</div></div></div></div>
-  <div class="tab-pane" id="docs-disc"><div class="card"><div style="display:flex;flex-direction:column;align-items:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📑</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Disciplinari — 3 documenti</div></div></div></div>
+  <div class="tab-pane" id="docs-bandi"><div class="card"><div style="text-align:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📢</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Bandi — 6 documenti</div></div></div></div>
+  <div class="tab-pane" id="docs-cap"><div class="card"><div style="text-align:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📋</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Capitolati — 5 documenti</div></div></div></div>
+  <div class="tab-pane" id="docs-disc"><div class="card"><div style="text-align:center;padding:40px;color:var(--n400)"><div style="font-size:2.2rem;opacity:.4">📑</div><div style="font-size:.82rem;font-weight:600;color:var(--n600);margin-top:10px">Vista Disciplinari — 3 documenti</div></div></div></div>
 </div>
 
 <!-- ══════════ ESECUZIONE ══════════ -->
 <div class="page" id="page-esecuzione">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Contratti in Esecuzione</div><div class="sh-sub">SAL, subappalti, varianti e monitoraggio — tutti i settori</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Monitoraggio AI</div></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Contratti in Esecuzione</div><div class="sh-sub">SAL, subappalti, varianti e monitoraggio</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Monitoraggio AI</div></div></div>
   <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)">
-    <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">📑</div></div><div class="kpi-val">5</div><div class="kpi-lbl">Contratti attivi</div></div>
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🔨</div></div><div class="kpi-val">11</div><div class="kpi-lbl">SAL emessi</div><div class="kpi-sub">3 in approvazione</div></div>
-    <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">🔗</div></div><div class="kpi-val">4</div><div class="kpi-lbl">Subappalti auth.</div></div>
-    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">🔄</div></div><div class="kpi-val">2</div><div class="kpi-lbl">Varianti in iter</div><div class="kpi-sub">1 non sostanziale</div></div>
-    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">⏱️</div></div><div class="kpi-val" style="color:var(--err)">1</div><div class="kpi-lbl">Ritardo</div><div class="kpi-sub">Penale applicata</div></div>
+    <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">📑</div></div><div class="kpi-val">5</div><div class="kpi-lbl">Attivi</div></div>
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🔨</div></div><div class="kpi-val">11</div><div class="kpi-lbl">SAL emessi</div></div>
+    <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">🔗</div></div><div class="kpi-val">4</div><div class="kpi-lbl">Subappalti</div></div>
+    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">🔄</div></div><div class="kpi-val">2</div><div class="kpi-lbl">Varianti</div></div>
+    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">⏱️</div></div><div class="kpi-val" style="color:var(--err)">1</div><div class="kpi-lbl">Ritardo</div></div>
   </div>
   <div class="card">
     <div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div class="card-title">Avanzamento Contratti</div></div></div>
-    <div class="tw"><table><thead><tr><th>Contratto / Settore</th><th>Aggiudicatario</th><th>Score beneficiario</th><th>Importo</th><th>Avanzamento</th><th>SAL</th><th>Stato</th></tr></thead><tbody>
-      <tr><td><strong>Porto Sud — Riqualificazione</strong><div class="tm">Lavori · Infrastrutture · PON</div></td><td>Ferretti Costruzioni</td><td><span class="badge b-green">🏢 85/100</span></td><td>€ 2,1M</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-g" style="width:94%"></div></div><strong style="color:var(--ok)">94%</strong></div></td><td><span class="badge b-green">SAL 5/5</span></td><td><span class="badge b-green">In corso</span></td></tr>
-      <tr><td><strong>Impianto Fotovoltaico</strong><div class="tm">Forniture+Lavori · Energia · PNRR</div></td><td>EcoEnergia SpA</td><td><span class="badge b-green">🏢 79/100</span></td><td>€ 890k</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-b" style="width:68%"></div></div><strong style="color:var(--c600)">68%</strong></div></td><td><span class="badge b-blue">SAL 3/4</span></td><td><span class="badge b-amber">⚠️ DURC sub scaduto</span></td></tr>
-      <tr><td><strong>Manutenzione Verde Urbano</strong><div class="tm">Servizi · Ambiente · Bilancio</div></td><td>Giardinaggio Bianco</td><td><span class="badge b-green">🏢 82/100</span></td><td>€ 380k</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-w" style="width:41%"></div></div><strong style="color:var(--warn)">41%</strong></div></td><td><span class="badge b-amber">SAL 1/4</span></td><td><span class="badge b-amber">⚠ Lieve ritardo</span></td></tr>
-      <tr><td><strong>Sistema IT Tributi</strong><div class="tm">Servizi IT · ICT · FSC</div></td><td>TechPublic Srl</td><td><span class="badge b-green">🏢 84/100</span></td><td>€ 1,8M</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-r" style="width:12%"></div></div><strong style="color:var(--err)">12%</strong></div></td><td><span class="badge b-gray">Avvio</span></td><td><span class="badge b-blue">In corso</span></td></tr>
+    <div class="tw"><table><thead><tr><th>Contratto</th><th>Aggiudicatario</th><th>Score</th><th>Importo</th><th>Avanzamento</th><th>SAL</th><th>Stato</th></tr></thead><tbody>
+      <tr><td><strong>Porto Sud</strong><div class="tm">Lavori · PON</div></td><td>Ferretti Costruzioni</td><td><span class="badge b-green">🏢 85/100</span></td><td>€ 2,1M</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-g" style="width:94%"></div></div><strong style="color:var(--ok)">94%</strong></div></td><td><span class="badge b-green">SAL 5/5</span></td><td><span class="badge b-green">In corso</span></td></tr>
+      <tr><td><strong>Impianto Fotovoltaico</strong><div class="tm">Energia · PNRR</div></td><td>EcoEnergia SpA</td><td><span class="badge b-green">🏢 79/100</span></td><td>€ 890k</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-b" style="width:68%"></div></div><strong style="color:var(--c600)">68%</strong></div></td><td><span class="badge b-blue">SAL 3/4</span></td><td><span class="badge b-amber">⚠️ DURC sub scaduto</span></td></tr>
+      <tr><td><strong>Verde Urbano</strong><div class="tm">Servizi · Bilancio</div></td><td>Giardinaggio Bianco</td><td><span class="badge b-green">🏢 82/100</span></td><td>€ 380k</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-w" style="width:41%"></div></div><strong style="color:var(--warn)">41%</strong></div></td><td><span class="badge b-amber">SAL 1/4</span></td><td><span class="badge b-amber">⚠ Lieve ritardo</span></td></tr>
+      <tr><td><strong>Sistema IT Tributi</strong><div class="tm">Servizi IT · FSC</div></td><td>TechPublic Srl</td><td><span class="badge b-green">🏢 84/100</span></td><td>€ 1,8M</td><td><div style="display:flex;align-items:center;gap:7px"><div class="pt" style="flex:1"><div class="pf pf-r" style="width:12%"></div></div><strong style="color:var(--err)">12%</strong></div></td><td><span class="badge b-gray">Avvio</span></td><td><span class="badge b-blue">In corso</span></td></tr>
     </tbody></table></div>
   </div>
 </div>
@@ -1186,10 +1145,10 @@ document.querySelectorAll('button').forEach(btn => {
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🇪🇺</div><div><div class="card-title">PON — Mercato Coperto</div><div class="card-sub">CUP: F81B24000320006</div></div></div></div><div class="card-body"><strong style="font-size:1.1rem">€ 2,9M</strong><div class="tm" style="margin-top:4px">DdR n.1 Intermedia · in preparazione</div></div><div class="card-foot"><button class="btn btn-secondary btn-sm">Completa DdR</button></div></div>
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🇮🇹</div><div><div class="card-title">FSC — Porto Sud</div><div class="card-sub">CUP: G27H23000550001</div></div></div></div><div class="card-body"><strong style="font-size:1.1rem">€ 2,1M</strong><div class="tm" style="margin-top:4px">DdR n.4 Finale · inviata a IGRUE</div></div><div class="card-foot"><button class="btn btn-ghost btn-sm" onclick="toast('Stato DdR: in verifica IGRUE','info')">Vedi stato</button></div></div>
   </div>
-  <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🧾</div><div><div class="card-title">Checklist DdR n.1 Ospedale Civile — Allegato 11.1 MOP</div><div class="card-sub">Documentazione giuridica, giustificativa di spesa e di pagamento</div></div></div><span class="badge b-amber">9/15 complete</span></div>
+  <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">🧾</div><div><div class="card-title">Checklist DdR n.1 Ospedale Civile — Allegato 11.1 MOP</div></div></div><span class="badge b-amber">9/15 complete</span></div>
     <div class="card-body">
       <div class="g2">
-        <div><div style="font-size:.73rem;font-weight:700;color:var(--c800);margin-bottom:9px;padding-bottom:4px;border-bottom:1px solid var(--n100)">A — Fondamento giuridico (prima DdR)</div>
+        <div><div style="font-size:.73rem;font-weight:700;color:var(--c800);margin-bottom:9px;padding-bottom:4px;border-bottom:1px solid var(--n100)">A — Fondamento giuridico</div>
           <div class="checklist">
             <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">Provvedimento indizione · CIG richiesto</div></div>
             <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">Nomina RUP</div></div>
@@ -1198,7 +1157,7 @@ document.querySelectorAll('button').forEach(btn => {
             <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">Verbali commissione — tutte le sedute</div></div>
             <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">Atto aggiudicazione definitiva</div></div>
             <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">Contratto stipulato c. clausola tracciabilità</div></div>
-            <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">DURC, Antimafia, garanzia definitiva acquisiti</div></div>
+            <div class="cl-item"><div class="cl-check checked">✓</div><div class="cl-text">DURC, Antimafia, garanzia definitiva</div></div>
             <div class="cl-item" onclick="toggle(this)"><div class="cl-check"></div><div class="cl-text">Eventuali ricorsi e relativi esiti</div></div>
           </div>
         </div>
@@ -1215,13 +1174,13 @@ document.querySelectorAll('button').forEach(btn => {
         </div>
       </div>
     </div>
-    <div class="card-foot"><button class="btn btn-danger btn-sm" disabled>Genera e Invia DdR</button><span style="font-size:.69rem;color:var(--err)">Documentazione incompleta</span><button class="btn btn-secondary btn-sm" style="margin-left:auto" onclick="toast('Richiesta integrazione inviata al beneficiario','ok')">📩 Richiesta integrazione</button></div>
+    <div class="card-foot"><button class="btn btn-danger btn-sm" disabled>Genera e Invia DdR</button><span style="font-size:.69rem;color:var(--err)">Documentazione incompleta</span><button class="btn btn-secondary btn-sm" style="margin-left:auto" onclick="toast('Richiesta integrazione inviata','ok')">📩 Richiesta integrazione</button></div>
   </div>
 </div>
 
 <!-- ══════════ CONFORMITÀ ══════════ -->
 <div class="page" id="page-conformita">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Conformità & ANAC</div><div class="sh-sub">Controlli automatici AI su tutte le procedure · obblighi di pubblicazione · verifica multi-normativa</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Check: 5 min fa</div><button class="btn btn-secondary" onclick="toast('Aggiornamento avviato…','info')">🔄 Aggiorna</button></div></div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Conformità & ANAC</div><div class="sh-sub">Controlli automatici AI su tutte le procedure</div></div><div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Check: 5 min fa</div><button class="btn btn-secondary" onclick="toast('Aggiornamento avviato…','info')">🔄 Aggiorna</button></div></div>
   <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr)">
     <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🟢</div></div><div class="kpi-val" style="color:var(--ok)">28</div><div class="kpi-lbl">Check superati</div></div>
     <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">🟡</div></div><div class="kpi-val" style="color:var(--warn)">5</div><div class="kpi-lbl">In verifica</div></div>
@@ -1229,18 +1188,17 @@ document.querySelectorAll('button').forEach(btn => {
     <div class="kpi blue"><div class="kpi-hd"><div class="kpi-ico ico-b">📊</div></div><div class="kpi-val">80%</div><div class="kpi-lbl">Score conformità</div><div class="kpi-sub">Target ≥ 95%</div></div>
   </div>
   <div class="card">
-    <div class="card-hd"><div class="card-hd-l"><div class="card-ico">🔍</div><div class="card-title">Controlli Automatici AI — Multi-normativa</div></div><div class="ai-pill"><div class="ai-dot"></div>Monitoraggio continuo</div></div>
+    <div class="card-hd"><div class="card-hd-l"><div class="card-ico">🔍</div><div class="card-title">Controlli Automatici AI</div></div><div class="ai-pill"><div class="ai-dot"></div>Monitoraggio continuo</div></div>
     <div class="tw"><table>
-      <thead><tr><th>Controllo</th><th>Normativa</th><th>Gara / Contratto</th><th>Esito</th><th>Dettaglio</th><th>Azione</th></tr></thead>
+      <thead><tr><th>Controllo</th><th>Normativa</th><th>Gara</th><th>Esito</th><th>Dettaglio</th><th>Azione</th></tr></thead>
       <tbody>
-        <tr><td>CIG e CUP presenti</td><td><span class="badge b-teal">L. 136/2010</span></td><td>Tutte</td><td><span class="badge b-green">✅ OK</span></td><td>Verificato su 9 procedure</td><td>—</td></tr>
-        <tr><td>Bando pubblicato ANAC / GURI</td><td><span class="badge b-blue">D.Lgs. 36/23 art. 84</span></td><td>Ospedale Civile</td><td><span class="badge b-green">✅ OK</span></td><td>Nei termini</td><td>—</td></tr>
+        <tr><td>CIG e CUP presenti</td><td><span class="badge b-teal">L. 136/2010</span></td><td>Tutte</td><td><span class="badge b-green">✅ OK</span></td><td>9 procedure verificate</td><td>—</td></tr>
+        <tr><td>Bando pubblicato ANAC</td><td><span class="badge b-blue">Art. 84 D.Lgs. 36/23</span></td><td>Ospedale Civile</td><td><span class="badge b-green">✅ OK</span></td><td>Nei termini</td><td>—</td></tr>
         <tr><td>DGUE formato elettronico</td><td><span class="badge b-blue">Art. 91 D.Lgs. 36/23</span></td><td>Ospedale Civile</td><td><span class="badge b-green">✅ OK</span></td><td>6/6 completi</td><td>—</td></tr>
-        <tr><td>Soglia anomalia — sub-procedimento</td><td><span class="badge b-blue">Art. 110 D.Lgs. 36/23</span></td><td>Mercato Coperto</td><td><span class="badge b-red">🚨 Anomalia</span></td><td>Costruzioni Sud: giustif. non pervenute</td><td><button class="btn btn-danger btn-xs" onclick="toast('Sollecito inviato','warn')">Sollecita</button></td></tr>
-        <tr><td>DURC subappaltatore</td><td><span class="badge b-teal">L. 136/2010</span></td><td>Fotovoltaico</td><td><span class="badge b-red">🚨 Scaduto</span></td><td>Ediltech Srl — score aggiornato 51/100</td><td><button class="btn btn-danger btn-xs" onclick="toast('Pagamenti bloccati','err')">Blocca</button></td></tr>
-        <tr><td>CAM nel bando (art. 57)</td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td>Ospedale Civile</td><td><span class="badge b-amber">⏳ Verifica</span></td><td>Edilizia — checklist in corso</td><td><button class="btn btn-secondary btn-xs" onclick="toast('Verifica CAM aperta','info')">Verifica</button></td></tr>
+        <tr><td>Soglia anomalia — sub-proc.</td><td><span class="badge b-blue">Art. 110 D.Lgs. 36/23</span></td><td>Mercato Coperto</td><td><span class="badge b-red">🚨 Anomalia</span></td><td>Giustif. non pervenute</td><td><button class="btn btn-danger btn-xs" onclick="toast('Sollecito inviato','warn')">Sollecita</button></td></tr>
+        <tr><td>DURC subappaltatore</td><td><span class="badge b-teal">L. 136/2010</span></td><td>Fotovoltaico</td><td><span class="badge b-red">🚨 Scaduto</span></td><td>Ediltech Srl — score 51/100</td><td><button class="btn btn-danger btn-xs" onclick="toast('Pagamenti bloccati','err')">Blocca</button></td></tr>
         <tr><td>Avviso esito gara (art. 90)</td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td>Verde Urbano</td><td><span class="badge b-green">✅ OK</span></td><td>Comunicato entro 5gg</td><td>—</td></tr>
-        <tr><td>Tracciabilità flussi finanziari</td><td><span class="badge b-teal">L. 136/2010 art. 3</span></td><td>Porto Sud</td><td><span class="badge b-green">✅ OK</span></td><td>Conto dedicato verificato</td><td>—</td></tr>
+        <tr><td>Tracciabilità flussi</td><td><span class="badge b-teal">L. 136/2010 art. 3</span></td><td>Porto Sud</td><td><span class="badge b-green">✅ OK</span></td><td>Conto dedicato verificato</td><td>—</td></tr>
       </tbody>
     </table></div>
   </div>
@@ -1248,53 +1206,50 @@ document.querySelectorAll('button').forEach(btn => {
 
 <!-- ══════════ REPORT ══════════ -->
 <div class="page" id="page-report">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Report & Analisi</div><div class="sh-sub">KPI di performance, storico gare, benchmark di mercato — tutti i settori</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('Export PDF in generazione…','info')">📥 Esporta PDF</button><button class="btn btn-primary" onclick="toast('Report AI in generazione…','info')">🤖 Report AI</button></div></div>
-  <div class="kpi-grid">
-   	  <!-- KPI ANIMATI — inserisci subito dopo i 6 card KPI statici -->
-<div style="display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin:20px 0;">
-  <div style="background:#eff6ff; border-radius:12px; padding:16px; text-align:center;">
-    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Valore Portafoglio</div>
-    <div id="kpi1" style="font-size:1.7rem; font-weight:700; color:#1d4ed8;">€ 0</div>
-    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +11% vs 2024</div>
+  <div class="sh"><div class="sh-l"><div class="sh-title">Report & Analisi</div><div class="sh-sub">KPI di performance, storico gare, benchmark di mercato</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('Export PDF in generazione…','info')">📥 Esporta PDF</button><button class="btn btn-primary" onclick="toast('Report AI in generazione…','info')">🤖 Report AI</button></div></div>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin:0 0 20px;">
+    <div style="background:#eff6ff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Valore Portafoglio</div>
+      <div id="kpi1" style="font-size:1.7rem; font-weight:700; color:#1d4ed8;">€ 0</div>
+      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +11% vs 2024</div>
+    </div>
+    <div style="background:#f0fdf4; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Ribasso Medio</div>
+      <div id="kpi2" style="font-size:1.7rem; font-weight:700; color:#16a34a;">0%</div>
+      <div style="font-size:0.7rem; color:#6b7280; margin-top:2px;">Tutti i settori</div>
+    </div>
+    <div style="background:#fefce8; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Offerenti medi/gara</div>
+      <div id="kpi3" style="font-size:1.7rem; font-weight:700; color:#d97706;">0</div>
+      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +0,9 vs 2024</div>
+    </div>
+    <div style="background:#fdf4ff; border-radius:12px; padding:16px; text-align:center;">
+      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Tasso Esclusione</div>
+      <div id="kpi4" style="font-size:1.7rem; font-weight:700; color:#7c3aed;">0%</div>
+      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▼ In miglioramento</div>
+    </div>
   </div>
-  <div style="background:#f0fdf4; border-radius:12px; padding:16px; text-align:center;">
-    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Ribasso Medio</div>
-    <div id="kpi2" style="font-size:1.7rem; font-weight:700; color:#16a34a;">0%</div>
-    <div style="font-size:0.7rem; color:#6b7280; margin-top:2px;">Tutti i settori</div>
-  </div>
-  <div style="background:#fefce8; border-radius:12px; padding:16px; text-align:center;">
-    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Offerenti medi/gara</div>
-    <div id="kpi3" style="font-size:1.7rem; font-weight:700; color:#d97706;">0</div>
-    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +0,9 vs 2024</div>
-  </div>
-  <div style="background:#fdf4ff; border-radius:12px; padding:16px; text-align:center;">
-    <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Tasso Esclusione</div>
-    <div id="kpi4" style="font-size:1.7rem; font-weight:700; color:#7c3aed;">0%</div>
-    <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▼ In miglioramento</div>
-  </div>
-</div>
-
-<script>
-function animaContatore(id, fine, durata, formato) {
-  const el = document.getElementById(id);
-  let inizio = 0;
-  const step = fine / (durata / 16);
-  const t = setInterval(() => {
-    inizio = Math.min(inizio + step, fine);
-    el.textContent = formato(inizio);
-    if (inizio >= fine) clearInterval(t);
-  }, 16);
-}
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    animaContatore('kpi1', 14.8, 1200, v => '€ ' + v.toFixed(1) + 'M');
-    animaContatore('kpi2', 11.8, 1000, v => v.toFixed(1) + '%');
-    animaContatore('kpi3', 5.4,  900,  v => v.toFixed(1));
-    animaContatore('kpi4', 5.8,  900,  v => v.toFixed(1) + '%');
-  }, 400);
-});
-</script>
-  </div>
+  <script>
+  function animaContatore(id, fine, durata, formato) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    let inizio = 0;
+    const step = fine / (durata / 16);
+    const t = setInterval(() => {
+      inizio = Math.min(inizio + step, fine);
+      el.textContent = formato(inizio);
+      if (inizio >= fine) clearInterval(t);
+    }, 16);
+  }
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      animaContatore('kpi1', 14.8, 1200, v => '€ ' + v.toFixed(1) + 'M');
+      animaContatore('kpi2', 11.8, 1000, v => v.toFixed(1) + '%');
+      animaContatore('kpi3', 5.4, 900, v => v.toFixed(1));
+      animaContatore('kpi4', 5.8, 900, v => v.toFixed(1) + '%');
+    }, 400);
+  });
+  </script>
   <div class="g2">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div><div class="card-title">Ribassi per settore</div><div class="card-sub">Media ultimi 12 mesi</div></div></div><div class="ai-pill"><div class="ai-dot"></div>AI insight</div></div><div class="card-body">
       <div class="bc-wrap">
@@ -1320,7 +1275,7 @@ window.addEventListener('load', () => {
 </div>
 
 <footer>
-  <div>AppaltanteAI MVP v2.2 · D.Lgs. 163/06 | 50/16 | 36/23 · Settori Speciali · Tutti i settori</div>
+  <div>AppaltanteAI MVP v2.3 · D.Lgs. 163/06 | 50/16 | 36/23 · Settori Speciali</div>
   <div style="display:flex;align-items:center;gap:5px"><span style="color:var(--ok)">●</span> Sistema operativo · Agente AI attivo</div>
 </footer>
 </main>
@@ -1336,7 +1291,7 @@ window.addEventListener('load', () => {
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeProcModal()">Chiudi</button>
       <button class="btn btn-secondary btn-sm" onclick="toast('Export avviato','ok')">📥 Esporta</button>
-      <button class="btn btn-primary btn-sm" onclick="nav('valutazione',null)">⚖️ Vai a Valutazione</button>
+      <button class="btn btn-primary btn-sm" onclick="nav('valutazione',null)">⚖️ Valutazione</button>
     </div>
   </div>
 </div>
@@ -1351,8 +1306,8 @@ window.addEventListener('load', () => {
     <div class="modal-body" id="ben-modal-body"></div>
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeBenModal()">Chiudi</button>
-      <button class="btn btn-secondary btn-sm" onclick="toast('Report beneficiario esportato','ok')">📥 Esporta report</button>
-      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo del beneficiario selezionato e suggerisci azioni di monitoraggio appropriate.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
+      <button class="btn btn-secondary btn-sm" onclick="toast('Report esportato','ok')">📥 Report</button>
+      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo del beneficiario e suggerisci azioni di monitoraggio.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
     </div>
   </div>
 </div>
@@ -1361,6 +1316,42 @@ window.addEventListener('load', () => {
 <div class="toast-bar" id="toasts"></div>
 
 <script>
+/* ═══ SIDEBAR MOBILE ═══ */
+function toggleSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sb-overlay');
+  const hb = document.getElementById('hamburger');
+  const isOpen = sb.classList.toggle('open');
+  ov.classList.toggle('open', isOpen);
+  hb.classList.toggle('open', isOpen);
+  document.body.style.overflow = isOpen ? 'hidden' : '';
+}
+function closeSidebar() {
+  const sb = document.getElementById('sidebar');
+  const ov = document.getElementById('sb-overlay');
+  const hb = document.getElementById('hamburger');
+  sb.classList.remove('open');
+  ov.classList.remove('open');
+  hb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/* ═══ BOTTOM NAV UPDATE ═══ */
+function updateBottomNav(page) {
+  const pages = ['dashboard','agente','procedure','valutazione'];
+  pages.forEach(p => {
+    const el = document.getElementById('bn-' + p);
+    if (el) el.classList.toggle('active', p === page);
+  });
+  // If page not in bottom nav, deactivate all
+  if (!pages.includes(page)) {
+    pages.forEach(p => {
+      const el = document.getElementById('bn-' + p);
+      if (el) el.classList.remove('active');
+    });
+  }
+}
+
 /* ═══ NAVIGATION ═══ */
 const META={
   dashboard:['Dashboard','Panoramica generale'],
@@ -1382,17 +1373,20 @@ function nav(id, el) {
   const pg = document.getElementById('page-' + id);
   if (pg) pg.classList.add('active');
   const ni = el && el.classList && el.classList.contains('ni')
-    ? el
-    : document.querySelector('.ni[data-page="' + id + '"]');
+    ? el : document.querySelector('.ni[data-page="' + id + '"]');
   if (ni) ni.classList.add('active');
   const m = META[id] || [id, ''];
   const t = document.getElementById('tb-title');
   const c = document.getElementById('tb-crumb');
   if (t) t.textContent = m[0];
   if (c) c.textContent = 'AppaltanteAI · ' + m[1];
-  const main = document.querySelector('.main') || document.body;
-  main.scrollTop = 0;
+  // Scroll top
+  window.scrollTo(0, 0);
+  document.querySelector('.main').scrollTop = 0;
+  // Update bottom nav
+  updateBottomNav(id);
 }
+
 /* ═══ TABS ═══ */
 function switchTab(group, paneId, btn) {
   const pgId = group === 'ng' ? 'page-nuova' : group === 'docs' ? 'page-documenti' : 'page-' + group;
@@ -1405,6 +1399,7 @@ function switchTab(group, paneId, btn) {
   if (pane) pane.classList.add('active');
   if (btn) btn.classList.add('active');
 }
+
 /* ═══ CHECKLIST ═══ */
 function toggle(li) {
   const box = li.querySelector('.cl-check');
@@ -1413,10 +1408,11 @@ function toggle(li) {
   box.textContent = done ? '✓' : '';
   if (txt) txt.classList.toggle('done', done);
 }
+
 /* ═══ FILTER PROCEDURE ═══ */
 function filterP(tipo, btn) {
   document.querySelectorAll('#page-procedure .btn').forEach(b => {
-    if (b.closest('#page-procedure')) {
+    if (b.closest('#page-procedure') && !b.closest('td')) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-ghost');
     }
@@ -1432,10 +1428,11 @@ function searchP(v) {
     tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
   });
 }
+
 /* ═══ FILTER BENEFICIARI ═══ */
 function filterBen(f, btn) {
   document.querySelectorAll('#page-beneficiari .btn').forEach(b => {
-    if (b.closest('#page-beneficiari')) {
+    if (b.closest('#page-beneficiari') && !b.closest('.card-foot') && !b.closest('.sh-r')) {
       b.classList.remove('btn-primary');
       b.classList.add('btn-ghost');
     }
@@ -1456,10 +1453,14 @@ function searchBen(v) {
     c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
   });
 }
+
 /* ═══ GENERA BANDO ═══ */
 function generaBando() {
-  const btn = document.querySelector('[onclick="generaBando()"]');
-  btn.textContent = '⏳ AI in elaborazione…';
+  const btns = document.querySelectorAll('button');
+  let btn = null;
+  btns.forEach(b => { if (b.textContent.includes('Genera con AI')) btn = b; });
+  if (!btn) return;
+  btn.textContent = '⏳ Elaborazione…';
   btn.disabled = true;
   btn.style.opacity = '.7';
   toast('Agente AI — generazione bando avviata…', 'info');
@@ -1468,8 +1469,8 @@ function generaBando() {
     document.querySelectorAll('#page-nuova .tab-btn').forEach(b => b.classList.remove('active'));
     const prev = document.getElementById('ng-prev');
     if (prev) prev.classList.add('active');
-    const btns = document.querySelectorAll('#page-nuova .tab-btn');
-    if (btns[4]) btns[4].classList.add('active');
+    const tabBtns = document.querySelectorAll('#page-nuova .tab-btn');
+    if (tabBtns[4]) tabBtns[4].classList.add('active');
     ['sb1','sb2','sb3','sb4'].forEach((id, i) => {
       const el = document.getElementById(id);
       if (el) { el.classList.remove('cur'); el.classList.add('done'); el.textContent = '✓'; }
@@ -1477,18 +1478,18 @@ function generaBando() {
       const ln = document.getElementById(lineIds[i]);
       if (ln) ln.classList.add('done');
     });
-    const s5 = document.getElementById('sb5');
-    const sl5 = document.getElementById('sl5');
-    if (s5) s5.classList.add('cur');
-    if (sl5) sl5.classList.add('cur');
-    const pc = document.getElementById('prev-content');
-    if (pc) pc.innerHTML = '<div style="font-size:.76rem;line-height:1.8;color:var(--n700)"><div style="text-align:center;padding:14px;background:var(--c800);color:#fff;border-radius:9px;margin-bottom:16px"><div style="font-size:1.05rem;font-weight:800">BANDO DI GARA — PROCEDURA APERTA</div><div style="font-size:.74rem;opacity:.72;margin-top:2px">D.Lgs. 36/2023 · OEPV · Settore Sanitario</div></div><p><strong>Oggetto:</strong> Ampliamento Padiglione C Ospedale Civile — lavori edili, impianti.</p><p style="margin-top:8px"><strong>CIG:</strong> CIG-2025-0088 | <strong>CUP:</strong> H89J25000010001</p><p style="margin-top:8px"><strong>Importo:</strong> € 4.200.000,00 (IVA esclusa) · Durata: 30 mesi</p><p style="margin-top:8px"><strong>Criteri OEPV:</strong> Tecnico 60pt · Economico 40pt</p><div style="margin-top:14px;padding:9px 13px;background:var(--c100);border-radius:7px;font-size:.66rem;color:var(--c700)">🤖 <strong>Generato da AppaltanteAI Agente</strong> · D.Lgs. 36/2023 conforme</div></div>';
+    const s5 = document.getElementById('sb5'); const sl5 = document.getElementById('sl5');
+    if (s5) s5.classList.add('cur'); if (sl5) sl5.classList.add('cur');
+    document.getElementById('preview-placeholder').style.display = 'none';
+    const doc = document.getElementById('preview-doc');
+    if (doc) { doc.style.display = 'block'; setTimeout(() => doc.style.opacity = '1', 30); }
     btn.textContent = '🤖 Genera con AI';
     btn.disabled = false;
     btn.style.opacity = '1';
     toast('Bando generato con successo!', 'ok');
   }, 2100);
 }
+
 /* ═══ TOAST ═══ */
 function toast(msg, type='info') {
   const icons = { ok:'✅', err:'❌', warn:'⚠️', info:'ℹ️' };
@@ -1498,73 +1499,58 @@ function toast(msg, type='info') {
   t.innerHTML = '<span>' + (icons[type]||'ℹ️') + '</span><span>' + msg + '</span>';
   bar.appendChild(t);
   setTimeout(() => {
-    t.style.opacity = '0';
-    t.style.transform = 'translateX(18px)';
+    t.style.opacity = '0'; t.style.transform = 'translateX(18px)';
     t.style.transition = 'all .28s ease';
     setTimeout(() => t.remove(), 300);
   }, 3200);
 }
+
 /* ═══ MODAL PROCEDURA ═══ */
 const PROC_DATA = {
   'CIG-2025-0088': {
     title: '📂 CIG-2025-0088 — Ampliamento Ospedale Civile',
-    html: '<div style="font-size:.76rem;line-height:1.8;color:var(--n700)"><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px"><div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div><div style="background:var(--err-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div><div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div></div><table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:130px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV — Tecnico 60% / Economico 40%</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr></tbody></table><div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Ricevute 4/6 buste — verificare piattaforma.</div></div>'
+    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:14px"><div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div><div style="background:var(--err-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div><div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div></div><table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:120px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV — Tecnico 60% / Economico 40%</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr></tbody></table><div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Ricevute 4/6 buste — verificare piattaforma.</div></div>'
   },
   'CIG-2025-0059': {
     title: '📂 CIG-2025-0059 — Mercato Coperto Storico',
-    html: '<div style="font-size:.76rem;line-height:1.8;color:var(--n700)"><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima graduatoria:</strong> Restauri Antichi Srl — 89,2/100 — ribasso 11,8% — Score 87/100.</div></div>'
+    html: '<div style="font-size:.76rem;line-height:1.8"><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima graduatoria:</strong> Restauri Antichi Srl — 89,2/100 — ribasso 11,8% — Score 87/100.</div></div>'
   }
 };
 function openProcModal(cig) {
-  const d = PROC_DATA[cig] || {
-    title: '📂 ' + cig,
-    html: '<p style="color:var(--n500);padding:20px">Dettaglio procedura in caricamento…</p>'
-  };
-  const pt = document.getElementById('proc-modal-title');
-  const pb = document.getElementById('proc-modal-body');
-  if (pt) pt.textContent = d.title;
-  if (pb) pb.innerHTML = d.html;
-  const m = document.getElementById('proc-modal');
-  if (m) m.classList.add('open');
+  const d = PROC_DATA[cig] || { title: '📂 ' + cig, html: '<p style="color:var(--n500);padding:20px">Caricamento...</p>' };
+  document.getElementById('proc-modal-title').textContent = d.title;
+  document.getElementById('proc-modal-body').innerHTML = d.html;
+  document.getElementById('proc-modal').classList.add('open');
 }
 function closeProcModal() {
-  const m = document.getElementById('proc-modal');
-  if (m) m.classList.remove('open');
+  document.getElementById('proc-modal').classList.remove('open');
 }
+
 /* ═══ MODAL BENEFICIARIO ═══ */
 const BEN_DATA = {
   'Restauri Antichi Srl': {
-    score: 87,
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0"><div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div><div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · Firenze</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC valido</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span></div></div></div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI:</strong> Profilo altamente affidabile. Aggiudicazione consigliata.</div></div>'
+    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0;flex-wrap:wrap"><div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div><div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · Firenze</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC valido</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span></div></div></div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI:</strong> Profilo altamente affidabile. Aggiudicazione consigliata.</div></div>'
   },
   'Ediltech Srl': {
-    score: 51,
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca"><div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></div></div><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)"><strong>🚨 AI Alert:</strong> DURC scaduto. Blocco pagamenti SAL n.3 raccomandato.</div></div>'
+    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca;flex-wrap:wrap"><div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></div></div><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)"><strong>🚨 AI Alert:</strong> DURC scaduto. Blocco pagamenti SAL n.3 raccomandato.</div></div>'
   },
   'new': {
-    score: 0,
     html: '<div style="font-size:.76rem;line-height:1.8"><div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo beneficiario.</div></div><div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale</label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA</label><input class="fi" placeholder="00000000000"/></div></div><div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast(\'Score AI in calcolo…\',\'info\')">🤖 Calcola Score AI e Aggiungi</button></div></div>'
   }
 };
 function openBenModal(nome) {
-  const d = BEN_DATA[nome] || {
-    score: 0,
-    html: '<p style="color:var(--n500);padding:20px;text-align:center">Caricamento...</p>'
-  };
-  const bt = document.getElementById('ben-modal-title');
-  const bb = document.getElementById('ben-modal-body');
-  if (bt) bt.textContent = nome === 'new' ? '➕ Nuovo Beneficiario' : '🏢 ' + nome;
-  if (bb) bb.innerHTML = d.html;
-  const m = document.getElementById('ben-modal');
-  if (m) m.classList.add('open');
+  const d = BEN_DATA[nome] || { html: '<p style="color:var(--n500);padding:20px;text-align:center">Caricamento...</p>' };
+  document.getElementById('ben-modal-title').textContent = nome === 'new' ? '➕ Nuovo Beneficiario' : '🏢 ' + nome;
+  document.getElementById('ben-modal-body').innerHTML = d.html;
+  document.getElementById('ben-modal').classList.add('open');
 }
 function closeBenModal() {
-  const m = document.getElementById('ben-modal');
-  if (m) m.classList.remove('open');
+  document.getElementById('ben-modal').classList.remove('open');
 }
+
 /* ═══ AI CHAT ═══ */
 const KB = {
-  '50vs36': '<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023:</strong><ul><li>Affidamento diretto: soglie innalzate art. 50</li><li>FVOE e DGUE obbligatori in formato elettronico (art. 91)</li><li>Anomalia: art. 110 — Soglia = M + 0.15×S</li><li>CAM: art. 57 obbligatori</li></ul>',
+  '50vs36': '<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023:</strong><ul><li>Affidamento diretto: soglie innalzate art. 50</li><li>FVOE e DGUE obbligatori formato elettronico (art. 91)</li><li>Anomalia: art. 110 — Soglia = M + 0.15×S</li><li>CAM: art. 57 obbligatori</li></ul>',
   'guue': '<strong>Soglie GUUE 2025:</strong><ul><li>🏗️ Lavori: € 5.382.000</li><li>📋 Servizi/forniture enti pubblici: € 221.000</li><li>🏭 Settori Speciali servizi: € 443.000</li></ul>',
   'anomalia': '<strong>Soglia Anomalia OEPV (art. 110 D.Lgs. 36/23):</strong><ol><li>Media M di tutti i punteggi totali</li><li>Scarto medio superiore S</li><li><strong>Soglia = M + 0,15 × S</strong></li><li>Contraddittorio entro 5gg lavorativi</li></ol>',
   'ddr': '<strong>DdR Allegato 11.1 MOP:</strong><br><strong>A. Fondamento giuridico:</strong> CIG+CUP, RUP, bando, verbali, aggiudicazione, contratto, DURC, Antimafia<br><strong>B. Spesa:</strong> SAL approvato, fattura elettronica (CUP+CIG)<br><strong>C. Pagamento:</strong> bonifico quietanzato, estratto conto',
@@ -1590,8 +1576,7 @@ function sendChat() {
   inp.value = '';
   const box = document.getElementById('chat-messages');
   const typing = document.createElement('div');
-  typing.className = 'msg';
-  typing.id = 'typing-ind';
+  typing.className = 'msg'; typing.id = 'typing-ind';
   typing.innerHTML = '<div class="mava ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
   box.appendChild(typing);
   box.scrollTop = box.scrollHeight;
@@ -1602,17 +1587,22 @@ function sendChat() {
   }, 800 + Math.random() * 600);
 }
 function quickMsg(m) {
-  document.getElementById('chat-input').value = m;
-  sendChat();
+  nav('agente', null);
+  setTimeout(() => {
+    const inp = document.getElementById('chat-input');
+    if (inp) { inp.value = m; sendChat(); }
+  }, 100);
 }
 function appendMsg(html, who) {
   const box = document.getElementById('chat-messages');
+  if (!box) return;
   const d = document.createElement('div');
   d.className = 'msg' + (who === 'user' ? ' user' : '');
   d.innerHTML = '<div class="mava ' + who + '">' + (who === 'ai' ? 'AI' : 'TU') + '</div><div class="mb ' + who + '">' + html + '</div>';
   box.appendChild(d);
   box.scrollTop = box.scrollHeight;
 }
+
 /* ═══ PROGRESS BARS ═══ */
 window.addEventListener('load', () => {
   setTimeout(() => {
@@ -1623,14 +1613,27 @@ window.addEventListener('load', () => {
     });
   }, 200);
 });
+
 /* ═══ KEYBOARD ═══ */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeProcModal(); closeBenModal(); }
+  if (e.key === 'Escape') { closeProcModal(); closeBenModal(); closeSidebar(); chiudiSearch(); }
 });
+
+/* ═══ SWIPE TO CLOSE SIDEBAR (mobile) ═══ */
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const sb = document.getElementById('sidebar');
+  if (sb.classList.contains('open') && dx < -60) closeSidebar();
+}, { passive: true });
+
 /* ═══ INIT ═══ */
 document.addEventListener('DOMContentLoaded', () => {
   nav('dashboard', null);
 });
 </script>
+</body>
+</html>
 </body>
 </html>
