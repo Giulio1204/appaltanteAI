@@ -763,262 +763,417 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 <!-- ══════════ PROCEDURE ══════════ -->
 <div class="page" id="page-procedure">
   <div class="sh">
-    <div class="sh-l"><div class="sh-title">Procedure di Gara</div><div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div></div>
-    <div class="sh-r"><button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button><button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova</button></div>
+    <div class="sh-l">
+      <div class="sh-title">Procedure di Gara</div>
+      <div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div>
+    </div>
+    <div class="sh-r">
+      <button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button>
+      <button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova</button>
+    </div>
   </div>
 
-  <!-- TABS Procedure -->
-  <div class="tabs-wrap"><div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('proc','proc-lista',this)">📋 Lista Gare</button>
-    <button class="tab-btn" onclick="switchTab('proc','proc-progetto',this)">🗂️ Per Progetto</button>
-  </div></div>
+  <!-- Tabs vista -->
+  <div class="tabs-wrap" style="margin-bottom:14px">
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('proc','proc-lista',this)">📋 Lista procedure</button>
+      <button class="tab-btn"        onclick="switchTab('proc','proc-progetto',this)">📁 Per progetto</button>
+    </div>
+  </div>
 
-  <!-- TAB: Lista -->
+  <!-- ── TAB 1: LISTA ── -->
   <div class="tab-pane active" id="proc-lista">
-    <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
-      <span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span>
-      <button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button>
-      <button class="btn btn-ghost btn-sm" onclick="filterP('aperta',this)">Aperta</button>
-      <button class="btn btn-ghost btn-sm" onclick="filterP('ristretta',this)">Ristretta</button>
-      <button class="btn btn-ghost btn-sm" onclick="filterP('negoziata',this)">Negoziata</button>
-      <button class="btn btn-ghost btn-sm" onclick="filterP('aq',this)">Acc.Q.</button>
-      <button class="btn btn-ghost btn-sm" onclick="filterP('diretto',this)">Diretto</button>
-      <div style="margin-left:auto"><input type="text" class="fi" style="width:160px" placeholder="🔍 CIG, oggetto…" oninput="searchP(this.value)"/></div>
-    </div></div></div>
+    <div class="card mb4">
+      <div class="card-body" style="padding:12px 15px">
+        <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+          <span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span>
+          <button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button>
+          <button class="btn btn-ghost  btn-sm" onclick="filterP('aperta',this)">Aperta</button>
+          <button class="btn btn-ghost  btn-sm" onclick="filterP('ristretta',this)">Ristretta</button>
+          <button class="btn btn-ghost  btn-sm" onclick="filterP('negoziata',this)">Negoziata</button>
+          <button class="btn btn-ghost  btn-sm" onclick="filterP('aq',this)">Acc.Q.</button>
+          <button class="btn btn-ghost  btn-sm" onclick="filterP('diretto',this)">Diretto</button>
+          <div style="margin-left:auto">
+            <input type="text" class="fi" style="width:170px" placeholder="🔍 CIG, oggetto…"
+                   oninput="searchP(this.value)"/>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="card">
-      <div class="tw"><table id="ptbl">
-        <thead><tr><th>Oggetto / Settore</th><th>CIG</th><th>Normativa</th><th>Procedura</th><th>Importo</th><th>Offerte</th><th>Scadenza</th><th>Stato</th><th></th></tr></thead>
-        <tbody>
-          <tr data-tipo="aperta"><td><strong>Ampliamento Ospedale Civile — Pad. C</strong><div class="tm">Lavori OG1/OG11 · 🏥 Sanità · PNRR</div></td><td><code>CIG-2025-0088</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 4,2M</td><td><strong style="color:var(--c600)">6</strong></td><td><strong style="color:var(--err)">⚠ 14 giu</strong></td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs" onclick="openProcModal('CIG-2025-0088')">→</button></td></tr>
-          <tr data-tipo="aq"><td><strong>Sistema IT Tributi Comunali</strong><div class="tm">Servizi IT · 🖥️ ICT · FSC</div></td><td><code>CIG-2025-0071</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-purple">Acc. Quadro</span></td><td>€ 1,8M</td><td><strong style="color:var(--c600)">3</strong></td><td>28 giu 2025</td><td><span class="badge b-blue">Pubblicata</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-          <tr data-tipo="aperta"><td><strong>Riqualificazione Mercato Coperto</strong><div class="tm">Lavori OG2 · 🏛️ Beni Culturali · PNRR</div></td><td><code>CIG-2025-0059</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 2,9M</td><td><strong style="color:var(--c600)">7</strong></td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
-          <tr data-tipo="ristretta"><td><strong>Gestione Calore Edifici Pubblici</strong><div class="tm">Energia EPC · ⚡ Settori Speciali</div></td><td><code>CIG-2025-0038</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-teal">Ristretta</span></td><td>€ 3,1M</td><td><strong style="color:var(--c600)">5</strong></td><td>15 ago 2025</td><td><span class="badge b-blue">Inviti inviati</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-          <tr data-tipo="negoziata"><td><strong>Manutenzione Rete Idrica</strong><div class="tm">Lavori OG6 · 💧 Settori Speciali</div></td><td><code>CIG-2025-0031</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-amber">Neg. s.b.</span></td><td>€ 890k</td><td><strong style="color:var(--c600)">4</strong></td><td>20 lug 2025</td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-          <tr data-tipo="aperta"><td><strong>Fornitura Veicoli Elettrici</strong><div class="tm">Forniture · 🚗 Mobilità · PNRR</div></td><td><code>CIG-2025-0022</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 620k</td><td><strong style="color:var(--c600)">8</strong></td><td>Scaduta</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-          <tr data-tipo="diretto"><td><strong>Fornitura Materiale Didattico</strong><div class="tm">Forniture · 📚 Istruzione · MEPA</div></td><td><code>CIG-2025-0044</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-gray">Aff. Diretto</span></td><td>€ 52k</td><td>1</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-          <tr data-tipo="negoziata"><td><strong>Incarico Progettazione Palestra</strong><div class="tm">Servizi Tecnici · 📐 D.Lgs. 165/01</div></td><td><code>CIG-2025-0014</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-amber">Proc. Pers. Est.</span></td><td>€ 95k</td><td>6</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-          <tr data-tipo="aperta"><td><strong>Servizio Refezione Scolastica 3 anni</strong><div class="tm">Servizi · 🍽️ Welfare · OEPV</div></td><td><code>CIG-2025-0025</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 1,32M</td><td>4</td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
-        </tbody>
-      </table></div>
+      <div class="tw">
+        <table id="ptbl">
+          <thead>
+            <tr>
+              <th>Oggetto / Settore</th><th>CIG</th><th>Normativa</th>
+              <th>Procedura</th><th>Importo</th><th>Offerte</th>
+              <th>Scadenza</th><th>Stato</th><th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-tipo="aperta">
+              <td><strong>Ampliamento Ospedale Civile — Pad. C</strong><div class="tm">Lavori OG1/OG11 · 🏥 Sanità · PNRR</div></td>
+              <td><code>CIG-2025-0088</code></td>
+              <td><span class="badge b-blue">D.Lgs. 36/23</span></td>
+              <td><span class="badge b-blue">Aperta Ord.</span></td>
+              <td>€ 4,2M</td><td><strong style="color:var(--c600)">6</strong></td>
+              <td><strong style="color:var(--err)">⚠ 14 giu</strong></td>
+              <td><span class="badge b-amber">Ricezione</span></td>
+              <td><button class="btn btn-secondary btn-xs" onclick="openProcModal('CIG-2025-0088')">→</button></td>
+            </tr>
+            <tr data-tipo="aq">
+              <td><strong>Sistema IT Tributi Comunali</strong><div class="tm">Servizi IT · 🖥️ ICT · FSC</div></td>
+              <td><code>CIG-2025-0071</code></td>
+              <td><span class="badge b-purple">D.Lgs. 50/16</span></td>
+              <td><span class="badge b-purple">Acc. Quadro</span></td>
+              <td>€ 1,8M</td><td><strong style="color:var(--c600)">3</strong></td>
+              <td>28 giu 2025</td>
+              <td><span class="badge b-blue">Pubblicata</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+            <tr data-tipo="aperta">
+              <td><strong>Riqualificazione Mercato Coperto</strong><div class="tm">Lavori OG2 · 🏛️ Beni Culturali · PNRR</div></td>
+              <td><code>CIG-2025-0059</code></td>
+              <td><span class="badge b-blue">D.Lgs. 36/23</span></td>
+              <td><span class="badge b-blue">Aperta Ord.</span></td>
+              <td>€ 2,9M</td><td><strong style="color:var(--c600)">7</strong></td>
+              <td>Scaduta</td>
+              <td><span class="badge b-purple">Valutazione</span></td>
+              <td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td>
+            </tr>
+            <tr data-tipo="ristretta">
+              <td><strong>Gestione Calore Edifici Pubblici</strong><div class="tm">Energia EPC · ⚡ Settori Speciali</div></td>
+              <td><code>CIG-2025-0038</code></td>
+              <td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td>
+              <td><span class="badge b-teal">Ristretta</span></td>
+              <td>€ 3,1M</td><td><strong style="color:var(--c600)">5</strong></td>
+              <td>15 ago 2025</td>
+              <td><span class="badge b-blue">Inviti inviati</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+            <tr data-tipo="negoziata">
+              <td><strong>Manutenzione Rete Idrica</strong><div class="tm">Lavori OG6 · 💧 Settori Speciali</div></td>
+              <td><code>CIG-2025-0031</code></td>
+              <td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td>
+              <td><span class="badge b-amber">Neg. s.b.</span></td>
+              <td>€ 890k</td><td><strong style="color:var(--c600)">4</strong></td>
+              <td>20 lug 2025</td>
+              <td><span class="badge b-amber">Ricezione</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+            <tr data-tipo="aperta">
+              <td><strong>Fornitura Veicoli Elettrici</strong><div class="tm">Forniture · 🚗 Mobilità · PNRR</div></td>
+              <td><code>CIG-2025-0022</code></td>
+              <td><span class="badge b-blue">D.Lgs. 36/23</span></td>
+              <td><span class="badge b-blue">Aperta Ord.</span></td>
+              <td>€ 620k</td><td><strong style="color:var(--c600)">8</strong></td>
+              <td>Scaduta</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+            <tr data-tipo="diretto">
+              <td><strong>Fornitura Materiale Didattico</strong><div class="tm">Forniture · 📚 Istruzione · MEPA</div></td>
+              <td><code>CIG-2025-0044</code></td>
+              <td><span class="badge b-blue">D.Lgs. 36/23</span></td>
+              <td><span class="badge b-gray">Aff. Diretto</span></td>
+              <td>€ 52k</td><td>1</td>
+              <td>Conclusa</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+            <tr data-tipo="negoziata">
+              <td><strong>Incarico Progettazione Palestra</strong><div class="tm">Servizi Tecnici · 📐 D.Lgs. 165/01</div></td>
+              <td><code>CIG-2025-0014</code></td>
+              <td><span class="badge b-purple">D.Lgs. 50/16</span></td>
+              <td><span class="badge b-amber">Proc. Pers. Est.</span></td>
+              <td>€ 95k</td><td>6</td>
+              <td>Conclusa</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+            <tr data-tipo="aperta">
+              <td><strong>Servizio Refezione Scolastica 3 anni</strong><div class="tm">Servizi · 🍽️ Welfare · OEPV</div></td>
+              <td><code>CIG-2025-0025</code></td>
+              <td><span class="badge b-blue">D.Lgs. 36/23</span></td>
+              <td><span class="badge b-blue">Aperta Ord.</span></td>
+              <td>€ 1,32M</td><td>4</td>
+              <td>Scaduta</td>
+              <td><span class="badge b-purple">Valutazione</span></td>
+              <td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
+  </div><!-- /proc-lista -->
 
-  <!-- TAB: Per Progetto -->
+  <!-- ── TAB 2: PER PROGETTO ── -->
   <div class="tab-pane" id="proc-progetto">
-    <div class="callout info" style="margin-bottom:16px"><span class="ci">🗂️</span><div class="cb">Le procedure sono raggruppate per <strong>progetto / fonte di finanziamento</strong>. Clicca su una procedura per i dettagli.</div></div>
 
-    <!-- Gruppo PNRR -->
-    <div class="proj-group">
-      <div class="proj-group-hd">
-        <span class="proj-group-ico">🇪🇺</span>
-        <div>
-          <div class="proj-group-name">PNRR — Piano Nazionale di Ripresa e Resilienza</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Missioni M1–M6 · Scadenza milestone: 31 dic 2026</div>
+    <!-- Progetto 1 -->
+    <div class="card mb4" style="border-left:4px solid var(--c600)">
+      <div class="card-hd" style="background:var(--c50)">
+        <div class="card-hd-l">
+          <div class="card-ico" style="background:var(--c100)">🏥</div>
+          <div>
+            <div class="card-title">Ampliamento Ospedale Civile — Pad. C</div>
+            <div class="card-sub">PNRR M6C2 · CUP H89J25000010001 · Valore totale € 4,2M</div>
+          </div>
         </div>
-        <div class="proj-group-meta">3 procedure · € 7,72M</div>
+        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span class="badge b-blue">🇪🇺 PNRR</span>
+          <span class="badge b-amber">⏳ In corso</span>
+          <div style="background:var(--c100);border-radius:20px;padding:3px 12px;font-size:.69rem;font-weight:700;color:var(--c800)">1 procedura</div>
+        </div>
       </div>
-      <div class="proj-group-body">
-        <div class="proj-row" onclick="openProcModal('CIG-2025-0088')">
-          <div class="proj-row-main">
-            <div class="proj-row-title">🏥 Ampliamento Ospedale Civile — Pad. C</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0088</code> · D.Lgs. 36/23 · Aperta Ord. · M6C2</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>CIG</th><th>Oggetto</th><th>Tipo</th><th>Importo</th><th>Scadenza</th><th>Stato</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr class="hr-row">
+              <td><code>CIG-2025-0088</code></td>
+              <td><strong>Lavori edili, impianti OG1/OG11</strong><div class="tm">D.Lgs. 36/23 · Aperta ordinaria</div></td>
+              <td><span class="badge b-blue">Aperta</span></td>
+              <td>€ 4,2M</td>
+              <td><strong style="color:var(--err)">⚠ 14 giu 2025</strong></td>
+              <td><span class="badge b-amber">Ricezione offerte</span></td>
+              <td><button class="btn btn-secondary btn-xs" onclick="openProcModal('CIG-2025-0088')">→</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:.69rem;color:var(--n500)">Avanzamento progetto:</div>
+          <div style="flex:1;min-width:120px">
+            <div class="pt"><div class="pf pf-b" style="width:30%"></div></div>
           </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 4,2M</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">6</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--err)">14 giu</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-amber">Ricezione</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--warn);font-weight:700">20%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-w" style="width:20%"></div></div>
-          </div>
-          <button class="btn btn-secondary btn-xs">→</button>
-        </div>
-        <div class="proj-row" onclick="openProcModal('CIG-2025-0059')">
-          <div class="proj-row-main">
-            <div class="proj-row-title">🏛️ Riqualificazione Mercato Coperto Storico</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0059</code> · D.Lgs. 36/23 · Aperta Ord. · M1C3</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 2,9M</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">7</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-purple">Valutazione</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--purple);font-weight:700">45%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-p" style="width:45%"></div></div>
-          </div>
-          <button class="btn btn-primary btn-xs" onclick="event.stopPropagation();nav('valutazione',null)">Valuta →</button>
-        </div>
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">🚗 Fornitura Veicoli Elettrici</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0022</code> · D.Lgs. 36/23 · Aperta Ord. · M2C2</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 620k</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">8</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-green">Aggiudicata</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
-          </div>
-          <button class="btn btn-ghost btn-xs">Archivio</button>
+          <div style="font-size:.73rem;font-weight:700;color:var(--c600)">30% — Fase gara</div>
         </div>
       </div>
     </div>
 
-    <!-- Gruppo FSC -->
-    <div class="proj-group">
-      <div class="proj-group-hd" style="background:linear-gradient(90deg,#1a3a1a,#0d2a0d)">
-        <span class="proj-group-ico">🇮🇹</span>
-        <div>
-          <div class="proj-group-name">FSC 2021-2027 — Fondo Sviluppo e Coesione</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Accordo di Programma · Regione · Scadenza: 31 dic 2027</div>
+    <!-- Progetto 2 -->
+    <div class="card mb4" style="border-left:4px solid var(--teal)">
+      <div class="card-hd" style="background:var(--teal-bg)">
+        <div class="card-hd-l">
+          <div class="card-ico" style="background:#ccfbf1">🏛️</div>
+          <div>
+            <div class="card-title">Riqualificazione Mercato Coperto Storico</div>
+            <div class="card-sub">PNRR M1C3 · CUP F81B24000320006 · Valore totale € 3,2M</div>
+          </div>
         </div>
-        <div class="proj-group-meta">2 procedure · € 2,69M</div>
-      </div>
-      <div class="proj-group-body">
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">🖥️ Sistema IT Tributi Comunali</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0071</code> · D.Lgs. 50/16 · Accordo Quadro</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 1,8M</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">3</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val">28 giu</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-blue">Pubblicata</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--c600);font-weight:700">15%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-b" style="width:15%"></div></div>
-          </div>
-          <button class="btn btn-secondary btn-xs">→</button>
-        </div>
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">📚 Fornitura Materiale Didattico</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0044</code> · D.Lgs. 36/23 · Affidamento Diretto · MEPA</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 52k</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">1</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Conclusa</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-green">Aggiudicata</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
-          </div>
-          <button class="btn btn-ghost btn-xs">Archivio</button>
+        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span class="badge b-blue">🇪🇺 PNRR</span>
+          <span class="badge b-purple">⚖️ Valutazione</span>
+          <div style="background:#ccfbf1;border-radius:20px;padding:3px 12px;font-size:.69rem;font-weight:700;color:var(--ok-dk)">2 procedure</div>
         </div>
       </div>
-    </div>
-
-    <!-- Gruppo Settori Speciali -->
-    <div class="proj-group">
-      <div class="proj-group-hd" style="background:linear-gradient(90deg,#1a1a3a,#0d0d2a)">
-        <span class="proj-group-ico">⚡</span>
-        <div>
-          <div class="proj-group-name">Settori Speciali — Energia & Reti</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">D.Lgs. 50/16 Parte III · Ente aggiudicatore</div>
-        </div>
-        <div class="proj-group-meta">2 procedure · € 3,99M</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>CIG</th><th>Oggetto</th><th>Tipo</th><th>Importo</th><th>Scadenza</th><th>Stato</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>CIG-2025-0059</code></td>
+              <td><strong>Lavori di restauro e riqualificazione OG2</strong><div class="tm">D.Lgs. 36/23 · Beni Culturali</div></td>
+              <td><span class="badge b-blue">Aperta</span></td>
+              <td>€ 2,9M</td>
+              <td>Scaduta</td>
+              <td><span class="badge b-purple">Valutazione</span></td>
+              <td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td>
+            </tr>
+            <tr>
+              <td><code>CIG-2025-0014</code></td>
+              <td><strong>Incarico progettazione esecutiva</strong><div class="tm">D.Lgs. 50/16 · Proc. Personale Esterno</div></td>
+              <td><span class="badge b-amber">Negoziata</span></td>
+              <td>€ 95k</td>
+              <td>Conclusa</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="proj-group-body">
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">⚡ Gestione Calore Edifici Pubblici (EPC)</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0038</code> · D.Lgs. 50/16 Sp. · Ristretta</div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:.69rem;color:var(--n500)">Avanzamento progetto:</div>
+          <div style="flex:1;min-width:120px">
+            <div class="pt"><div class="pf pf-p" style="width:55%"></div></div>
           </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 3,1M</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">5</div><div class="proj-stat-lbl">Invitati</div></div>
-            <div class="proj-stat"><div class="proj-stat-val">15 ago</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-blue">Inviti inviati</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--c600);font-weight:700">30%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-b" style="width:30%"></div></div>
-          </div>
-          <button class="btn btn-secondary btn-xs">→</button>
-        </div>
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">💧 Manutenzione Rete Idrica</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0031</code> · D.Lgs. 50/16 Sp. · Negoziata s.b.</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 890k</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">4</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val">20 lug</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-amber">Ricezione</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--warn);font-weight:700">25%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-w" style="width:25%"></div></div>
-          </div>
-          <button class="btn btn-secondary btn-xs">→</button>
+          <div style="font-size:.73rem;font-weight:700;color:var(--purple)">55% — Valutazione offerte</div>
         </div>
       </div>
     </div>
 
-    <!-- Gruppo Bilancio -->
-    <div class="proj-group">
-      <div class="proj-group-hd" style="background:linear-gradient(90deg,#2a1a0d,#1a0d06)">
-        <span class="proj-group-ico">🏛️</span>
-        <div>
-          <div class="proj-group-name">Bilancio Proprio — Comune di Valtorre</div>
-          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Fondi propri · PEG 2025 · Delibera CC n. 12/2025</div>
+    <!-- Progetto 3 -->
+    <div class="card mb4" style="border-left:4px solid var(--purple)">
+      <div class="card-hd" style="background:var(--purple-bg)">
+        <div class="card-hd-l">
+          <div class="card-ico" style="background:#ede9fe">🖥️</div>
+          <div>
+            <div class="card-title">Digitalizzazione Tributi Comunali</div>
+            <div class="card-sub">FSC 2021-2027 · CUP G27H23000550001 · Valore totale € 1,8M</div>
+          </div>
         </div>
-        <div class="proj-group-meta">2 procedure · € 1,415M</div>
+        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span class="badge b-purple">🇮🇹 FSC</span>
+          <span class="badge b-blue">📢 Pubblicata</span>
+          <div style="background:#ede9fe;border-radius:20px;padding:3px 12px;font-size:.69rem;font-weight:700;color:#5b21b6">1 procedura</div>
+        </div>
       </div>
-      <div class="proj-group-body">
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">🍽️ Servizio Refezione Scolastica 3 anni</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0025</code> · D.Lgs. 36/23 · Aperta Ord. · OEPV</div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>CIG</th><th>Oggetto</th><th>Tipo</th><th>Importo</th><th>Scadenza</th><th>Stato</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>CIG-2025-0071</code></td>
+              <td><strong>Sistema IT SaaS Gestione Tributi — Acc. Quadro</strong><div class="tm">D.Lgs. 50/16 · ICT</div></td>
+              <td><span class="badge b-purple">Acc. Quadro</span></td>
+              <td>€ 1,8M</td>
+              <td>28 giu 2025</td>
+              <td><span class="badge b-blue">Pubblicata</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:.69rem;color:var(--n500)">Avanzamento progetto:</div>
+          <div style="flex:1;min-width:120px">
+            <div class="pt"><div class="pf" style="width:20%;background:linear-gradient(90deg,var(--purple),#a78bfa)"></div></div>
           </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 1,32M</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">4</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-purple">Valutazione</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--purple);font-weight:700">50%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-p" style="width:50%"></div></div>
-          </div>
-          <button class="btn btn-primary btn-xs" onclick="event.stopPropagation();nav('valutazione',null)">Valuta →</button>
-        </div>
-        <div class="proj-row">
-          <div class="proj-row-main">
-            <div class="proj-row-title">📐 Incarico Progettazione Palestra</div>
-            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0014</code> · D.Lgs. 50/16 · Proc. Pers. Esterno</div>
-          </div>
-          <div class="proj-row-stats">
-            <div class="proj-stat"><div class="proj-stat-val">€ 95k</div><div class="proj-stat-lbl">Importo</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">6</div><div class="proj-stat-lbl">Offerte</div></div>
-            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Conclusa</div><div class="proj-stat-lbl">Scadenza</div></div>
-            <span class="badge b-green">Aggiudicata</span>
-          </div>
-          <div class="proj-row-prog">
-            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
-            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
-          </div>
-          <button class="btn btn-ghost btn-xs">Archivio</button>
+          <div style="font-size:.73rem;font-weight:700;color:var(--purple)">20% — Gara in corso</div>
         </div>
       </div>
     </div>
 
-  </div><!-- fine tab proc-progetto -->
-</div>
+    <!-- Progetto 4 -->
+    <div class="card mb4" style="border-left:4px solid var(--warn)">
+      <div class="card-hd" style="background:var(--warn-bg)">
+        <div class="card-hd-l">
+          <div class="card-ico" style="background:#fef3c7">⚡</div>
+          <div>
+            <div class="card-title">Efficientamento Energetico Edifici Pubblici</div>
+            <div class="card-sub">PON Metro · CUP B44H22000660006 · Valore totale € 3,97M</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span class="badge b-blue">🇪🇺 PON</span>
+          <span class="badge b-blue">📨 Inviti inviati</span>
+          <div style="background:#fef3c7;border-radius:20px;padding:3px 12px;font-size:.69rem;font-weight:700;color:var(--warn-dk)">2 procedure</div>
+        </div>
+      </div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>CIG</th><th>Oggetto</th><th>Tipo</th><th>Importo</th><th>Scadenza</th><th>Stato</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>CIG-2025-0038</code></td>
+              <td><strong>Gestione Calore EPC — Settori Speciali</strong><div class="tm">D.Lgs. 50/16 Speciali · Ristretta</div></td>
+              <td><span class="badge b-teal">Ristretta</span></td>
+              <td>€ 3,1M</td>
+              <td>15 ago 2025</td>
+              <td><span class="badge b-blue">Inviti inviati</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+            <tr>
+              <td><code>CIG-2025-0022</code></td>
+              <td><strong>Fornitura Veicoli Elettrici</strong><div class="tm">D.Lgs. 36/23 · Forniture · PNRR</div></td>
+              <td><span class="badge b-blue">Aperta</span></td>
+              <td>€ 620k</td>
+              <td>Scaduta</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:.69rem;color:var(--n500)">Avanzamento progetto:</div>
+          <div style="flex:1;min-width:120px">
+            <div class="pt"><div class="pf pf-w" style="width:45%"></div></div>
+          </div>
+          <div style="font-size:.73rem;font-weight:700;color:var(--warn-dk)">45% — Fase ristretta</div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Progetto 5 -->
+    <div class="card" style="border-left:4px solid var(--ok)">
+      <div class="card-hd" style="background:var(--ok-bg)">
+        <div class="card-hd-l">
+          <div class="card-ico" style="background:#d1fae5">🌿</div>
+          <div>
+            <div class="card-title">Servizi al Territorio — Welfare & Ambiente</div>
+            <div class="card-sub">Bilancio comunale · Valore totale € 1,75M</div>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+          <span class="badge b-gray">🏛️ Bilancio</span>
+          <span class="badge b-green">✅ Parzialmente concluso</span>
+          <div style="background:#d1fae5;border-radius:20px;padding:3px 12px;font-size:.69rem;font-weight:700;color:var(--ok-dk)">3 procedure</div>
+        </div>
+      </div>
+      <div class="tw">
+        <table>
+          <thead>
+            <tr><th>CIG</th><th>Oggetto</th><th>Tipo</th><th>Importo</th><th>Scadenza</th><th>Stato</th><th></th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>CIG-2025-0031</code></td>
+              <td><strong>Manutenzione Rete Idrica OG6</strong><div class="tm">D.Lgs. 50/16 Speciali · Neg. s.b.</div></td>
+              <td><span class="badge b-amber">Negoziata</span></td>
+              <td>€ 890k</td>
+              <td>20 lug 2025</td>
+              <td><span class="badge b-amber">Ricezione</span></td>
+              <td><button class="btn btn-secondary btn-xs">→</button></td>
+            </tr>
+            <tr>
+              <td><code>CIG-2025-0025</code></td>
+              <td><strong>Servizio Refezione Scolastica 3 anni</strong><div class="tm">D.Lgs. 36/23 · OEPV</div></td>
+              <td><span class="badge b-blue">Aperta</span></td>
+              <td>€ 1,32M</td>
+              <td>Scaduta</td>
+              <td><span class="badge b-purple">Valutazione</span></td>
+              <td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td>
+            </tr>
+            <tr>
+              <td><code>CIG-2025-0044</code></td>
+              <td><strong>Fornitura Materiale Didattico</strong><div class="tm">D.Lgs. 36/23 · MEPA · Aff. Diretto</div></td>
+              <td><span class="badge b-gray">Aff. Diretto</span></td>
+              <td>€ 52k</td>
+              <td>Conclusa</td>
+              <td><span class="badge b-green">Aggiudicata</span></td>
+              <td><button class="btn btn-ghost btn-xs">Archivio</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="card-body" style="padding-top:10px;padding-bottom:10px">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div style="font-size:.69rem;color:var(--n500)">Avanzamento progetto:</div>
+          <div style="flex:1;min-width:120px">
+            <div class="pt"><div class="pf pf-g" style="width:65%"></div></div>
+          </div>
+          <div style="font-size:.73rem;font-weight:700;color:var(--ok-dk)">65% — 1 aggiudicata, 2 in corso</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /proc-progetto -->
+
+</div><!-- /page-procedure -->
 <!-- ══════════ GENERA BANDO ══════════ -->
 <div class="page" id="page-nuova">
   <div class="sh"><div class="sh-l"><div class="sh-title">Genera Bando & Capitolato</div><div class="sh-sub">L'agente AI redige documenti conformi alla normativa applicabile in qualsiasi settore</div></div><div class="sh-r"><button class="btn btn-ghost" onclick="toast('Bozza salvata','ok')">💾 Salva</button><button class="btn btn-primary" onclick="generaBando()">🤖 Genera con AI</button></div></div>
