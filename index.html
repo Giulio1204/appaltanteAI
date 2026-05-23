@@ -310,18 +310,49 @@ tbody tr:hover{background:var(--c50)}
 .sr-val{font-size:1.3rem;font-weight:800;line-height:1}
 .sr-lbl{font-size:.5rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:1px}
 
-/* ══ BENEFICIARY CARD ══ */
-.ben-card{background:var(--W);border:1px solid var(--n200);border-radius:var(--r2);padding:16px;box-shadow:var(--sx);transition:all var(--t);cursor:pointer}
-.ben-card:hover{box-shadow:var(--sm);transform:translateY(-2px);border-color:var(--c300)}
-.ben-hd{display:flex;align-items:center;gap:11px;margin-bottom:12px}
-.ben-ava{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.ben-name{font-weight:700;font-size:.84rem;color:var(--n900)}
-.ben-type{font-size:.64rem;color:var(--n500);margin-top:1px}
-.ben-scores{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:10px}
-.ben-score{background:var(--n50);border-radius:var(--r);padding:7px;text-align:center;border:1px solid var(--n100)}
-.ben-score-val{font-size:1rem;font-weight:800;line-height:1}
-.ben-score-lbl{font-size:.56rem;color:var(--n500);text-transform:uppercase;letter-spacing:.4px;margin-top:2px}
-.ben-tags{display:flex;gap:4px;flex-wrap:wrap}
+/* ══ OPERATORI ECONOMICI — NUOVI STILI ══ */
+.oe-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r2);border:1px solid var(--n200);background:var(--W)}
+.oe-table{width:100%;border-collapse:collapse;min-width:700px}
+.oe-table thead tr{background:var(--n50)}
+.oe-table th{text-align:left;padding:10px 14px;font-size:.62rem;font-weight:700;color:var(--n500);text-transform:uppercase;letter-spacing:.9px;border-bottom:1px solid var(--n200);white-space:nowrap}
+.oe-table td{padding:12px 14px;font-size:.77rem;color:var(--n700);border-bottom:1px solid var(--n100);vertical-align:middle}
+.oe-table td strong{color:var(--n900)}
+.oe-table tbody tr:last-child td{border-bottom:none}
+.oe-table tbody tr{transition:background var(--t);cursor:pointer}
+.oe-table tbody tr:hover{background:var(--c50)}
+.oe-score-cell{display:flex;align-items:center;gap:8px}
+.oe-score-num{font-size:1.15rem;font-weight:800;min-width:32px}
+.oe-score-bar-wrap{flex:1;height:6px;background:var(--n100);border-radius:20px;overflow:hidden;min-width:50px}
+.oe-score-bar{height:100%;border-radius:20px;transition:width 1s cubic-bezier(.4,0,.2,1)}
+.oe-tags{display:flex;gap:4px;flex-wrap:wrap}
+.oe-sub-scores{display:flex;gap:6px;align-items:center;font-size:.67rem;color:var(--n500)}
+.oe-sub-item{display:flex;flex-direction:column;align-items:center;gap:1px;background:var(--n50);border-radius:6px;padding:3px 7px;border:1px solid var(--n100)}
+.oe-sub-val{font-weight:800;font-size:.8rem}
+.oe-sub-lbl{font-size:.55rem;text-transform:uppercase;letter-spacing:.4px;color:var(--n400)}
+.oe-alert-strip{background:var(--err-bg);border-left:3px solid var(--err)}
+.oe-warn-strip{background:var(--warn-bg);border-left:3px solid var(--warn)}
+
+/* ══ PROGETTO CARD ══ */
+.proj-group{margin-bottom:20px}
+.proj-group-hd{display:flex;align-items:center;gap:10px;padding:10px 14px;background:linear-gradient(90deg,var(--c800),var(--c900));border-radius:var(--r2) var(--r2) 0 0;color:#fff}
+.proj-group-ico{font-size:1.1rem}
+.proj-group-name{font-weight:700;font-size:.84rem}
+.proj-group-meta{font-size:.64rem;color:rgba(255,255,255,.45);margin-left:auto}
+.proj-group-body{border:1px solid var(--n200);border-top:none;border-radius:0 0 var(--r2) var(--r2);overflow:hidden;background:var(--W)}
+.proj-row{display:flex;align-items:center;gap:12px;padding:12px 16px;border-bottom:1px solid var(--n100);transition:background var(--t);cursor:pointer;flex-wrap:wrap}
+.proj-row:last-child{border-bottom:none}
+.proj-row:hover{background:var(--c50)}
+.proj-row-main{flex:1;min-width:200px}
+.proj-row-title{font-size:.8rem;font-weight:700;color:var(--n900)}
+.proj-row-sub{font-size:.63rem;color:var(--n400);margin-top:2px}
+.proj-row-stats{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.proj-stat{text-align:center;min-width:52px}
+.proj-stat-val{font-size:.85rem;font-weight:800;color:var(--c700)}
+.proj-stat-lbl{font-size:.57rem;text-transform:uppercase;letter-spacing:.4px;color:var(--n400)}
+.proj-row-prog{width:120px;flex-shrink:0}
+.proj-prog-lbl{display:flex;justify-content:space-between;font-size:.63rem;color:var(--n500);margin-bottom:3px}
+.proj-prog-track{height:5px;background:var(--n100);border-radius:20px;overflow:hidden}
+.proj-prog-fill{height:100%;border-radius:20px}
 
 /* ══ GRAD CARD ══ */
 .grad-card{background:linear-gradient(135deg,var(--c800),var(--c950));border-radius:var(--r2);padding:17px;color:#fff;border:1px solid rgba(255,255,255,.05)}
@@ -388,7 +419,7 @@ tbody tr:hover{background:var(--c50)}
 /* ══ MISC ══ */
 code{font-family:'Fira Code',monospace;font-size:.71rem;background:var(--c100);color:var(--c700);padding:1px 5px;border-radius:4px}
 .divider{height:1px;background:var(--n100);margin:14px 0}
-.tag-pill{display:inline-flex;align-items:background:var(--c50);border:1px solid var(--c200);color:var(--c700);font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:20px}
+.tag-pill{display:inline-flex;align-items:center;background:var(--c50);border:1px solid var(--c200);color:var(--c700);font-size:.62rem;font-weight:600;padding:2px 7px;border-radius:20px}
 .req{color:var(--err);margin-left:2px}
 footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid var(--n200);display:flex;align-items:center;justify-content:space-between;font-size:.67rem;color:var(--n400);backdrop-filter:blur(8px);flex-wrap:wrap;gap:6px}
 
@@ -409,6 +440,8 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   .toast-bar{right:50%;transform:translateX(50%);bottom:calc(14px + var(--bottom-nav-h));align-items:center}
   .toast{min-width:200px;max-width:90vw}
   @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .oe-sub-scores{display:none}
+  .proj-row-prog{display:none}
 }
 
 /* ══════════════════════════════════════
@@ -432,15 +465,11 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   .chat-row{flex-direction:row}
   .chat-row .fi{font-size:.75rem}
   .aacts{flex-direction:row;flex-wrap:wrap}
-  .kpi-grid[style*="repeat(4"]{grid-template-columns:1fr 1fr!important}
-  .kpi-grid[style*="repeat(5"]{grid-template-columns:1fr 1fr!important}
   .gc-stats{grid-template-columns:1fr 1fr}
   .modal{border-radius:var(--r2) var(--r2) 0 0;max-height:92vh;margin-top:auto}
   .modal-overlay{padding:0;align-items:flex-end}
   .modal-foot{justify-content:stretch}
   .modal-foot .btn{flex:1;justify-content:center}
-  #ben-grid{grid-template-columns:1fr!important}
-  .ben-hd{gap:8px}
   .score-ring{width:56px;height:56px}
   .sr-val{font-size:1.1rem}
   .step-track{gap:0}
@@ -448,8 +477,10 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   .step-item{min-width:40px}
   footer{flex-direction:column;align-items:flex-start;font-size:.62rem}
   .tb-title{font-size:.82rem}
-  /* Mobile search trigger */
   .mobile-search-btn{display:flex!important}
+  .oe-score-bar-wrap{display:none}
+  .proj-row-stats{gap:6px}
+  .proj-stat{min-width:44px}
 }
 
 /* ══ MOBILE SEARCH BUTTON ══ */
@@ -488,7 +519,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   <div class="ng">
     <div class="ng-label">Esecuzione & Controllo</div>
     <div class="ni" data-page="esecuzione"      onclick="nav('esecuzione',this);closeSidebar()"><span class="ico">🔨</span><span class="lbl">Contratti</span></div>
-    <div class="ni" data-page="beneficiari"     onclick="nav('operatori economici',this);closeSidebar()"><span class="ico">🏢</span><span class="lbl">Database Operatori Economici</span><span class="nbadge p">NEW</span></div>
+    <div class="ni" data-page="beneficiari"     onclick="nav('beneficiari',this);closeSidebar()"><span class="ico">🏢</span><span class="lbl">Database Operatori Economici</span><span class="nbadge p">NEW</span></div>
     <div class="ni" data-page="rendicontazione" onclick="nav('rendicontazione',this);closeSidebar()"><span class="ico">🧾</span><span class="lbl">Rendicontazione Fondi</span><span class="nbadge w">3</span></div>
     <div class="ni" data-page="conformita"      onclick="nav('conformita',this);closeSidebar()"><span class="ico">✅</span><span class="lbl">Conformità & ANAC</span></div>
     <div class="ni" data-page="report"          onclick="nav('report',this);closeSidebar()"><span class="ico">📈</span><span class="lbl">Report & Analisi</span></div>
@@ -504,176 +535,94 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 <!-- ═══ MAIN ═══ -->
 <main class="main">
 <header class="topbar">
-  <!-- Hamburger -->
   <button class="hamburger" id="hamburger" onclick="toggleSidebar()" aria-label="Menu">
     <span></span><span></span><span></span>
   </button>
-
   <div class="tb-l">
     <div class="tb-title" id="tb-title">Dashboard</div>
     <div class="tb-crumb" id="tb-crumb">AppaltanteAI · Panoramica generale</div>
   </div>
 
-  <!-- Search desktop -->
   <input id="gs-input" onclick="apriSearch()" readonly
     placeholder="🔍 Cerca procedura, CIG, impresa...  ⌘K"
-    style="width:260px; padding:8px 14px; border-radius:8px;
-      border:1px solid #e5e7eb; background:#f9fafb;
-      color:#6b7280; font-size:0.85rem; cursor:pointer;"/>
-
-  <!-- Mobile search icon -->
+    style="width:260px;padding:8px 14px;border-radius:8px;border:1px solid #e5e7eb;background:#f9fafb;color:#6b7280;font-size:0.85rem;cursor:pointer;"/>
   <button class="mobile-search-btn" onclick="apriSearch()" aria-label="Cerca">🔍</button>
 
-  <!-- Search Modal -->
-  <div id="gs-modal" style="display:none; position:fixed; inset:0;
-    background:rgba(0,0,0,0.45); z-index:9999;
-    align-items:flex-start; justify-content:center; padding-top:60px;">
-    <div style="background:white; width:min(520px, 94vw); border-radius:16px;
-      box-shadow:0 20px 60px rgba(0,0,0,0.2); overflow:hidden;">
-      <input id="gs-query" placeholder="Cerca procedura, CIG, impresa..."
-        oninput="filtraSearch(this.value)"
-        style="width:100%; padding:16px 20px; font-size:1rem;
-          border:none; border-bottom:1px solid #f3f4f6; outline:none; box-sizing:border-box;"/>
-      <div id="gs-results" style="max-height:320px; overflow-y:auto;"></div>
-      <div style="padding:8px 16px; font-size:0.72rem; color:#9ca3af;
-        border-top:1px solid #f3f4f6;">Esc per chiudere · tocca fuori per chiudere</div>
+  <div id="gs-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:9999;align-items:flex-start;justify-content:center;padding-top:60px;">
+    <div style="background:white;width:min(520px,94vw);border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.2);overflow:hidden;">
+      <input id="gs-query" placeholder="Cerca procedura, CIG, impresa..." oninput="filtraSearch(this.value)"
+        style="width:100%;padding:16px 20px;font-size:1rem;border:none;border-bottom:1px solid #f3f4f6;outline:none;box-sizing:border-box;"/>
+      <div id="gs-results" style="max-height:320px;overflow-y:auto;"></div>
+      <div style="padding:8px 16px;font-size:0.72rem;color:#9ca3af;border-top:1px solid #f3f4f6;">Esc per chiudere · tocca fuori per chiudere</div>
     </div>
   </div>
-
   <script>
-  const searchData = [
-    { label:'🏥 Ospedale Civile Pad.C', sub:'CIG-2025-0088 · € 4,2M · Scadenza 14 giu' },
-    { label:'🏛️ Mercato Coperto Storico', sub:'CIG-2025-0059 · In valutazione' },
-    { label:'🖥️ IT Tributi Comunali', sub:'CIG-2025-0071 · Accordo Quadro' },
-    { label:'⚡ Gestione Calore', sub:'CIG-2025-0038 · Ristretta · 15 ago' },
-    { label:'🏢 Ediltech Srl', sub:'Score 51 · ⚠️ DURC scaduto' },
-    { label:'🏗️ Edilizia Storica SpA', sub:'Score 91 · Profilo affidabile' },
-    { label:'📄 Bando Ospedale REV1', sub:'Firmato · Pubblicato ANAC' },
-    { label:'🧾 Rendicontazione Fondi', sub:'DdR PNRR/PON/FSC' },
-    { label:'✅ Conformità & ANAC', sub:'80% score · 2 anomalie critiche' },
-    { label:'📈 Report & Analisi', sub:'KPI · Ribassi · Top aggiudicatari' },
+  const searchData=[
+    {label:'🏥 Ospedale Civile Pad.C',sub:'CIG-2025-0088 · € 4,2M · Scadenza 14 giu'},
+    {label:'🏛️ Mercato Coperto Storico',sub:'CIG-2025-0059 · In valutazione'},
+    {label:'🖥️ IT Tributi Comunali',sub:'CIG-2025-0071 · Accordo Quadro'},
+    {label:'⚡ Gestione Calore',sub:'CIG-2025-0038 · Ristretta · 15 ago'},
+    {label:'🏢 Ediltech Srl',sub:'Score 51 · ⚠️ DURC scaduto'},
+    {label:'🏗️ Edilizia Storica SpA',sub:'Score 91 · Profilo affidabile'},
+    {label:'📄 Bando Ospedale REV1',sub:'Firmato · Pubblicato ANAC'},
+    {label:'🧾 Rendicontazione Fondi',sub:'DdR PNRR/PON/FSC'},
+    {label:'✅ Conformità & ANAC',sub:'80% score · 2 anomalie critiche'},
+    {label:'📈 Report & Analisi',sub:'KPI · Ribassi · Top aggiudicatari'},
   ];
-  function apriSearch() {
-    const m = document.getElementById('gs-modal');
-    m.style.display = 'flex';
-    setTimeout(() => document.getElementById('gs-query').focus(), 50);
-    filtraSearch('');
-  }
-  function chiudiSearch() {
-    document.getElementById('gs-modal').style.display = 'none';
-    document.getElementById('gs-query').value = '';
-  }
-  function filtraSearch(q) {
-    const res = q ? searchData.filter(d =>
-      d.label.toLowerCase().includes(q.toLowerCase()) ||
-      d.sub.toLowerCase().includes(q.toLowerCase())) : searchData;
-    document.getElementById('gs-results').innerHTML = res.map(d => `
-      <div style="padding:12px 20px; cursor:pointer; border-bottom:1px solid #f9fafb;"
-        onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'">
-        <div style="font-size:0.9rem; font-weight:500;">${d.label}</div>
-        <div style="font-size:0.75rem; color:#6b7280;">${d.sub}</div>
-      </div>`).join('') || '<div style="padding:20px; color:#9ca3af; text-align:center;">Nessun risultato</div>';
-  }
-  document.addEventListener('keydown', e => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); apriSearch(); }
-    if (e.key === 'Escape') chiudiSearch();
-  });
-  document.getElementById('gs-modal')?.addEventListener('click', e => {
-    if (e.target === document.getElementById('gs-modal')) chiudiSearch();
-  });
+  function apriSearch(){const m=document.getElementById('gs-modal');m.style.display='flex';setTimeout(()=>document.getElementById('gs-query').focus(),50);filtraSearch('');}
+  function chiudiSearch(){document.getElementById('gs-modal').style.display='none';document.getElementById('gs-query').value='';}
+  function filtraSearch(q){const res=q?searchData.filter(d=>d.label.toLowerCase().includes(q.toLowerCase())||d.sub.toLowerCase().includes(q.toLowerCase())):searchData;document.getElementById('gs-results').innerHTML=res.map(d=>`<div style="padding:12px 20px;cursor:pointer;border-bottom:1px solid #f9fafb;" onmouseover="this.style.background='#eff6ff'" onmouseout="this.style.background='white'"><div style="font-size:0.9rem;font-weight:500;">${d.label}</div><div style="font-size:0.75rem;color:#6b7280;">${d.sub}</div></div>`).join('')||'<div style="padding:20px;color:#9ca3af;text-align:center;">Nessun risultato</div>';}
+  document.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault();apriSearch();}if(e.key==='Escape')chiudiSearch();});
+  document.getElementById('gs-modal')?.addEventListener('click',e=>{if(e.target===document.getElementById('gs-modal'))chiudiSearch();});
   </script>
 
-  <!-- Notifiche -->
-  <div style="position:relative; display:inline-block; flex-shrink:0">
-    <button id="notif-btn" onclick="toggleNotifiche()" style="
-      background:none; border:none; font-size:1.3rem; cursor:pointer; position:relative;">
+  <div style="position:relative;display:inline-block;flex-shrink:0">
+    <button id="notif-btn" onclick="toggleNotifiche()" style="background:none;border:none;font-size:1.3rem;cursor:pointer;position:relative;">
       🔔
-      <span id="notif-badge" style="
-        position:absolute; top:-4px; right:-6px; background:#ef4444; color:white;
-        font-size:0.6rem; border-radius:50%; width:16px; height:16px;
-        display:flex; align-items:center; justify-content:center;">3</span>
+      <span id="notif-badge" style="position:absolute;top:-4px;right:-6px;background:#ef4444;color:white;font-size:0.6rem;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;">3</span>
     </button>
-    <div id="notif-panel" style="
-      display:none; position:fixed; right:10px; top:68px; width:min(340px,92vw);
-      background:white; border:1px solid #e5e7eb; border-radius:12px;
-      box-shadow:0 8px 32px rgba(0,0,0,0.13); z-index:999;">
-      <div style="padding:12px 16px; border-bottom:1px solid #f3f4f6;
-        display:flex; justify-content:space-between; align-items:center;">
+    <div id="notif-panel" style="display:none;position:fixed;right:10px;top:68px;width:min(340px,92vw);background:white;border:1px solid #e5e7eb;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.13);z-index:999;">
+      <div style="padding:12px 16px;border-bottom:1px solid #f3f4f6;display:flex;justify-content:space-between;align-items:center;">
         <strong>🔔 Notifiche</strong>
-        <button onclick="segnaLette()" style="font-size:0.75rem; color:#3b82f6;
-          border:none; background:none; cursor:pointer;">Segna tutte lette</button>
+        <button onclick="segnaLette()" style="font-size:0.75rem;color:#3b82f6;border:none;background:none;cursor:pointer;">Segna tutte lette</button>
       </div>
       <div id="notif-list">
-        <div class="notif-item unread" style="padding:12px 16px;
-          border-bottom:1px solid #f9fafb; background:#eff6ff;">
-          <div style="font-size:0.85rem; font-weight:600;">🚨 DURC scaduto — Ediltech Srl</div>
-          <div style="font-size:0.75rem; color:#6b7280;">Score calato a 51/100 · Bloccare SAL n.3</div>
-          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 09:41</div>
+        <div class="notif-item unread" style="padding:12px 16px;border-bottom:1px solid #f9fafb;background:#eff6ff;">
+          <div style="font-size:0.85rem;font-weight:600;">🚨 DURC scaduto — Ediltech Srl</div>
+          <div style="font-size:0.75rem;color:#6b7280;">Score calato a 51/100 · Bloccare SAL n.3</div>
+          <div style="font-size:0.7rem;color:#9ca3af;margin-top:4px;">Oggi, 09:41</div>
         </div>
-        <div class="notif-item unread" style="padding:12px 16px;
-          border-bottom:1px solid #f9fafb; background:#eff6ff;">
-          <div style="font-size:0.85rem; font-weight:600;">⚠️ Scadenza — Ospedale Civile</div>
-          <div style="font-size:0.75rem; color:#6b7280;">14 giu · mancano 2 buste su 6</div>
-          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Oggi, 08:15</div>
+        <div class="notif-item unread" style="padding:12px 16px;border-bottom:1px solid #f9fafb;background:#eff6ff;">
+          <div style="font-size:0.85rem;font-weight:600;">⚠️ Scadenza — Ospedale Civile</div>
+          <div style="font-size:0.75rem;color:#6b7280;">14 giu · mancano 2 buste su 6</div>
+          <div style="font-size:0.7rem;color:#9ca3af;margin-top:4px;">Oggi, 08:15</div>
         </div>
         <div class="notif-item" style="padding:12px 16px;">
           <div style="font-size:0.85rem;">✅ Analisi IT Tributi completata</div>
-          <div style="font-size:0.75rem; color:#6b7280;">11 operatori · ribasso atteso 7–12%</div>
-          <div style="font-size:0.7rem; color:#9ca3af; margin-top:4px;">Ieri, 17:22</div>
+          <div style="font-size:0.75rem;color:#6b7280;">11 operatori · ribasso atteso 7–12%</div>
+          <div style="font-size:0.7rem;color:#9ca3af;margin-top:4px;">Ieri, 17:22</div>
         </div>
       </div>
     </div>
   </div>
   <script>
-  function toggleNotifiche() {
-    const p = document.getElementById('notif-panel');
-    p.style.display = p.style.display === 'none' ? 'block' : 'none';
-  }
-  function segnaLette() {
-    document.querySelectorAll('.notif-item.unread').forEach(el => {
-      el.style.background = 'white';
-      el.classList.remove('unread');
-    });
-    document.getElementById('notif-badge').style.display = 'none';
-  }
-  document.addEventListener('click', e => {
-    const btn = document.getElementById('notif-btn');
-    const panel = document.getElementById('notif-panel');
-    if (btn && panel && !btn.contains(e.target) && !panel.contains(e.target))
-      panel.style.display = 'none';
-  });
+  function toggleNotifiche(){const p=document.getElementById('notif-panel');p.style.display=p.style.display==='none'?'block':'none';}
+  function segnaLette(){document.querySelectorAll('.notif-item.unread').forEach(el=>{el.style.background='white';el.classList.remove('unread');});document.getElementById('notif-badge').style.display='none';}
+  document.addEventListener('click',e=>{const btn=document.getElementById('notif-btn');const panel=document.getElementById('notif-panel');if(btn&&panel&&!btn.contains(e.target)&&!panel.contains(e.target))panel.style.display='none';});
   </script>
 
   <div class="tb-ico" onclick="toast('Impostazioni — prossimamente','info')">⚙️</div>
   <button class="btn btn-primary tb-new-btn" onclick="nav('nuova',null)">+ Nuova Procedura</button>
 </header>
 
-<!-- ══════════ BOTTOM NAV (mobile) ══════════ -->
+<!-- ══════════ BOTTOM NAV ══════════ -->
 <nav class="bottom-nav">
   <div class="bottom-nav-inner">
-    <button class="bn-item active" id="bn-dashboard" onclick="nav('dashboard',null);updateBottomNav('dashboard')" aria-label="Dashboard">
-      <span class="bn-ico">📊</span>
-      <span>Home</span>
-    </button>
-    <button class="bn-item" id="bn-agente" onclick="nav('agente',null);updateBottomNav('agente')" aria-label="Agente AI">
-      <span class="bn-ico">🤖</span>
-      <span>AI</span>
-      <span class="bn-badge p">AI</span>
-    </button>
-    <button class="bn-item" id="bn-procedure" onclick="nav('procedure',null);updateBottomNav('procedure')" aria-label="Procedure">
-      <span class="bn-ico">📂</span>
-      <span>Gare</span>
-      <span class="bn-badge">9</span>
-    </button>
-    <button class="bn-item" id="bn-valutazione" onclick="nav('valutazione',null);updateBottomNav('valutazione')" aria-label="Valutazione">
-      <span class="bn-ico">⚖️</span>
-      <span>Valuta</span>
-      <span class="bn-badge" style="background:var(--err)">4</span>
-    </button>
-    <button class="bn-item" id="bn-more" onclick="toggleSidebar()" aria-label="Altro">
-      <span class="bn-ico">☰</span>
-      <span>Altro</span>
-    </button>
+    <button class="bn-item active" id="bn-dashboard" onclick="nav('dashboard',null);updateBottomNav('dashboard')" aria-label="Dashboard"><span class="bn-ico">📊</span><span>Home</span></button>
+    <button class="bn-item" id="bn-agente" onclick="nav('agente',null);updateBottomNav('agente')" aria-label="Agente AI"><span class="bn-ico">🤖</span><span>AI</span><span class="bn-badge p">AI</span></button>
+    <button class="bn-item" id="bn-procedure" onclick="nav('procedure',null);updateBottomNav('procedure')" aria-label="Procedure"><span class="bn-ico">📂</span><span>Gare</span><span class="bn-badge">9</span></button>
+    <button class="bn-item" id="bn-valutazione" onclick="nav('valutazione',null);updateBottomNav('valutazione')" aria-label="Valutazione"><span class="bn-ico">⚖️</span><span>Valuta</span><span class="bn-badge" style="background:var(--err)">4</span></button>
+    <button class="bn-item" id="bn-more" onclick="toggleSidebar()" aria-label="Altro"><span class="bn-ico">☰</span><span>Altro</span></button>
   </div>
 </nav>
 
@@ -813,24 +762,261 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 
 <!-- ══════════ PROCEDURE ══════════ -->
 <div class="page" id="page-procedure">
-  <div class="sh"><div class="sh-l"><div class="sh-title">Procedure di Gara</div><div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button><button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova</button></div></div>
-  <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap"><span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span><button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button><button class="btn btn-ghost btn-sm" onclick="filterP('aperta',this)">Aperta</button><button class="btn btn-ghost btn-sm" onclick="filterP('ristretta',this)">Ristretta</button><button class="btn btn-ghost btn-sm" onclick="filterP('negoziata',this)">Negoziata</button><button class="btn btn-ghost btn-sm" onclick="filterP('aq',this)">Acc.Q.</button><button class="btn btn-ghost btn-sm" onclick="filterP('diretto',this)">Diretto</button><div style="margin-left:auto"><input type="text" class="fi" style="width:160px" placeholder="🔍 CIG, oggetto…" oninput="searchP(this.value)"/></div></div></div></div>
-  <div class="card">
-    <div class="tw"><table id="ptbl">
-      <thead><tr><th>Oggetto / Settore</th><th>CIG</th><th>Normativa</th><th>Procedura</th><th>Importo</th><th>Offerte</th><th>Scadenza</th><th>Stato</th><th></th></tr></thead>
-      <tbody>
-        <tr data-tipo="aperta"><td><strong>Ampliamento Ospedale Civile — Pad. C</strong><div class="tm">Lavori OG1/OG11 · 🏥 Sanità · PNRR</div></td><td><code>CIG-2025-0088</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 4,2M</td><td><strong style="color:var(--c600)">6</strong></td><td><strong style="color:var(--err)">⚠ 14 giu</strong></td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs" onclick="openProcModal('CIG-2025-0088')">→</button></td></tr>
-        <tr data-tipo="aq"><td><strong>Sistema IT Tributi Comunali</strong><div class="tm">Servizi IT · 🖥️ ICT · FSC</div></td><td><code>CIG-2025-0071</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-purple">Acc. Quadro</span></td><td>€ 1,8M</td><td><strong style="color:var(--c600)">3</strong></td><td>28 giu 2025</td><td><span class="badge b-blue">Pubblicata</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-        <tr data-tipo="aperta"><td><strong>Riqualificazione Mercato Coperto</strong><div class="tm">Lavori OG2 · 🏛️ Beni Culturali · PNRR</div></td><td><code>CIG-2025-0059</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 2,9M</td><td><strong style="color:var(--c600)">7</strong></td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
-        <tr data-tipo="ristretta"><td><strong>Gestione Calore Edifici Pubblici</strong><div class="tm">Energia EPC · ⚡ Settori Speciali</div></td><td><code>CIG-2025-0038</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-teal">Ristretta</span></td><td>€ 3,1M</td><td><strong style="color:var(--c600)">5</strong></td><td>15 ago 2025</td><td><span class="badge b-blue">Inviti inviati</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-        <tr data-tipo="negoziata"><td><strong>Manutenzione Rete Idrica</strong><div class="tm">Lavori OG6 · 💧 Settori Speciali</div></td><td><code>CIG-2025-0031</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-amber">Neg. s.b.</span></td><td>€ 890k</td><td><strong style="color:var(--c600)">4</strong></td><td>20 lug 2025</td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
-        <tr data-tipo="aperta"><td><strong>Fornitura Veicoli Elettrici</strong><div class="tm">Forniture · 🚗 Mobilità · PNRR</div></td><td><code>CIG-2025-0022</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 620k</td><td><strong style="color:var(--c600)">8</strong></td><td>Scaduta</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-        <tr data-tipo="diretto"><td><strong>Fornitura Materiale Didattico</strong><div class="tm">Forniture · 📚 Istruzione · MEPA</div></td><td><code>CIG-2025-0044</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-gray">Aff. Diretto</span></td><td>€ 52k</td><td>1</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-        <tr data-tipo="negoziata"><td><strong>Incarico Progettazione Palestra</strong><div class="tm">Servizi Tecnici · 📐 D.Lgs. 165/01</div></td><td><code>CIG-2025-0014</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-amber">Proc. Pers. Est.</span></td><td>€ 95k</td><td>6</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
-        <tr data-tipo="aperta"><td><strong>Servizio Refezione Scolastica 3 anni</strong><div class="tm">Servizi · 🍽️ Welfare · OEPV</div></td><td><code>CIG-2025-0025</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 1,32M</td><td>4</td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
-      </tbody>
-    </table></div>
+  <div class="sh">
+    <div class="sh-l"><div class="sh-title">Procedure di Gara</div><div class="sh-sub">D.Lgs. 163/06 · D.Lgs. 50/16 · D.Lgs. 36/23 · Settori Speciali · tutti i tipi di affidamento</div></div>
+    <div class="sh-r"><button class="btn btn-secondary" onclick="toast('CSV generato','ok')">⬇ Esporta</button><button class="btn btn-primary" onclick="nav('nuova',null)">+ Nuova</button></div>
   </div>
+
+  <!-- TABS Procedure -->
+  <div class="tabs-wrap"><div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('proc','proc-lista',this)">📋 Lista Gare</button>
+    <button class="tab-btn" onclick="switchTab('proc','proc-progetto',this)">🗂️ Per Progetto</button>
+  </div></div>
+
+  <!-- TAB: Lista -->
+  <div class="tab-pane active" id="proc-lista">
+    <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+      <span style="font-size:.61rem;font-weight:700;color:var(--n500)">TIPO:</span>
+      <button class="btn btn-primary btn-sm" onclick="filterP('all',this)">Tutte (9)</button>
+      <button class="btn btn-ghost btn-sm" onclick="filterP('aperta',this)">Aperta</button>
+      <button class="btn btn-ghost btn-sm" onclick="filterP('ristretta',this)">Ristretta</button>
+      <button class="btn btn-ghost btn-sm" onclick="filterP('negoziata',this)">Negoziata</button>
+      <button class="btn btn-ghost btn-sm" onclick="filterP('aq',this)">Acc.Q.</button>
+      <button class="btn btn-ghost btn-sm" onclick="filterP('diretto',this)">Diretto</button>
+      <div style="margin-left:auto"><input type="text" class="fi" style="width:160px" placeholder="🔍 CIG, oggetto…" oninput="searchP(this.value)"/></div>
+    </div></div></div>
+    <div class="card">
+      <div class="tw"><table id="ptbl">
+        <thead><tr><th>Oggetto / Settore</th><th>CIG</th><th>Normativa</th><th>Procedura</th><th>Importo</th><th>Offerte</th><th>Scadenza</th><th>Stato</th><th></th></tr></thead>
+        <tbody>
+          <tr data-tipo="aperta"><td><strong>Ampliamento Ospedale Civile — Pad. C</strong><div class="tm">Lavori OG1/OG11 · 🏥 Sanità · PNRR</div></td><td><code>CIG-2025-0088</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 4,2M</td><td><strong style="color:var(--c600)">6</strong></td><td><strong style="color:var(--err)">⚠ 14 giu</strong></td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs" onclick="openProcModal('CIG-2025-0088')">→</button></td></tr>
+          <tr data-tipo="aq"><td><strong>Sistema IT Tributi Comunali</strong><div class="tm">Servizi IT · 🖥️ ICT · FSC</div></td><td><code>CIG-2025-0071</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-purple">Acc. Quadro</span></td><td>€ 1,8M</td><td><strong style="color:var(--c600)">3</strong></td><td>28 giu 2025</td><td><span class="badge b-blue">Pubblicata</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
+          <tr data-tipo="aperta"><td><strong>Riqualificazione Mercato Coperto</strong><div class="tm">Lavori OG2 · 🏛️ Beni Culturali · PNRR</div></td><td><code>CIG-2025-0059</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 2,9M</td><td><strong style="color:var(--c600)">7</strong></td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
+          <tr data-tipo="ristretta"><td><strong>Gestione Calore Edifici Pubblici</strong><div class="tm">Energia EPC · ⚡ Settori Speciali</div></td><td><code>CIG-2025-0038</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-teal">Ristretta</span></td><td>€ 3,1M</td><td><strong style="color:var(--c600)">5</strong></td><td>15 ago 2025</td><td><span class="badge b-blue">Inviti inviati</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
+          <tr data-tipo="negoziata"><td><strong>Manutenzione Rete Idrica</strong><div class="tm">Lavori OG6 · 💧 Settori Speciali</div></td><td><code>CIG-2025-0031</code></td><td><span class="badge b-teal">D.Lgs. 50/16 Sp.</span></td><td><span class="badge b-amber">Neg. s.b.</span></td><td>€ 890k</td><td><strong style="color:var(--c600)">4</strong></td><td>20 lug 2025</td><td><span class="badge b-amber">Ricezione</span></td><td><button class="btn btn-secondary btn-xs">→</button></td></tr>
+          <tr data-tipo="aperta"><td><strong>Fornitura Veicoli Elettrici</strong><div class="tm">Forniture · 🚗 Mobilità · PNRR</div></td><td><code>CIG-2025-0022</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 620k</td><td><strong style="color:var(--c600)">8</strong></td><td>Scaduta</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
+          <tr data-tipo="diretto"><td><strong>Fornitura Materiale Didattico</strong><div class="tm">Forniture · 📚 Istruzione · MEPA</div></td><td><code>CIG-2025-0044</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-gray">Aff. Diretto</span></td><td>€ 52k</td><td>1</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
+          <tr data-tipo="negoziata"><td><strong>Incarico Progettazione Palestra</strong><div class="tm">Servizi Tecnici · 📐 D.Lgs. 165/01</div></td><td><code>CIG-2025-0014</code></td><td><span class="badge b-purple">D.Lgs. 50/16</span></td><td><span class="badge b-amber">Proc. Pers. Est.</span></td><td>€ 95k</td><td>6</td><td>Conclusa</td><td><span class="badge b-green">Aggiudicata</span></td><td><button class="btn btn-ghost btn-xs">Archivio</button></td></tr>
+          <tr data-tipo="aperta"><td><strong>Servizio Refezione Scolastica 3 anni</strong><div class="tm">Servizi · 🍽️ Welfare · OEPV</div></td><td><code>CIG-2025-0025</code></td><td><span class="badge b-blue">D.Lgs. 36/23</span></td><td><span class="badge b-blue">Aperta Ord.</span></td><td>€ 1,32M</td><td>4</td><td>Scaduta</td><td><span class="badge b-purple">Valutazione</span></td><td><button class="btn btn-primary btn-xs" onclick="nav('valutazione',null)">Valuta →</button></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </div>
+
+  <!-- TAB: Per Progetto -->
+  <div class="tab-pane" id="proc-progetto">
+    <div class="callout info" style="margin-bottom:16px"><span class="ci">🗂️</span><div class="cb">Le procedure sono raggruppate per <strong>progetto / fonte di finanziamento</strong>. Clicca su una procedura per i dettagli.</div></div>
+
+    <!-- Gruppo PNRR -->
+    <div class="proj-group">
+      <div class="proj-group-hd">
+        <span class="proj-group-ico">🇪🇺</span>
+        <div>
+          <div class="proj-group-name">PNRR — Piano Nazionale di Ripresa e Resilienza</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Missioni M1–M6 · Scadenza milestone: 31 dic 2026</div>
+        </div>
+        <div class="proj-group-meta">3 procedure · € 7,72M</div>
+      </div>
+      <div class="proj-group-body">
+        <div class="proj-row" onclick="openProcModal('CIG-2025-0088')">
+          <div class="proj-row-main">
+            <div class="proj-row-title">🏥 Ampliamento Ospedale Civile — Pad. C</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0088</code> · D.Lgs. 36/23 · Aperta Ord. · M6C2</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 4,2M</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">6</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--err)">14 giu</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-amber">Ricezione</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--warn);font-weight:700">20%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-w" style="width:20%"></div></div>
+          </div>
+          <button class="btn btn-secondary btn-xs">→</button>
+        </div>
+        <div class="proj-row" onclick="openProcModal('CIG-2025-0059')">
+          <div class="proj-row-main">
+            <div class="proj-row-title">🏛️ Riqualificazione Mercato Coperto Storico</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0059</code> · D.Lgs. 36/23 · Aperta Ord. · M1C3</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 2,9M</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">7</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-purple">Valutazione</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--purple);font-weight:700">45%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-p" style="width:45%"></div></div>
+          </div>
+          <button class="btn btn-primary btn-xs" onclick="event.stopPropagation();nav('valutazione',null)">Valuta →</button>
+        </div>
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">🚗 Fornitura Veicoli Elettrici</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0022</code> · D.Lgs. 36/23 · Aperta Ord. · M2C2</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 620k</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">8</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-green">Aggiudicata</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
+          </div>
+          <button class="btn btn-ghost btn-xs">Archivio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gruppo FSC -->
+    <div class="proj-group">
+      <div class="proj-group-hd" style="background:linear-gradient(90deg,#1a3a1a,#0d2a0d)">
+        <span class="proj-group-ico">🇮🇹</span>
+        <div>
+          <div class="proj-group-name">FSC 2021-2027 — Fondo Sviluppo e Coesione</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Accordo di Programma · Regione · Scadenza: 31 dic 2027</div>
+        </div>
+        <div class="proj-group-meta">2 procedure · € 2,69M</div>
+      </div>
+      <div class="proj-group-body">
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">🖥️ Sistema IT Tributi Comunali</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0071</code> · D.Lgs. 50/16 · Accordo Quadro</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 1,8M</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">3</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val">28 giu</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-blue">Pubblicata</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--c600);font-weight:700">15%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-b" style="width:15%"></div></div>
+          </div>
+          <button class="btn btn-secondary btn-xs">→</button>
+        </div>
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">📚 Fornitura Materiale Didattico</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0044</code> · D.Lgs. 36/23 · Affidamento Diretto · MEPA</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 52k</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">1</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Conclusa</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-green">Aggiudicata</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
+          </div>
+          <button class="btn btn-ghost btn-xs">Archivio</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gruppo Settori Speciali -->
+    <div class="proj-group">
+      <div class="proj-group-hd" style="background:linear-gradient(90deg,#1a1a3a,#0d0d2a)">
+        <span class="proj-group-ico">⚡</span>
+        <div>
+          <div class="proj-group-name">Settori Speciali — Energia & Reti</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">D.Lgs. 50/16 Parte III · Ente aggiudicatore</div>
+        </div>
+        <div class="proj-group-meta">2 procedure · € 3,99M</div>
+      </div>
+      <div class="proj-group-body">
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">⚡ Gestione Calore Edifici Pubblici (EPC)</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0038</code> · D.Lgs. 50/16 Sp. · Ristretta</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 3,1M</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">5</div><div class="proj-stat-lbl">Invitati</div></div>
+            <div class="proj-stat"><div class="proj-stat-val">15 ago</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-blue">Inviti inviati</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--c600);font-weight:700">30%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-b" style="width:30%"></div></div>
+          </div>
+          <button class="btn btn-secondary btn-xs">→</button>
+        </div>
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">💧 Manutenzione Rete Idrica</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0031</code> · D.Lgs. 50/16 Sp. · Negoziata s.b.</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 890k</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">4</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val">20 lug</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-amber">Ricezione</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--warn);font-weight:700">25%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-w" style="width:25%"></div></div>
+          </div>
+          <button class="btn btn-secondary btn-xs">→</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gruppo Bilancio -->
+    <div class="proj-group">
+      <div class="proj-group-hd" style="background:linear-gradient(90deg,#2a1a0d,#1a0d06)">
+        <span class="proj-group-ico">🏛️</span>
+        <div>
+          <div class="proj-group-name">Bilancio Proprio — Comune di Valtorre</div>
+          <div style="font-size:.62rem;color:rgba(255,255,255,.4);margin-top:1px">Fondi propri · PEG 2025 · Delibera CC n. 12/2025</div>
+        </div>
+        <div class="proj-group-meta">2 procedure · € 1,415M</div>
+      </div>
+      <div class="proj-group-body">
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">🍽️ Servizio Refezione Scolastica 3 anni</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0025</code> · D.Lgs. 36/23 · Aperta Ord. · OEPV</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 1,32M</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--c600)">4</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Scaduta</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-purple">Valutazione</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--purple);font-weight:700">50%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-p" style="width:50%"></div></div>
+          </div>
+          <button class="btn btn-primary btn-xs" onclick="event.stopPropagation();nav('valutazione',null)">Valuta →</button>
+        </div>
+        <div class="proj-row">
+          <div class="proj-row-main">
+            <div class="proj-row-title">📐 Incarico Progettazione Palestra</div>
+            <div class="proj-row-sub"><code style="font-size:.62rem">CIG-2025-0014</code> · D.Lgs. 50/16 · Proc. Pers. Esterno</div>
+          </div>
+          <div class="proj-row-stats">
+            <div class="proj-stat"><div class="proj-stat-val">€ 95k</div><div class="proj-stat-lbl">Importo</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">6</div><div class="proj-stat-lbl">Offerte</div></div>
+            <div class="proj-stat"><div class="proj-stat-val" style="color:var(--n400)">Conclusa</div><div class="proj-stat-lbl">Scadenza</div></div>
+            <span class="badge b-green">Aggiudicata</span>
+          </div>
+          <div class="proj-row-prog">
+            <div class="proj-prog-lbl"><span>Avanzamento</span><span style="color:var(--ok);font-weight:700">100%</span></div>
+            <div class="proj-prog-track"><div class="proj-prog-fill pf-g" style="width:100%"></div></div>
+          </div>
+          <button class="btn btn-ghost btn-xs">Archivio</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- fine tab proc-progetto -->
 </div>
 
 <!-- ══════════ GENERA BANDO ══════════ -->
@@ -914,20 +1100,19 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
   </div>
   <div class="tab-pane" id="ng-prev">
     <div id="preview-area" style="padding:16px;">
-      <div id="preview-placeholder" style="text-align:center; color:#9ca3af;
-        padding:40px; border:2px dashed #e5e7eb; border-radius:12px;">
+      <div id="preview-placeholder" style="text-align:center;color:#9ca3af;padding:40px;border:2px dashed #e5e7eb;border-radius:12px;">
         📄 Nessun documento generato<br>
         <small>Clicca "🤖 Genera con AI" per creare il bando automaticamente</small>
       </div>
-      <div id="preview-doc" style="display:none; opacity:0; transition:opacity 0.4s;">
-        <div style="display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap;">
-          <span style="background:#dcfce7; color:#16a34a; padding:3px 10px; border-radius:20px; font-size:0.75rem;">✅ Conforme D.Lgs. 36/23</span>
-          <span style="background:#dbeafe; color:#1d4ed8; padding:3px 10px; border-radius:20px; font-size:0.75rem;">🤖 AI-generato</span>
-          <span style="background:#fef9c3; color:#854d0e; padding:3px 10px; border-radius:20px; font-size:0.75rem;">📝 Bozza</span>
+      <div id="preview-doc" style="display:none;opacity:0;transition:opacity 0.4s;">
+        <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+          <span style="background:#dcfce7;color:#16a34a;padding:3px 10px;border-radius:20px;font-size:0.75rem;">✅ Conforme D.Lgs. 36/23</span>
+          <span style="background:#dbeafe;color:#1d4ed8;padding:3px 10px;border-radius:20px;font-size:0.75rem;">🤖 AI-generato</span>
+          <span style="background:#fef9c3;color:#854d0e;padding:3px 10px;border-radius:20px;font-size:0.75rem;">📝 Bozza</span>
         </div>
-        <div style="border:1px solid #e5e7eb; border-radius:12px; padding:20px; font-size:0.85rem; line-height:1.7; max-height:360px; overflow-y:auto;">
-          <h3 style="color:#1e40af; margin:0 0 6px 0;">BANDO DI GARA — PROCEDURA APERTA<br><small style="font-weight:400; color:#6b7280;">D.Lgs. 36/2023 · OEPV · PNRR M6C2</small></h3>
-          <hr style="border-color:#f3f4f6; margin:10px 0;">
+        <div style="border:1px solid #e5e7eb;border-radius:12px;padding:20px;font-size:0.85rem;line-height:1.7;max-height:360px;overflow-y:auto;">
+          <h3 style="color:#1e40af;margin:0 0 6px 0;">BANDO DI GARA — PROCEDURA APERTA<br><small style="font-weight:400;color:#6b7280;">D.Lgs. 36/2023 · OEPV · PNRR M6C2</small></h3>
+          <hr style="border-color:#f3f4f6;margin:10px 0;">
           <p><strong>Oggetto:</strong> Ampliamento Padiglione C Ospedale Civile — lavori edili, impianti.</p>
           <p><strong>CIG:</strong> CIG-2025-0088 &nbsp;|&nbsp; <strong>CUP:</strong> H89J25000010001</p>
           <p><strong>Importo:</strong> € 4.200.000,00 (IVA esclusa)</p>
@@ -935,26 +1120,14 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
           <p><strong>Requisiti:</strong> SOA OG11 cl.IV+ · OG1 cl.III · DGUE ex art. 91</p>
           <p><strong>Scadenza:</strong> 14 giugno 2025 ore 12:00</p>
           <p><strong>Clausola PNRR:</strong> ✅ Antifrode · ✅ DNSH · ✅ Tracciabilità L.136/2010</p>
-          <div style="background:#fef9c3; border-radius:8px; padding:10px 14px; margin-top:10px; font-size:0.82rem;">💡 <strong>AI:</strong> Importo sotto soglia UE — pubblicazione GURI + ANAC sufficiente.</div>
+          <div style="background:#fef9c3;border-radius:8px;padding:10px 14px;margin-top:10px;font-size:0.82rem;">💡 <strong>AI:</strong> Importo sotto soglia UE — pubblicazione GURI + ANAC sufficiente.</div>
         </div>
-        <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap;">
-          <button onclick="alert('PDF in generazione...')" style="background:#1d4ed8; color:white; border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">📥 Esporta PDF</button>
-          <button onclick="if(confirm('Pubblicare su ANAC?')) alert('✅ Inviato ad ANAC — CIG-2025-0088')" style="background:#16a34a; color:white; border:none; padding:9px 16px; border-radius:8px; cursor:pointer; font-size:0.82rem;">📤 Pubblica ANAC</button>
+        <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+          <button onclick="alert('PDF in generazione...')" style="background:#1d4ed8;color:white;border:none;padding:9px 16px;border-radius:8px;cursor:pointer;font-size:0.82rem;">📥 Esporta PDF</button>
+          <button onclick="if(confirm('Pubblicare su ANAC?'))alert('✅ Inviato ad ANAC — CIG-2025-0088')" style="background:#16a34a;color:white;border:none;padding:9px 16px;border-radius:8px;cursor:pointer;font-size:0.82rem;">📤 Pubblica ANAC</button>
         </div>
       </div>
     </div>
-    <script>
-    document.querySelectorAll('button').forEach(btn => {
-      if (btn.textContent.includes('Genera con AI')) {
-        btn.addEventListener('click', () => {
-          document.getElementById('preview-placeholder').style.display = 'none';
-          const doc = document.getElementById('preview-doc');
-          doc.style.display = 'block';
-          setTimeout(() => doc.style.opacity = '1', 30);
-        });
-      }
-    });
-    </script>
   </div>
 </div>
 
@@ -1006,61 +1179,275 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 <!-- ══════════ DATABASE OPERATORI ECONOMICI ══════════ -->
 <div class="page" id="page-beneficiari">
   <div class="sh">
-    <div class="sh-l"><div class="sh-title">🏢 Database Operatori Economici</div><div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa</div></div>
-    <div class="sh-r"><div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div><button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo</button></div>
+    <div class="sh-l">
+      <div class="sh-title">🏢 Database Operatori Economici</div>
+      <div class="sh-sub">Score AI su solidità aziendale, storico contratti e conformità normativa</div>
+    </div>
+    <div class="sh-r">
+      <div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div>
+      <button class="btn btn-secondary" onclick="toast('Export CSV avviato','ok')">⬇ Esporta</button>
+      <button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo</button>
+    </div>
   </div>
+
+  <!-- KPI -->
   <div class="kpi-grid" style="grid-template-columns:repeat(5,1fr)">
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🏢</div></div><div class="kpi-val">47</div><div class="kpi-lbl">Totali</div></div>
-    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">28</div><div class="kpi-lbl">Score Alto</div></div>
-    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">⚠️</div></div><div class="kpi-val">12</div><div class="kpi-lbl">Score Medio</div></div>
-    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🔴</div></div><div class="kpi-val">7</div><div class="kpi-lbl">Score Basso</div></div>
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">🏢</div><div class="kpi-trend up">+2</div></div><div class="kpi-val">47</div><div class="kpi-lbl">Totali</div></div>
+    <div class="kpi ok"><div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div><div class="kpi-val">28</div><div class="kpi-lbl">Score Alto</div><div class="kpi-sub">≥ 75 punti</div></div>
+    <div class="kpi warn"><div class="kpi-hd"><div class="kpi-ico ico-a">⚠️</div></div><div class="kpi-val">12</div><div class="kpi-lbl">Score Medio</div><div class="kpi-sub">50–74 punti</div></div>
+    <div class="kpi err"><div class="kpi-hd"><div class="kpi-ico ico-r">🔴</div></div><div class="kpi-val">7</div><div class="kpi-lbl">Score Basso</div><div class="kpi-sub">&lt; 50 punti</div></div>
     <div class="kpi purple"><div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div></div><div class="kpi-val">3</div><div class="kpi-lbl">Alert AI</div></div>
   </div>
-  <div class="card mb4"><div class="card-body" style="padding:12px 15px"><div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
-    <span style="font-size:.61rem;font-weight:700;color:var(--n500)">FILTRO:</span>
-    <button class="btn btn-primary btn-sm" onclick="filterBen('all',this)">Tutti</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('alto',this)">Alto</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('medio',this)">Medio</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('basso',this)">Basso</button>
-    <button class="btn btn-ghost btn-sm" onclick="filterBen('alert',this)">⚠️ Alert</button>
-    <div style="margin-left:auto"><input type="text" class="fi" style="width:170px" placeholder="🔍 Cerca…" oninput="searchBen(this.value)"/></div>
-  </div></div></div>
-  <div id="ben-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px">
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Edilizia Storica SpA')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--c100)">🏗️</div><div style="flex:1"><div class="ben-name">Edilizia Storica SpA</div><div class="ben-type">Lavori OG1/OG2 · Bologna</div></div><div class="score-ring sr-ok"><div class="sr-val">91</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">94</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG2 cl.IV</span></div>
+
+  <!-- Filtri + Cerca -->
+  <div class="card mb4">
+    <div class="card-body" style="padding:12px 15px">
+      <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.61rem;font-weight:700;color:var(--n500)">FILTRO:</span>
+        <button class="btn btn-primary btn-sm" id="oe-f-all" onclick="filterBen('all',this)">Tutti (47)</button>
+        <button class="btn btn-ghost btn-sm" id="oe-f-alto" onclick="filterBen('alto',this)">🟢 Alto</button>
+        <button class="btn btn-ghost btn-sm" id="oe-f-medio" onclick="filterBen('medio',this)">🟡 Medio</button>
+        <button class="btn btn-ghost btn-sm" id="oe-f-basso" onclick="filterBen('basso',this)">🔴 Basso</button>
+        <button class="btn btn-ghost btn-sm" id="oe-f-alert" onclick="filterBen('alert',this)">🚨 Alert</button>
+        <div style="margin-left:auto;display:flex;gap:6px;align-items:center">
+          <input type="text" class="fi" style="width:190px" placeholder="🔍 Cerca ragione sociale, settore…" oninput="searchBen(this.value)"/>
+        </div>
+      </div>
     </div>
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Restauri Antichi Srl')">
-      <div class="ben-hd"><div class="ben-ava" style="background:#fef3c7">🏛️</div><div style="flex:1"><div class="ben-name">Restauri Antichi Srl</div><div class="ben-type">Beni Culturali OG2 · Firenze</div></div><div class="score-ring sr-ok"><div class="sr-val">87</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">89</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">91</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">SOA OG2 cl.III</span><span class="badge b-blue">7 contratti BC</span></div>
+  </div>
+
+  <!-- Legenda score -->
+  <div style="display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;align-items:center;font-size:.69rem;color:var(--n500)">
+    <span style="font-weight:700">Score AI:</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:var(--ok);display:inline-block"></span> 75–100 Affidabile</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:var(--warn);display:inline-block"></span> 50–74 Monitorare</span>
+    <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:10px;border-radius:50%;background:var(--err);display:inline-block"></span> 0–49 Attenzione</span>
+    <span style="margin-left:auto;font-size:.63rem">Colonne: Solidità · Storico · Compliance</span>
+  </div>
+
+  <!-- Tabella operatori -->
+  <div class="oe-table-wrap">
+    <table class="oe-table" id="oe-tbl">
+      <thead>
+        <tr>
+          <th>Operatore</th>
+          <th>Settore / Sede</th>
+          <th style="min-width:140px">Score AI</th>
+          <th>Sub-score</th>
+          <th>Certificazioni</th>
+          <th>Stato</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- ALTO -->
+        <tr data-score="alto" data-alert="no" onclick="openBenModal('Edilizia Storica SpA')" style="cursor:pointer">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--c100);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏗️</div>
+              <div><strong>Edilizia Storica SpA</strong><div class="tm">P.IVA 01234567890</div></div>
+            </div>
+          </td>
+          <td><span>Lavori OG1/OG2</span><div class="tm">Bologna (BO)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--ok)">91</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:91%;background:var(--ok)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">94</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">88</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">91</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG2 cl.IV</span></div></td>
+          <td><span class="badge b-green">🟢 Affidabile</span></td>
+          <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Edilizia Storica SpA')">Dettagli</button></td>
+        </tr>
+
+        <tr data-score="alto" data-alert="no" onclick="openBenModal('Restauri Antichi Srl')" style="cursor:pointer">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏛️</div>
+              <div><strong>Restauri Antichi Srl</strong><div class="tm">P.IVA 09876543210</div></div>
+            </div>
+          </td>
+          <td><span>Beni Culturali OG2</span><div class="tm">Firenze (FI)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--ok)">87</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:87%;background:var(--ok)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">89</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">91</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">82</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">SOA OG2 cl.III</span><span class="badge b-blue">7 contratti BC</span></div></td>
+          <td><span class="badge b-green">🟢 Affidabile</span></td>
+          <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Restauri Antichi Srl')">Dettagli</button></td>
+        </tr>
+
+        <tr data-score="alto" data-alert="no" onclick="openBenModal('TechPublic Srl')" style="cursor:pointer">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--purple-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">💻</div>
+              <div><strong>TechPublic Srl</strong><div class="tm">P.IVA 04567890123</div></div>
+            </div>
+          </td>
+          <td><span>Servizi IT · SaaS</span><div class="tm">Milano (MI)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--ok)">84</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:84%;background:var(--ok)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">82</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">88</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">82</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-blue">ISO 27001</span><span class="badge b-purple">5 AQ PA</span></div></td>
+          <td><span class="badge b-green">🟢 Affidabile</span></td>
+          <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('TechPublic Srl')">Dettagli</button></td>
+        </tr>
+
+        <tr data-score="alto" data-alert="no" onclick="openBenModal('Giardinaggio Bianco')" style="cursor:pointer">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--ok-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🌿</div>
+              <div><strong>Giardinaggio Bianco Srl</strong><div class="tm">P.IVA 07654321098</div></div>
+            </div>
+          </td>
+          <td><span>Ambiente · Verde urbano</span><div class="tm">Bari (BA)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--ok)">82</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:82%;background:var(--ok)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">80</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">86</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">80</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">Rating 3★</span><span class="badge b-blue">6 contratti PA</span></div></td>
+          <td><span class="badge b-green">🟢 Affidabile</span></td>
+          <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Giardinaggio Bianco')">Dettagli</button></td>
+        </tr>
+
+        <!-- MEDIO -->
+        <tr data-score="medio" data-alert="no" onclick="openBenModal('Costruzioni Sud 2020 Srl')" style="cursor:pointer" class="oe-warn-strip">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--warn-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏚️</div>
+              <div><strong>Costruzioni Sud 2020 Srl</strong><div class="tm">P.IVA 03210987654</div></div>
+            </div>
+          </td>
+          <td><span>Lavori OG1</span><div class="tm">Napoli (NA)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--warn)">63</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:63%;background:var(--warn)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--warn)">58</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--ok)">71</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--warn)">60</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-amber">⚠️ Rating 1★</span><span class="badge b-amber">1 penale</span></div></td>
+          <td><span class="badge b-amber">🟡 Monitorare</span></td>
+          <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Costruzioni Sud 2020 Srl')">Dettagli</button></td>
+        </tr>
+
+        <!-- BASSO / ALERT -->
+        <tr data-score="basso" data-alert="si" onclick="openBenModal('Ediltech Srl')" style="cursor:pointer" class="oe-alert-strip">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--err-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">⚠️</div>
+              <div>
+                <div style="display:flex;align-items:center;gap:5px"><strong>Ediltech Srl</strong><span class="badge b-red" style="font-size:.55rem">🚨 ALERT</span></div>
+                <div class="tm">P.IVA 05555555555</div>
+              </div>
+            </div>
+          </td>
+          <td><span>Lavori OG6</span><div class="tm">Palermo (PA)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--err)">51</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:51%;background:var(--err)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--warn)">55</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--warn)">60</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--err)">38</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></td>
+          <td><span class="badge b-red">🔴 Attenzione</span></td>
+          <td><button class="btn btn-danger btn-xs" onclick="event.stopPropagation();openBenModal('Ediltech Srl')">🚨 Vedi</button></td>
+        </tr>
+
+        <tr data-score="basso" data-alert="si" onclick="openBenModal('Consorzio Alfa Restauri')" style="cursor:pointer" class="oe-alert-strip">
+          <td>
+            <div style="display:flex;align-items:center;gap:9px">
+              <div style="width:34px;height:34px;border-radius:8px;background:var(--err-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🚫</div>
+              <div>
+                <div style="display:flex;align-items:center;gap:5px"><strong>Consorzio Alfa Restauri</strong><span class="badge b-red" style="font-size:.55rem">🚨 ALERT</span></div>
+                <div class="tm">P.IVA 06666666666</div>
+              </div>
+            </div>
+          </td>
+          <td><span>Cooperative · Restauri</span><div class="tm">Catania (CT)</div></td>
+          <td>
+            <div class="oe-score-cell">
+              <span class="oe-score-num" style="color:var(--err)">41</span>
+              <div class="oe-score-bar-wrap"><div class="oe-score-bar" style="width:41%;background:var(--err)"></div></div>
+            </div>
+          </td>
+          <td>
+            <div class="oe-sub-scores">
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--err)">38</span><span class="oe-sub-lbl">Solidità</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--warn)">52</span><span class="oe-sub-lbl">Storico</span></div>
+              <div class="oe-sub-item"><span class="oe-sub-val" style="color:var(--err)">33</span><span class="oe-sub-lbl">Compliance</span></div>
+            </div>
+          </td>
+          <td><div class="oe-tags"><span class="badge b-red">🚫 Escluso 2 gare</span><span class="badge b-red">⚠️ Proc. concorsuale</span></div></td>
+          <td><span class="badge b-red">🔴 Attenzione</span></td>
+          <td><button class="btn btn-danger btn-xs" onclick="event.stopPropagation();openBenModal('Consorzio Alfa Restauri')">🚨 Vedi</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Footer tabella -->
+  <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:var(--n50);border:1px solid var(--n200);border-top:none;border-radius:0 0 var(--r2) var(--r2);font-size:.7rem;color:var(--n500);flex-wrap:wrap;gap:6px">
+    <span>Visualizzati 7 su 47 operatori · Ordine per score decrescente</span>
+    <div style="display:flex;gap:6px">
+      <button class="btn btn-ghost btn-xs" onclick="toast('Pagina precedente','info')">← Prec</button>
+      <span style="padding:3px 7px;background:var(--c100);color:var(--c700);border-radius:5px;font-weight:700">1</span>
+      <button class="btn btn-ghost btn-xs" onclick="toast('Pagina successiva','info')">Succ →</button>
     </div>
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('TechPublic Srl')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--purple-bg)">💻</div><div style="flex:1"><div class="ben-name">TechPublic Srl</div><div class="ben-type">Servizi IT · SaaS · Milano</div></div><div class="score-ring sr-ok"><div class="sr-val">84</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">88</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">82</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-blue">ISO 27001</span><span class="badge b-purple">5 Accordi Quadro PA</span></div>
-    </div>
-    <div class="ben-card" data-score="medio" data-alert="no" onclick="openBenModal('Costruzioni Sud 2020 Srl')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--warn-bg)">🏚️</div><div style="flex:1"><div class="ben-name">Costruzioni Sud 2020 Srl</div><div class="ben-type">Lavori OG1 · Napoli</div></div><div class="score-ring sr-warn"><div class="sr-val">63</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">58</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">71</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-amber">⚠️ Rating legalità 1★</span><span class="badge b-amber">1 penale</span></div>
-    </div>
-    <div class="ben-card" data-score="basso" data-alert="si" onclick="openBenModal('Ediltech Srl')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--err-bg)">⚠️</div><div style="flex:1"><div class="ben-name">Ediltech Srl</div><div class="ben-type">Lavori OG6 · Palermo</div></div><div class="score-ring sr-err"><div class="sr-val">51</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">55</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">60</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div>
-    </div>
-    <div class="ben-card" data-score="basso" data-alert="si" onclick="openBenModal('Consorzio Alfa Restauri')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--err-bg)">🚫</div><div style="flex:1"><div class="ben-name">Consorzio Alfa Restauri</div><div class="ben-type">Cooperative · Catania</div></div><div class="score-ring sr-err"><div class="sr-val">41</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">38</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--warn)">52</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--err)">33</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-red">🚫 Escluso 2 gare</span><span class="badge b-red">⚠️ Proc. concorsuale</span></div>
-    </div>
-    <div class="ben-card" data-score="alto" data-alert="no" onclick="openBenModal('Giardinaggio Bianco')">
-      <div class="ben-hd"><div class="ben-ava" style="background:var(--ok-bg)">🌿</div><div style="flex:1"><div class="ben-name">Giardinaggio Bianco Srl</div><div class="ben-type">Ambiente · Verde urbano · Bari</div></div><div class="score-ring sr-ok"><div class="sr-val">82</div><div class="sr-lbl">Score</div></div></div>
-      <div class="ben-scores"><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Solidità</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">86</div><div class="ben-score-lbl">Storico</div></div><div class="ben-score"><div class="ben-score-val" style="color:var(--ok)">80</div><div class="ben-score-lbl">Compliance</div></div></div>
-      <div class="ben-tags"><span class="badge b-green">✅ DURC</span><span class="badge b-teal">Rating 3★</span><span class="badge b-blue">6 contratti PA</span></div>
-    </div>
+  </div>
+
+  <!-- Callout alert -->
+  <div style="margin-top:16px">
+    <div class="callout err"><span class="ci">🚨</span><div class="cb"><strong>2 operatori con alert critici:</strong> Ediltech Srl (DURC scaduto) e Consorzio Alfa Restauri (procedura concorsuale). Verificare contratti in corso e bloccare pagamenti SAL pendenti.</div></div>
+    <div class="callout info"><span class="ci">🤖</span><div class="cb"><strong>AI monitoring attivo:</strong> Gli score vengono ricalcolati automaticamente ogni 24h. Le variazioni vengono notificate al RUP in tempo reale.</div></div>
   </div>
 </div>
 
@@ -1206,48 +1593,15 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 <!-- ══════════ REPORT ══════════ -->
 <div class="page" id="page-report">
   <div class="sh"><div class="sh-l"><div class="sh-title">Report & Analisi</div><div class="sh-sub">KPI di performance, storico gare, benchmark di mercato</div></div><div class="sh-r"><button class="btn btn-secondary" onclick="toast('Export PDF in generazione…','info')">📥 Esporta PDF</button><button class="btn btn-primary" onclick="toast('Report AI in generazione…','info')">🤖 Report AI</button></div></div>
-  <div style="display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:14px; margin:0 0 20px;">
-    <div style="background:#eff6ff; border-radius:12px; padding:16px; text-align:center;">
-      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Valore Portafoglio</div>
-      <div id="kpi1" style="font-size:1.7rem; font-weight:700; color:#1d4ed8;">€ 0</div>
-      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +11% vs 2024</div>
-    </div>
-    <div style="background:#f0fdf4; border-radius:12px; padding:16px; text-align:center;">
-      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Ribasso Medio</div>
-      <div id="kpi2" style="font-size:1.7rem; font-weight:700; color:#16a34a;">0%</div>
-      <div style="font-size:0.7rem; color:#6b7280; margin-top:2px;">Tutti i settori</div>
-    </div>
-    <div style="background:#fefce8; border-radius:12px; padding:16px; text-align:center;">
-      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Offerenti medi/gara</div>
-      <div id="kpi3" style="font-size:1.7rem; font-weight:700; color:#d97706;">0</div>
-      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▲ +0,9 vs 2024</div>
-    </div>
-    <div style="background:#fdf4ff; border-radius:12px; padding:16px; text-align:center;">
-      <div style="font-size:0.75rem; color:#6b7280; margin-bottom:4px;">Tasso Esclusione</div>
-      <div id="kpi4" style="font-size:1.7rem; font-weight:700; color:#7c3aed;">0%</div>
-      <div style="font-size:0.7rem; color:#22c55e; margin-top:2px;">▼ In miglioramento</div>
-    </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px;margin:0 0 20px;">
+    <div style="background:#eff6ff;border-radius:12px;padding:16px;text-align:center;"><div style="font-size:0.75rem;color:#6b7280;margin-bottom:4px;">Valore Portafoglio</div><div id="kpi1" style="font-size:1.7rem;font-weight:700;color:#1d4ed8;">€ 0</div><div style="font-size:0.7rem;color:#22c55e;margin-top:2px;">▲ +11% vs 2024</div></div>
+    <div style="background:#f0fdf4;border-radius:12px;padding:16px;text-align:center;"><div style="font-size:0.75rem;color:#6b7280;margin-bottom:4px;">Ribasso Medio</div><div id="kpi2" style="font-size:1.7rem;font-weight:700;color:#16a34a;">0%</div><div style="font-size:0.7rem;color:#6b7280;margin-top:2px;">Tutti i settori</div></div>
+    <div style="background:#fefce8;border-radius:12px;padding:16px;text-align:center;"><div style="font-size:0.75rem;color:#6b7280;margin-bottom:4px;">Offerenti medi/gara</div><div id="kpi3" style="font-size:1.7rem;font-weight:700;color:#d97706;">0</div><div style="font-size:0.7rem;color:#22c55e;margin-top:2px;">▲ +0,9 vs 2024</div></div>
+    <div style="background:#fdf4ff;border-radius:12px;padding:16px;text-align:center;"><div style="font-size:0.75rem;color:#6b7280;margin-bottom:4px;">Tasso Esclusione</div><div id="kpi4" style="font-size:1.7rem;font-weight:700;color:#7c3aed;">0%</div><div style="font-size:0.7rem;color:#22c55e;margin-top:2px;">▼ In miglioramento</div></div>
   </div>
   <script>
-  function animaContatore(id, fine, durata, formato) {
-    const el = document.getElementById(id);
-    if (!el) return;
-    let inizio = 0;
-    const step = fine / (durata / 16);
-    const t = setInterval(() => {
-      inizio = Math.min(inizio + step, fine);
-      el.textContent = formato(inizio);
-      if (inizio >= fine) clearInterval(t);
-    }, 16);
-  }
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      animaContatore('kpi1', 14.8, 1200, v => '€ ' + v.toFixed(1) + 'M');
-      animaContatore('kpi2', 11.8, 1000, v => v.toFixed(1) + '%');
-      animaContatore('kpi3', 5.4, 900, v => v.toFixed(1));
-      animaContatore('kpi4', 5.8, 900, v => v.toFixed(1) + '%');
-    }, 400);
-  });
+  function animaContatore(id,fine,durata,formato){const el=document.getElementById(id);if(!el)return;let inizio=0;const step=fine/(durata/16);const t=setInterval(()=>{inizio=Math.min(inizio+step,fine);el.textContent=formato(inizio);if(inizio>=fine)clearInterval(t);},16);}
+  window.addEventListener('load',()=>{setTimeout(()=>{animaContatore('kpi1',14.8,1200,v=>'€ '+v.toFixed(1)+'M');animaContatore('kpi2',11.8,1000,v=>v.toFixed(1)+'%');animaContatore('kpi3',5.4,900,v=>v.toFixed(1));animaContatore('kpi4',5.8,900,v=>v.toFixed(1)+'%');},400);});
   </script>
   <div class="g2">
     <div class="card"><div class="card-hd"><div class="card-hd-l"><div class="card-ico">📊</div><div><div class="card-title">Ribassi per settore</div><div class="card-sub">Media ultimi 12 mesi</div></div></div><div class="ai-pill"><div class="ai-dot"></div>AI insight</div></div><div class="card-body">
@@ -1306,7 +1660,7 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
     <div class="modal-foot">
       <button class="btn btn-ghost" onclick="closeBenModal()">Chiudi</button>
       <button class="btn btn-secondary btn-sm" onclick="toast('Report esportato','ok')">📥 Report</button>
-      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo dell'operatore e suggerisci azioni di monitoraggio.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
+      <button class="btn btn-primary btn-sm" onclick="quickMsg('Analizza il profilo dell\'operatore e suggerisci azioni di monitoraggio.');closeBenModal();nav('agente',null)">🤖 Analisi AI</button>
     </div>
   </div>
 </div>
@@ -1316,40 +1670,11 @@ footer{padding:13px 22px;background:rgba(255,255,255,.8);border-top:1px solid va
 
 <script>
 /* ═══ SIDEBAR MOBILE ═══ */
-function toggleSidebar() {
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('sb-overlay');
-  const hb = document.getElementById('hamburger');
-  const isOpen = sb.classList.toggle('open');
-  ov.classList.toggle('open', isOpen);
-  hb.classList.toggle('open', isOpen);
-  document.body.style.overflow = isOpen ? 'hidden' : '';
-}
-function closeSidebar() {
-  const sb = document.getElementById('sidebar');
-  const ov = document.getElementById('sb-overlay');
-  const hb = document.getElementById('hamburger');
-  sb.classList.remove('open');
-  ov.classList.remove('open');
-  hb.classList.remove('open');
-  document.body.style.overflow = '';
-}
+function toggleSidebar(){const sb=document.getElementById('sidebar');const ov=document.getElementById('sb-overlay');const hb=document.getElementById('hamburger');const isOpen=sb.classList.toggle('open');ov.classList.toggle('open',isOpen);hb.classList.toggle('open',isOpen);document.body.style.overflow=isOpen?'hidden':'';}
+function closeSidebar(){const sb=document.getElementById('sidebar');const ov=document.getElementById('sb-overlay');const hb=document.getElementById('hamburger');sb.classList.remove('open');ov.classList.remove('open');hb.classList.remove('open');document.body.style.overflow='';}
 
-/* ═══ BOTTOM NAV UPDATE ═══ */
-function updateBottomNav(page) {
-  const pages = ['dashboard','agente','procedure','valutazione'];
-  pages.forEach(p => {
-    const el = document.getElementById('bn-' + p);
-    if (el) el.classList.toggle('active', p === page);
-  });
-  // If page not in bottom nav, deactivate all
-  if (!pages.includes(page)) {
-    pages.forEach(p => {
-      const el = document.getElementById('bn-' + p);
-      if (el) el.classList.remove('active');
-    });
-  }
-}
+/* ═══ BOTTOM NAV ═══ */
+function updateBottomNav(page){const pages=['dashboard','agente','procedure','valutazione'];pages.forEach(p=>{const el=document.getElementById('bn-'+p);if(el)el.classList.toggle('active',p===page);});if(!pages.includes(page)){pages.forEach(p=>{const el=document.getElementById('bn-'+p);if(el)el.classList.remove('active');});}}
 
 /* ═══ NAVIGATION ═══ */
 const META={
@@ -1366,273 +1691,544 @@ const META={
   conformita:['Conformità & ANAC','Controlli automatici multi-normativa'],
   report:['Report & Analisi','KPI, storico e benchmark multi-settore'],
 };
-function nav(id, el) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.ni').forEach(n => n.classList.remove('active'));
-  const pg = document.getElementById('page-' + id);
-  if (pg) pg.classList.add('active');
-  const ni = el && el.classList && el.classList.contains('ni')
-    ? el : document.querySelector('.ni[data-page="' + id + '"]');
-  if (ni) ni.classList.add('active');
-  const m = META[id] || [id, ''];
-  const t = document.getElementById('tb-title');
-  const c = document.getElementById('tb-crumb');
-  if (t) t.textContent = m[0];
-  if (c) c.textContent = 'AppaltanteAI · ' + m[1];
-  // Scroll top
-  window.scrollTo(0, 0);
-  document.querySelector('.main').scrollTop = 0;
-  // Update bottom nav
+function nav(id,el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg)pg.classList.add('active');
+  const ni=el&&el.classList&&el.classList.contains('ni')?el:document.querySelector('.ni[data-page="'+id+'"]');
+  if(ni)ni.classList.add('active');
+  const m=META[id]||[id,''];
+  const t=document.getElementById('tb-title');
+  const c=document.getElementById('tb-crumb');
+  if(t)t.textContent=m[0];
+  if(c)c.textContent='AppaltanteAI · '+m[1];
+  window.scrollTo(0,0);
+  document.querySelector('.main').scrollTop=0;
   updateBottomNav(id);
 }
 
-/* ═══ TABS ═══ */
-function switchTab(group, paneId, btn) {
-  const pgId = group === 'ng' ? 'page-nuova' : group === 'docs' ? 'page-documenti' : 'page-' + group;
-  const c = document.getElementById(pgId);
-  if (c) {
-    c.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-    c.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+/* ═══ TABS — gestione universale ═══ */
+function switchTab(group,paneId,btn){
+  // trova il contenitore parent corretto
+  let container=null;
+  const pane=document.getElementById(paneId);
+  if(!pane)return;
+  container=pane.parentElement;
+  if(container){
+    container.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
   }
-  const pane = document.getElementById(paneId);
-  if (pane) pane.classList.add('active');
-  if (btn) btn.classList.add('active');
+  // disattiva tutti i tab-btn nel stesso tabs-wrap
+  if(btn){
+    const wrap=btn.closest('.tabs-wrap');
+    if(wrap)wrap.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  pane.classList.add('active');
 }
 
 /* ═══ CHECKLIST ═══ */
-function toggle(li) {
-  const box = li.querySelector('.cl-check');
-  const txt = li.querySelector('.cl-text');
-  const done = box.classList.toggle('checked');
-  box.textContent = done ? '✓' : '';
-  if (txt) txt.classList.toggle('done', done);
-}
+function toggle(li){const box=li.querySelector('.cl-check');const txt=li.querySelector('.cl-text');const done=box.classList.toggle('checked');box.textContent=done?'✓':'';if(txt)txt.classList.toggle('done',done);}
 
 /* ═══ FILTER PROCEDURE ═══ */
-function filterP(tipo, btn) {
-  document.querySelectorAll('#page-procedure .btn').forEach(b => {
-    if (b.closest('#page-procedure') && !b.closest('td')) {
-      b.classList.remove('btn-primary');
-      b.classList.add('btn-ghost');
-    }
-  });
-  if (btn) { btn.classList.remove('btn-ghost'); btn.classList.add('btn-primary'); }
-  document.querySelectorAll('#ptbl tbody tr').forEach(tr => {
-    tr.style.display = (tipo === 'all' || tr.dataset.tipo === tipo) ? '' : 'none';
-  });
+function filterP(tipo,btn){
+  const container=document.getElementById('proc-lista');
+  if(container){container.querySelectorAll('.btn').forEach(b=>{if(!b.closest('td')){b.classList.remove('btn-primary');b.classList.add('btn-ghost');}});}
+  if(btn){btn.classList.remove('btn-ghost');btn.classList.add('btn-primary');}
+  document.querySelectorAll('#ptbl tbody tr').forEach(tr=>{tr.style.display=(tipo==='all'||tr.dataset.tipo===tipo)?'':'none';});
 }
-function searchP(v) {
-  const q = v.toLowerCase();
-  document.querySelectorAll('#ptbl tbody tr').forEach(tr => {
-    tr.style.display = tr.textContent.toLowerCase().includes(q) ? '' : 'none';
-  });
-}
+function searchP(v){const q=v.toLowerCase();document.querySelectorAll('#ptbl tbody tr').forEach(tr=>{tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none';});}
 
 /* ═══ FILTER BENEFICIARI ═══ */
-function filterBen(f, btn) {
-  document.querySelectorAll('#page-beneficiari .btn').forEach(b => {
-    if (b.closest('#page-beneficiari') && !b.closest('.card-foot') && !b.closest('.sh-r')) {
-      b.classList.remove('btn-primary');
-      b.classList.add('btn-ghost');
-    }
+function filterBen(f,btn){
+  // reset bottoni
+  ['oe-f-all','oe-f-alto','oe-f-medio','oe-f-basso','oe-f-alert'].forEach(id=>{
+    const b=document.getElementById(id);
+    if(b){b.classList.remove('btn-primary');b.classList.add('btn-ghost');}
   });
-  if (btn) { btn.classList.remove('btn-ghost'); btn.classList.add('btn-primary'); }
-  document.querySelectorAll('#ben-grid .ben-card').forEach(c => {
-    let show = true;
-    if (f === 'alto') show = c.dataset.score === 'alto';
-    else if (f === 'medio') show = c.dataset.score === 'medio';
-    else if (f === 'basso') show = c.dataset.score === 'basso';
-    else if (f === 'alert') show = c.dataset.alert === 'si';
-    c.style.display = show ? '' : 'none';
-  });
-}
-function searchBen(v) {
-  const q = v.toLowerCase();
-  document.querySelectorAll('#ben-grid .ben-card').forEach(c => {
-    c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+  if(btn){btn.classList.remove('btn-ghost');btn.classList.add('btn-primary');}
+  document.querySelectorAll('#oe-tbl tbody tr').forEach(tr=>{
+    let show=true;
+    if(f==='alto')show=tr.dataset.score==='alto';
+    else if(f==='medio')show=tr.dataset.score==='medio';
+    else if(f==='basso')show=tr.dataset.score==='basso';
+    else if(f==='alert')show=tr.dataset.alert==='si';
+    tr.style.display=show?'':'none';
   });
 }
+function searchBen(v){const q=v.toLowerCase();document.querySelectorAll('#oe-tbl tbody tr').forEach(tr=>{tr.style.display=tr.textContent.toLowerCase().includes(q)?'':'none';});}
 
 /* ═══ GENERA BANDO ═══ */
-function generaBando() {
-  const btns = document.querySelectorAll('button');
-  let btn = null;
-  btns.forEach(b => { if (b.textContent.includes('Genera con AI')) btn = b; });
-  if (!btn) return;
-  btn.textContent = '⏳ Elaborazione…';
-  btn.disabled = true;
-  btn.style.opacity = '.7';
-  toast('Agente AI — generazione bando avviata…', 'info');
-  setTimeout(() => {
-    document.querySelectorAll('#page-nuova .tab-pane').forEach(p => p.classList.remove('active'));
-    document.querySelectorAll('#page-nuova .tab-btn').forEach(b => b.classList.remove('active'));
-    const prev = document.getElementById('ng-prev');
-    if (prev) prev.classList.add('active');
-    const tabBtns = document.querySelectorAll('#page-nuova .tab-btn');
-    if (tabBtns[4]) tabBtns[4].classList.add('active');
-    ['sb1','sb2','sb3','sb4'].forEach((id, i) => {
-      const el = document.getElementById(id);
-      if (el) { el.classList.remove('cur'); el.classList.add('done'); el.textContent = '✓'; }
-      const lineIds = ['sl1','sl2l','sl3l','sl4l'];
-      const ln = document.getElementById(lineIds[i]);
-      if (ln) ln.classList.add('done');
+function generaBando(){
+  const btns=document.querySelectorAll('button');
+  let btn=null;
+  btns.forEach(b=>{if(b.textContent.includes('Genera con AI')&&!b.disabled)btn=b;});
+  if(!btn)return;
+  btn.textContent='⏳ Elaborazione…';btn.disabled=true;btn.style.opacity='.7';
+  toast('Agente AI — generazione bando avviata…','info');
+  setTimeout(()=>{
+    // Attiva tab preview
+    const prevPane=document.getElementById('ng-prev');
+    const ngContainer=prevPane?prevPane.parentElement:null;
+    if(ngContainer){ngContainer.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));}
+    if(prevPane)prevPane.classList.add('active');
+    const tabBtns=document.querySelectorAll('#page-nuova .tab-btn');
+    tabBtns.forEach(b=>b.classList.remove('active'));
+    if(tabBtns[4])tabBtns[4].classList.add('active');
+    // Step wizard
+    ['sb1','sb2','sb3','sb4'].forEach((id,i)=>{
+      const el=document.getElementById(id);
+      if(el){el.classList.remove('cur');el.classList.add('done');el.textContent='✓';}
+      const lineIds=['sl1','sl2l','sl3l','sl4l'];
+      const ln=document.getElementById(lineIds[i]);
+      if(ln)ln.classList.add('done');
     });
-    const s5 = document.getElementById('sb5'); const sl5 = document.getElementById('sl5');
-    if (s5) s5.classList.add('cur'); if (sl5) sl5.classList.add('cur');
-    document.getElementById('preview-placeholder').style.display = 'none';
-    const doc = document.getElementById('preview-doc');
-    if (doc) { doc.style.display = 'block'; setTimeout(() => doc.style.opacity = '1', 30); }
-    btn.textContent = '🤖 Genera con AI';
-    btn.disabled = false;
-    btn.style.opacity = '1';
-    toast('Bando generato con successo!', 'ok');
-  }, 2100);
+    const s5=document.getElementById('sb5');const sl5=document.getElementById('sl5');
+    if(s5)s5.classList.add('cur');if(sl5)sl5.classList.add('cur');
+    document.getElementById('preview-placeholder').style.display='none';
+    const doc=document.getElementById('preview-doc');
+    if(doc){doc.style.display='block';setTimeout(()=>doc.style.opacity='1',30);}
+    btn.textContent='🤖 Genera con AI';btn.disabled=false;btn.style.opacity='1';
+    toast('Bando generato con successo!','ok');
+  },2100);
 }
 
 /* ═══ TOAST ═══ */
-function toast(msg, type='info') {
-  const icons = { ok:'✅', err:'❌', warn:'⚠️', info:'ℹ️' };
-  const bar = document.getElementById('toasts');
-  const t = document.createElement('div');
-  t.className = 'toast' + (type==='ok' ? ' ok' : type==='err' ? ' err' : type==='warn' ? ' warn' : '');
-  t.innerHTML = '<span>' + (icons[type]||'ℹ️') + '</span><span>' + msg + '</span>';
+function toast(msg,type='info'){
+  const icons={ok:'✅',err:'❌',warn:'⚠️',info:'ℹ️'};
+  const bar=document.getElementById('toasts');
+  const t=document.createElement('div');
+  t.className='toast'+(type==='ok'?' ok':type==='err'?' err':type==='warn'?' warn':'');
+  t.innerHTML='<span>'+(icons[type]||'ℹ️')+'</span><span>'+msg+'</span>';
   bar.appendChild(t);
-  setTimeout(() => {
-    t.style.opacity = '0'; t.style.transform = 'translateX(18px)';
-    t.style.transition = 'all .28s ease';
-    setTimeout(() => t.remove(), 300);
-  }, 3200);
+  setTimeout(()=>{t.style.opacity='0';t.style.transform='translateX(18px)';t.style.transition='all .28s ease';setTimeout(()=>t.remove(),300);},3200);
 }
 
 /* ═══ MODAL PROCEDURA ═══ */
-const PROC_DATA = {
-  'CIG-2025-0088': {
-    title: '📂 CIG-2025-0088 — Ampliamento Ospedale Civile',
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:14px"><div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div><div style="background:var(--err-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div><div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div></div><table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:120px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV — Tecnico 60% / Economico 40%</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr></tbody></table><div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Ricevute 4/6 buste — verificare piattaforma.</div></div>'
+const PROC_DATA={
+  'CIG-2025-0088':{
+    title:'📂 CIG-2025-0088 — Ampliamento Ospedale Civile',
+    html:'<div style="font-size:.76rem;line-height:1.8"><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-bottom:14px"><div style="background:var(--c50);padding:11px;border-radius:8px;border:1px solid var(--c200);text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Importo</div><div style="font-size:1.2rem;font-weight:800;color:var(--c700)">€ 4,2M</div></div><div style="background:var(--err-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Scadenza</div><div style="font-size:1rem;font-weight:800;color:var(--err)">14 giu 2025</div></div><div style="background:var(--ok-bg);padding:11px;border-radius:8px;text-align:center"><div style="font-size:.62rem;color:var(--n500);text-transform:uppercase">Offerte</div><div style="font-size:1.2rem;font-weight:800;color:var(--ok-dk)">6</div></div></div><table style="width:100%;border-collapse:collapse;font-size:.74rem"><tbody><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700);width:120px">Normativa</td><td style="padding:5px 8px">D.Lgs. 36/2023</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Procedura</td><td style="padding:5px 8px">Aperta Settori Ordinari (art. 71)</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Criterio</td><td style="padding:5px 8px">OEPV — Tecnico 60% / Economico 40%</td></tr><tr style="background:var(--n50)"><td style="padding:5px 8px;font-weight:700;color:var(--n700)">Finanziamento</td><td style="padding:5px 8px">PNRR M6C2 · CUP: H89J25000010001</td></tr><tr><td style="padding:5px 8px;font-weight:700;color:var(--n700)">RUP</td><td style="padding:5px 8px">Ing. G. Romanelli</td></tr></tbody></table><div style="margin-top:12px;padding:10px;background:var(--warn-bg);border-radius:7px;border-left:3px solid var(--warn);font-size:.74rem;color:var(--warn-dk)"><strong>⚠️ Azione richiesta:</strong> Ricevute 4/6 buste — verificare piattaforma.</div></div>'
   },
-  'CIG-2025-0059': {
-    title: '📂 CIG-2025-0059 — Mercato Coperto Storico',
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima graduatoria:</strong> Restauri Antichi Srl — 89,2/100 — ribasso 11,8% — Score 87/100.</div></div>'
+  'CIG-2025-0059':{
+    title:'📂 CIG-2025-0059 — Mercato Coperto Storico',
+    html:'<div style="font-size:.76rem;line-height:1.8"><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.74rem;color:var(--err-dk);margin-bottom:8px"><strong>🚨 Verifica anomalia:</strong> Costruzioni Sud 2020 Srl — ribasso 30,1%. Attivare sub-procedimento art. 110 D.Lgs. 36/23.</div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.74rem;color:var(--ok-dk)"><strong>🏆 Prima graduatoria:</strong> Restauri Antichi Srl — 89,2/100 — ribasso 11,8% — Score 87/100.</div></div>'
   }
 };
-function openProcModal(cig) {
-  const d = PROC_DATA[cig] || { title: '📂 ' + cig, html: '<p style="color:var(--n500);padding:20px">Caricamento...</p>' };
-  document.getElementById('proc-modal-title').textContent = d.title;
-  document.getElementById('proc-modal-body').innerHTML = d.html;
-  document.getElementById('proc-modal').classList.add('open');
-}
-function closeProcModal() {
-  document.getElementById('proc-modal').classList.remove('open');
-}
+function openProcModal(cig){const d=PROC_DATA[cig]||{title:'📂 '+cig,html:'<p style="color:var(--n500);padding:20px">Caricamento...</p>'};document.getElementById('proc-modal-title').textContent=d.title;document.getElementById('proc-modal-body').innerHTML=d.html;document.getElementById('proc-modal').classList.add('open');}
+function closeProcModal(){document.getElementById('proc-modal').classList.remove('open');}
 
 /* ═══ MODAL BENEFICIARIO ═══ */
-const BEN_DATA = {
-  'Restauri Antichi Srl': {
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0;flex-wrap:wrap"><div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div><div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · Firenze</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC valido</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span></div></div></div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI:</strong> Profilo altamente affidabile. Aggiudicazione consigliata.</div></div>'
-  },
-  'Ediltech Srl': {
-    html: '<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca;flex-wrap:wrap"><div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></div></div><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)"><strong>🚨 AI Alert:</strong> DURC scaduto. Blocco pagamenti SAL n.3 raccomandato.</div></div>'
-  },
-  'new': {
-    html: '<div style="font-size:.76rem;line-height:1.8"><div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo operatore.</div></div><div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale</label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA</label><input class="fi" placeholder="00000000000"/></div></div><div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast(\'Score AI in calcolo…\',\'info\')">🤖 Calcola Score AI e Aggiungi</button></div></div>'
-  }
+const BEN_DATA={
+  'Restauri Antichi Srl':{html:'<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0;flex-wrap:wrap"><div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">87</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Restauri Antichi Srl</div><div style="font-size:.72rem;color:var(--n500)">Beni Culturali · OG2 · Firenze</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC valido</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-teal">SOA OG2 cl.III</span></div></div></div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI:</strong> Profilo altamente affidabile. Aggiudicazione consigliata.</div></div>'},
+  'Ediltech Srl':{html:'<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--err-bg);border-radius:9px;border:1px solid #fecaca;flex-wrap:wrap"><div class="score-ring sr-err" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">51</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Ediltech Srl</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG6 · Palermo</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-red">🚨 DURC scaduto</span><span class="badge b-amber">⚠️ 2 penali</span></div></div></div><div style="padding:10px;background:var(--err-bg);border-radius:7px;border-left:3px solid var(--err);font-size:.73rem;color:var(--err-dk)"><strong>🚨 AI Alert:</strong> DURC scaduto. Blocco pagamenti SAL n.3 raccomandato.</div></div>'},
+  'Edilizia Storica SpA':{html:'<div style="font-size:.76rem;line-height:1.8"><div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;padding:14px;background:var(--ok-bg);border-radius:9px;border:1px solid #a7f3d0;flex-wrap:wrap"><div class="score-ring sr-ok" style="width:80px;height:80px"><div class="sr-val" style="font-size:1.6rem">91</div><div class="sr-lbl">Score AI</div></div><div><div style="font-size:1rem;font-weight:800;color:var(--n900)">Edilizia Storica SpA</div><div style="font-size:.72rem;color:var(--n500)">Lavori OG1/OG2 · Bologna</div><div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap"><span class="badge b-green">✅ DURC</span><span class="badge b-green">✅ Antimafia</span><span class="badge b-blue">SOA OG2 cl.IV</span></div></div></div><div style="padding:10px;background:var(--ok-bg);border-radius:7px;border-left:3px solid var(--ok);font-size:.73rem;color:var(--ok-dk)"><strong>🤖 AI:</strong> Score 91/100 — operatore altamente affidabile. Top performer 2025.</div></div>'},
+  'new':{html:'<div style="font-size:.76rem;line-height:1.8"><div class="callout info"><span class="ci">💡</span><div class="cb">Compila i dati del nuovo operatore economico. Lo score AI verrà calcolato automaticamente.</div></div><div class="fr" style="margin-top:14px"><div class="fg"><label class="fl-lbl">Ragione Sociale <span class="req">*</span></label><input class="fi" placeholder="Es. Costruzioni SpA"/></div><div class="fg"><label class="fl-lbl">P.IVA <span class="req">*</span></label><input class="fi" placeholder="00000000000"/></div></div><div class="fr"><div class="fg"><label class="fl-lbl">Settore</label><select class="fs"><option>Lavori</option><option>Servizi IT</option><option>Forniture</option><option>Servizi</option></select></div><div class="fg"><label class="fl-lbl">Sede</label><input class="fi" placeholder="Es. Roma (RM)"/></div></div><div style="margin-top:14px"><button class="btn btn-primary" style="width:100%" onclick="toast(\'Score AI in calcolo…\',\'info\')">🤖 Calcola Score AI e Aggiungi</button></div></div>'}
 };
-function openBenModal(nome) {
-  const d = BEN_DATA[nome] || { html: '<p style="color:var(--n500);padding:20px;text-align:center">Caricamento...</p>' };
-  document.getElementById('ben-modal-title').textContent = nome === 'new' ? '➕ Nuovo Operatore' : '🏢 ' + nome;
-  document.getElementById('ben-modal-body').innerHTML = d.html;
-  document.getElementById('ben-modal').classList.add('open');
-}
-function closeBenModal() {
-  document.getElementById('ben-modal').classList.remove('open');
-}
+function openBenModal(nome){const d=BEN_DATA[nome]||{html:'<p style="color:var(--n500);padding:20px;text-align:center">Caricamento...</p>'};document.getElementById('ben-modal-title').textContent=nome==='new'?'➕ Nuovo Operatore':'🏢 '+nome;document.getElementById('ben-modal-body').innerHTML=d.html;document.getElementById('ben-modal').classList.add('open');}
+function closeBenModal(){document.getElementById('ben-modal').classList.remove('open');}
 
 /* ═══ AI CHAT ═══ */
-const KB = {
-  '50vs36': '<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023:</strong><ul><li>Affidamento diretto: soglie innalzate art. 50</li><li>FVOE e DGUE obbligatori formato elettronico (art. 91)</li><li>Anomalia: art. 110 — Soglia = M + 0.15×S</li><li>CAM: art. 57 obbligatori</li></ul>',
-  'guue': '<strong>Soglie GUUE 2025:</strong><ul><li>🏗️ Lavori: € 5.382.000</li><li>📋 Servizi/forniture enti pubblici: € 221.000</li><li>🏭 Settori Speciali servizi: € 443.000</li></ul>',
-  'anomalia': '<strong>Soglia Anomalia OEPV (art. 110 D.Lgs. 36/23):</strong><ol><li>Media M di tutti i punteggi totali</li><li>Scarto medio superiore S</li><li><strong>Soglia = M + 0,15 × S</strong></li><li>Contraddittorio entro 5gg lavorativi</li></ol>',
-  'ddr': '<strong>DdR Allegato 11.1 MOP:</strong><br><strong>A. Fondamento giuridico:</strong> CIG+CUP, RUP, bando, verbali, aggiudicazione, contratto, DURC, Antimafia<br><strong>B. Spesa:</strong> SAL approvato, fattura elettronica (CUP+CIG)<br><strong>C. Pagamento:</strong> bonifico quietanzato, estratto conto',
-  'variante13': '<strong>Variante 13% — Art. 120 D.Lgs. 36/23:</strong><br>Soglia non sostanziale = <strong>15%</strong>. Il 13% rientra nella soglia → ammissibile se non altera la natura del contratto.',
-  'scoring': '<strong>Score affidabilità:</strong><ul><li>🏦 Solidità finanziaria (25%)</li><li>📋 Storico contratti PA (30%)</li><li>✅ Compliance normativa (30%)</li><li>🔧 Capacità tecnica (15%)</li></ul>🟢 75–100: affidabile · 🟡 50–74: monitorare · 🔴 0–49: attenzione',
-  'default': 'Posso aiutarti su normativa appalti (D.Lgs. 163/06, 50/16, 36/23), anomalie, DdR, scoring, OEPV e molto altro. Specifica la tua domanda!'
-};
-function getReply(msg) {
-  const m = msg.toLowerCase();
-  if (m.includes('50') && m.includes('36')) return KB['50vs36'];
-  if (m.includes('guue') || m.includes('soglia ue') || m.includes('pubblicazione')) return KB['guue'];
-  if (m.includes('anomalia') || m.includes('art. 110')) return KB['anomalia'];
-  if (m.includes('ddr') || m.includes('rimborso') || m.includes('11.1')) return KB['ddr'];
-  if (m.includes('variante')) return KB['variante13'];
-  if (m.includes('scoring') || m.includes('score') || m.includes('affidabilit')) return KB['scoring'];
-  return KB['default'];
-}
-function sendChat() {
-  const inp = document.getElementById('chat-input');
-  const msg = inp.value.trim();
-  if (!msg) return;
-  appendMsg(msg, 'user');
-  inp.value = '';
-  const box = document.getElementById('chat-messages');
-  const typing = document.createElement('div');
-  typing.className = 'msg'; typing.id = 'typing-ind';
-  typing.innerHTML = '<div class="mava ai">AI</div><div class="typing"><span></span><span></span><span></span></div>';
-  box.appendChild(typing);
-  box.scrollTop = box.scrollHeight;
-  setTimeout(() => {
-    const t = document.getElementById('typing-ind');
-    if (t) t.remove();
-    appendMsg(getReply(msg), 'ai');
-  }, 800 + Math.random() * 600);
-}
-function quickMsg(m) {
-  nav('agente', null);
-  setTimeout(() => {
-    const inp = document.getElementById('chat-input');
-    if (inp) { inp.value = m; sendChat(); }
-  }, 100);
-}
-function appendMsg(html, who) {
-  const box = document.getElementById('chat-messages');
-  if (!box) return;
-  const d = document.createElement('div');
-  d.className = 'msg' + (who === 'user' ? ' user' : '');
-  d.innerHTML = '<div class="mava ' + who + '">' + (who === 'ai' ? 'AI' : 'TU') + '</div><div class="mb ' + who + '">' + html + '</div>';
-  box.appendChild(d);
-  box.scrollTop = box.scrollHeight;
-}
+const KB={
+  '50vs36':'<strong>D.Lgs. 50/2016 vs D.Lgs. 36/2023:</strong><ul><li>Affidamento diretto: soglie innalzate art. 50</li><li>FVOE e DGUE obbligatori formato elettronico (art. 91)</li><li>Anomalia: art. 110 — Soglia = M + 0.15×S</li><li>CAM: art. 57 obbligatori</li></ul>',
+  'guue':'<strong>Soglie GUUE 2025:</strong><ul><li>🏗️ Lavori: € 5.382.000</li><li>📋 Servizi/forniture enti pubblici: € 221.000</li><li>🏭 Settori Speciali servizi: € 443.000</li></ul>',
+  'anomalia':'<strong>Soglia Anomalia OEPV (art. 110 D.Lgs. 36/23):</strong><ol><li>Media M di tutti i punteggi totali</li><li>Scarto medio superiore S</li><li><strong>Soglia = M + 0,15 × S</strong></li><li>Contraddittorio entro 5gg lavorativi</li></ol>',
+  'ddr':'<strong>DdR Allegato 11.1 MOP:</strong><br><strong>A. Fondamento giuridico:</strong> CIG+CUP, RUP, bando, verbali, aggiudicazione, contratto, DURC, Antimafia<br><strong>B. Spesa:</strong> SAL approvato, fattura elettronica (CUP+CIG)<br><strong>C. Pagamento:</strong> bonifico quietanzato, estratto conto',
+  'variante13':'<strong>Variante 13% — Art. 120 D.Lgs. 36/23:</strong><br>Soglia non sostanziale = <strong>15%Ecco il codice corretto con le due sezioni sistemate:
 
-/* ═══ PROGRESS BARS ═══ */
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.querySelectorAll('.pf, .bc-fill').forEach(el => {
-      const w = el.style.width;
-      el.style.width = '0';
-      requestAnimationFrame(() => requestAnimationFrame(() => { el.style.width = w; }));
-    });
-  }, 200);
-});
+1. **Database Operatori Economici** → layout completamente rifatto con tabella leggibile al posto della griglia di card (che su certi schermi risultava illeggibile)
+2. **Procedure per Progetto** → aggiunta tab "Per Progetto" con raggruppamento visivo delle procedure per progetto/fonte
 
-/* ═══ KEYBOARD ═══ */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeProcModal(); closeBenModal(); closeSidebar(); chiudiSearch(); }
-});
+Sostituisci le sezioni indicate nel tuo codice originale:
 
-/* ═══ SWIPE TO CLOSE SIDEBAR (mobile) ═══ */
-let touchStartX = 0;
-document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
-document.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - touchStartX;
-  const sb = document.getElementById('sidebar');
-  if (sb.classList.contains('open') && dx < -60) closeSidebar();
-}, { passive: true });
+---
 
-/* ═══ INIT ═══ */
-document.addEventListener('DOMContentLoaded', () => {
-  nav('dashboard', null);
-});
-</script>
-</body>
-</html>
-</body>
-</html>
+### 1. Sostituisci la sezione `page-beneficiari` (Database Operatori Economici)
+
+```html
+<!-- ══════════ DATABASE OPERATORI ECONOMICI ══════════ -->
+<div class="page" id="page-beneficiari">
+  <div class="sh">
+    <div class="sh-l">
+      <div class="sh-title">🏢 Database Operatori Economici</div>
+      <div class="sh-sub">Score di affidabilità basato su solidità aziendale, storico contratti, conformità normativa</div>
+    </div>
+    <div class="sh-r">
+      <div class="ai-pill"><div class="ai-dot"></div>Score AI aggiornato</div>
+      <button class="btn btn-primary" onclick="openBenModal('new')">+ Nuovo</button>
+    </div>
+  </div>
+
+  <!-- KPI -->
+  <div class="kpi-grid" style="grid-template-columns:repeat(auto-fill,minmax(140px,1fr));margin-bottom:18px">
+    <div class="kpi ok">
+      <div class="kpi-hd"><div class="kpi-ico ico-g">🏢</div><div class="kpi-trend up">+5</div></div>
+      <div class="kpi-val">47</div><div class="kpi-lbl">Totali</div>
+    </div>
+    <div class="kpi ok">
+      <div class="kpi-hd"><div class="kpi-ico ico-g">✅</div></div>
+      <div class="kpi-val">28</div><div class="kpi-lbl">Score Alto</div><div class="kpi-sub">≥ 75/100</div>
+    </div>
+    <div class="kpi warn">
+      <div class="kpi-hd"><div class="kpi-ico ico-a">⚠️</div></div>
+      <div class="kpi-val">12</div><div class="kpi-lbl">Score Medio</div><div class="kpi-sub">50–74/100</div>
+    </div>
+    <div class="kpi err">
+      <div class="kpi-hd"><div class="kpi-ico ico-r">🔴</div></div>
+      <div class="kpi-val">7</div><div class="kpi-lbl">Score Basso</div><div class="kpi-sub">&lt; 50/100</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kpi-hd"><div class="kpi-ico ico-p">🤖</div></div>
+      <div class="kpi-val">3</div><div class="kpi-lbl">Alert AI</div>
+    </div>
+  </div>
+
+  <!-- Filtri + Ricerca -->
+  <div class="card mb4">
+    <div class="card-body" style="padding:12px 15px">
+      <div style="display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+        <span style="font-size:.61rem;font-weight:700;color:var(--n500);text-transform:uppercase;letter-spacing:.8px">Filtro:</span>
+        <button class="btn btn-primary btn-sm"  id="ben-btn-all"   onclick="filterBen('all',this)">Tutti (47)</button>
+        <button class="btn btn-ghost  btn-sm"  id="ben-btn-alto"  onclick="filterBen('alto',this)">🟢 Alto (28)</button>
+        <button class="btn btn-ghost  btn-sm"  id="ben-btn-medio" onclick="filterBen('medio',this)">🟡 Medio (12)</button>
+        <button class="btn btn-ghost  btn-sm"  id="ben-btn-basso" onclick="filterBen('basso',this)">🔴 Basso (7)</button>
+        <button class="btn btn-ghost  btn-sm"  id="ben-btn-alert" onclick="filterBen('alert',this)">⚠️ Alert (3)</button>
+        <div style="margin-left:auto;display:flex;gap:7px;align-items:center;flex-wrap:wrap">
+          <select class="fs" style="width:160px;padding:6px 10px;font-size:.73rem"
+                  onchange="filterBenSettore(this.value)">
+            <option value="">Tutti i settori</option>
+            <option value="Lavori">🏗️ Lavori</option>
+            <option value="ICT">🖥️ ICT</option>
+            <option value="Energia">⚡ Energia</option>
+            <option value="Ambiente">🌿 Ambiente</option>
+            <option value="BC">🏛️ Beni Culturali</option>
+          </select>
+          <input type="text" class="fi" style="width:190px" placeholder="🔍 Ragione sociale, P.IVA…"
+                 oninput="searchBen(this.value)"/>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabella operatori -->
+  <div class="card">
+    <div class="card-hd">
+      <div class="card-hd-l">
+        <div class="card-ico">📋</div>
+        <div>
+          <div class="card-title">Elenco Operatori Economici</div>
+          <div class="card-sub">Clicca su una riga per il dettaglio completo</div>
+        </div>
+      </div>
+      <div class="ai-pill"><div class="ai-dot"></div>Score aggiornato in tempo reale</div>
+    </div>
+    <div class="tw">
+      <table id="ben-table">
+        <thead>
+          <tr>
+            <th style="min-width:200px">Ragione Sociale</th>
+            <th>Settore / Categoria</th>
+            <th>Sede</th>
+            <th style="text-align:center">Score AI</th>
+            <th style="text-align:center">Solidità</th>
+            <th style="text-align:center">Storico</th>
+            <th style="text-align:center">Compliance</th>
+            <th>Stato documenti</th>
+            <th>Ultimo aggiornamento</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <!-- ── ALTO ── -->
+          <tr class="ben-row" data-score="alto" data-alert="no" data-settore="Lavori"
+              onclick="openBenModal('Edilizia Storica SpA')" style="cursor:pointer">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:var(--c100);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏗️</div>
+                <div>
+                  <strong>Edilizia Storica SpA</strong>
+                  <div class="tm">P.IVA 01234567890</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-blue">Lavori OG1/OG2</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Bologna (BO)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--ok);
+                          background:var(--ok-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--ok-dk);line-height:1">91</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">94</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">88</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">91</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-green" style="width:fit-content">✅ DURC valido</span>
+                <span class="badge b-green" style="width:fit-content">✅ Antimafia</span>
+                <span class="badge b-blue"  style="width:fit-content">SOA OG2 cl.IV</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--n400)">05 giu 2025</td>
+            <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Edilizia Storica SpA')">→ Dettaglio</button></td>
+          </tr>
+
+          <tr class="ben-row" data-score="alto" data-alert="no" data-settore="BC"
+              onclick="openBenModal('Restauri Antichi Srl')" style="cursor:pointer">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:#fef3c7;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏛️</div>
+                <div>
+                  <strong>Restauri Antichi Srl</strong>
+                  <div class="tm">P.IVA 09876543210</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-teal">Beni Culturali OG2</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Firenze (FI)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--ok);
+                          background:var(--ok-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--ok-dk);line-height:1">87</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">89</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">91</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">82</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-green" style="width:fit-content">✅ DURC valido</span>
+                <span class="badge b-teal"  style="width:fit-content">SOA OG2 cl.III</span>
+                <span class="badge b-blue"  style="width:fit-content">7 contratti BC</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--n400)">04 giu 2025</td>
+            <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Restauri Antichi Srl')">→ Dettaglio</button></td>
+          </tr>
+
+          <tr class="ben-row" data-score="alto" data-alert="no" data-settore="ICT"
+              onclick="openBenModal('TechPublic Srl')" style="cursor:pointer">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:var(--purple-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">💻</div>
+                <div>
+                  <strong>TechPublic Srl</strong>
+                  <div class="tm">P.IVA 07654321098</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-purple">Servizi IT · SaaS</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Milano (MI)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--ok);
+                          background:var(--ok-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--ok-dk);line-height:1">84</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">82</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">88</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">82</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-green"  style="width:fit-content">✅ DURC valido</span>
+                <span class="badge b-blue"   style="width:fit-content">ISO 27001</span>
+                <span class="badge b-purple" style="width:fit-content">5 Acc. Quadro PA</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--n400)">03 giu 2025</td>
+            <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('TechPublic Srl')">→ Dettaglio</button></td>
+          </tr>
+
+          <tr class="ben-row" data-score="alto" data-alert="no" data-settore="Ambiente"
+              onclick="openBenModal('Giardinaggio Bianco')" style="cursor:pointer">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:var(--ok-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🌿</div>
+                <div>
+                  <strong>Giardinaggio Bianco Srl</strong>
+                  <div class="tm">P.IVA 03344556677</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-green">Ambiente · Verde urbano</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Bari (BA)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--ok);
+                          background:var(--ok-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--ok-dk);line-height:1">82</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">80</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">86</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">80</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-green" style="width:fit-content">✅ DURC valido</span>
+                <span class="badge b-teal"  style="width:fit-content">Rating 3★</span>
+                <span class="badge b-blue"  style="width:fit-content">6 contratti PA</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--n400)">03 giu 2025</td>
+            <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Giardinaggio Bianco')">→ Dettaglio</button></td>
+          </tr>
+
+          <!-- ── MEDIO ── -->
+          <tr class="ben-row" data-score="medio" data-alert="no" data-settore="Lavori"
+              onclick="openBenModal('Costruzioni Sud 2020 Srl')" style="cursor:pointer">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:var(--warn-bg);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🏚️</div>
+                <div>
+                  <strong>Costruzioni Sud 2020 Srl</strong>
+                  <div class="tm">P.IVA 05566778899</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-amber">Lavori OG1</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Napoli (NA)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--warn);
+                          background:var(--warn-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--warn-dk);line-height:1">63</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--warn)">58</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--ok)">71</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--warn)">60</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-green" style="width:fit-content">✅ DURC valido</span>
+                <span class="badge b-amber" style="width:fit-content">⚠️ Rating 1★</span>
+                <span class="badge b-amber" style="width:fit-content">1 penale</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--n400)">02 giu 2025</td>
+            <td><button class="btn btn-secondary btn-xs" onclick="event.stopPropagation();openBenModal('Costruzioni Sud 2020 Srl')">→ Dettaglio</button></td>
+          </tr>
+
+          <!-- ── BASSO / ALERT ── -->
+          <tr class="ben-row" data-score="basso" data-alert="si" data-settore="Lavori"
+              onclick="openBenModal('Ediltech Srl')" style="cursor:pointer;background:var(--err-bg)">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:#fecaca;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">⚠️</div>
+                <div>
+                  <strong style="color:var(--err)">Ediltech Srl</strong>
+                  <div class="tm">P.IVA 06677889900</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-red">Lavori OG6</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Palermo (PA)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--err);
+                          background:var(--err-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--err);line-height:1">51</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--warn)">55</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--warn)">60</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--err)">38</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-red"   style="width:fit-content">🚨 DURC scaduto</span>
+                <span class="badge b-amber" style="width:fit-content">⚠️ 2 penali</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--err);font-weight:700">🚨 Oggi</td>
+            <td><button class="btn btn-danger btn-xs" onclick="event.stopPropagation();openBenModal('Ediltech Srl')">→ Alert</button></td>
+          </tr>
+
+          <tr class="ben-row" data-score="basso" data-alert="si" data-settore="BC"
+              onclick="openBenModal('Consorzio Alfa Restauri')" style="cursor:pointer;background:var(--err-bg)">
+            <td>
+              <div style="display:flex;align-items:center;gap:8px">
+                <div style="width:32px;height:32px;border-radius:7px;background:#fecaca;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0">🚫</div>
+                <div>
+                  <strong style="color:var(--err)">Consorzio Alfa Restauri</strong>
+                  <div class="tm">P.IVA 07788990011</div>
+                </div>
+              </div>
+            </td>
+            <td><span class="badge b-red">Cooperative</span></td>
+            <td style="font-size:.73rem;color:var(--n600)">Catania (CT)</td>
+            <td style="text-align:center">
+              <div style="display:inline-flex;flex-direction:column;align-items:center;
+                          width:42px;height:42px;border-radius:50%;border:3px solid var(--err);
+                          background:var(--err-bg);justify-content:center">
+                <span style="font-size:.92rem;font-weight:800;color:var(--err);line-height:1">41</span>
+              </div>
+            </td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--err)">38</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--warn)">52</span></td>
+            <td style="text-align:center"><span style="font-weight:700;color:var(--err)">33</span></td>
+            <td>
+              <div style="display:flex;flex-direction:column;gap:3px">
+                <span class="badge b-red" style="width:fit-content">🚫 Escluso 2 gare</span>
+                <span class="badge b-red" style="width:fit-content">⚠️ Proc. concorsuale</span>
+              </div>
+            </td>
+            <td style="font-size:.68rem;color:var(--err);font-weight:700">🚨 01 giu 2025</td>
+            <td><button class="btn btn-danger btn-xs" onclick="event.stopPropagation();openBenModal('Consorzio Alfa Restauri')">→ Alert</button></td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+    <div class="card-foot" style="justify-content:space-between">
+      <span style="font-size:.69rem;color:var(--n500)">Visualizzati 7 su 47 operatori</span>
+      <div style="display:flex;gap:6px">
+        <button class="btn btn-ghost btn-sm" onclick="toast('Export CSV avviato','ok')">⬇ Esporta CSV</button>
+        <button class="btn btn-secondary btn-sm" onclick="toast('Aggiornamento score AI avviato…','info')">🤖 Aggiorna Score</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legenda score -->
+  <div class="card" style="margin-top:14px">
+    <div class="card-hd">
+      <div class="card-hd-l">
+        <div class="card-ico">ℹ️</div>
+        <div class="card-title">Metodologia Score AI</div>
+      </div>
+    </div>
+    <div class="card-body">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px">
+        <div style="background:var(--n50);border-radius:var(--r);padding:12px;border:1px solid var(--n200)">
+          <div style="font-size:.7rem;font-weight:700;color:var(--n700);margin-bottom:6px">🏦 Solidità finanziaria <span style="color:var(--c600)">25%</span></div>
+          <div style="font-size:.67rem;color:var(--n500)">Fatturato, indici patrimoniali, rating bancario</div>
+        </div>
+        <div style="background:var(--n50);border-radius:var(--r);padding:12px;border:1px solid var(--n200)">
+          <div style="font-size:.7rem;font-weight:700;color:var(--n700);margin-bottom:6px">📋 Storico contratti PA <span style="color:var(--c600)">30%</span></div>
+          <div style="font-size:.67rem;color:var(--n500)">N. contratti completati, penali, inadempienze</div>
+        </div>
+        <div style="background:var(--n50);border-radius:var(--r);padding:12px;border:1px solid var(--n200)">
+          <div style="font-size:.7rem;font-weight:700;color:var(--n700);margin-bottom:6px">✅ Compliance normativa <span style="color:var(--c600)">30%</span></div>
+          <div style="font-size:.67rem;color:var(--n500)">DURC, antimafia, rating legalità, SOA</div>
+        </div>
+        <div style="background:var(--n50);border-radius:var(--r);padding:12px;border:1px solid var(--n200)">
+          <div style="font-size:.7rem;font-weight:700;color:var(--n700);margin-bottom:6px">🔧 Capacità tecnica <span style="color:var(--c600)">15%</span></div>
+          <div style="font-size:.67rem;color:var(--n500)">Attestazioni SOA, certificazioni, organico</div>
+        </div>
+      </div>
+      <div style="display:flex;gap:10px;margin-top:12px;flex-wrap:wrap">
+        <span style="display:flex;align-items:center;gap:5px;font-size:.71rem;font-weight:600">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--ok)"></span>75–100 Affidabile
+        </span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.71rem;font-weight:600">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--warn)"></span>50–74 Monitorare
+        </span>
+        <span style="display:flex;align-items:center;gap:5px;font-size:.71rem;font-weight:600">
+          <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--err)"></span>0–49 Attenzione
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
