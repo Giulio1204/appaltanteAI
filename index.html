@@ -104,71 +104,63 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 /* ── PAGES ── */
 /* ══ CONTRASTO SEZIONI ══ */
 
-/* Dashboard: sfondo neutro con accent blu scuro in topbar */
-#page-dashboard { background: var(--n50); }
+/* Dashboard: usa il bg base, nessun cambio */
+#page-dashboard { background: var(--bg); }
 
-/* Agente AI: sfondo molto scuro per dare senso di "sistema attivo" */
-#page-agente { background: linear-gradient(160deg, #0a0f24 0%, #0d2060 100%); min-height: 100vh; }
-#page-agente .sh-title { color: #fff; }
-#page-agente .sh-sub { color: rgba(255,255,255,0.5); }
-#page-agente .card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
-#page-agente .card-title { color: #e0ecff; }
-#page-agente .card-sub { color: rgba(255,255,255,0.4); }
-#page-agente .card-hd { border-bottom-color: rgba(255,255,255,0.06); }
+/* Agente AI: leggermente più scuro con sfumatura blu profondo */
+#page-agente { background: linear-gradient(160deg, var(--bg) 0%, #080f22 100%); }
 
-/* Procedure: sfondo grigio più deciso */
-#page-procedure { background: var(--n100); }
-#page-procedure .sh-title { color: var(--c800); border-left: 4px solid var(--c500); padding-left: 10px; }
+/* Procedure: sfondo con accent blu laterale sottile */
+#page-procedure { background: var(--bg); }
+#page-procedure .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--acc); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Genera Bando: sfondo con leggero gradiente azurro */
-#page-nuova { background: linear-gradient(170deg, #e0ecff 0%, var(--n50) 40%); }
+/* Genera Bando: sfondo leggermente più chiaro con gradiente */
+#page-nuova { background: linear-gradient(170deg, #0c1830 0%, var(--bg) 50%); }
 
-/* Valutazione: accento rosso/arancio (senso di urgenza e analisi) */
-#page-valutazione { background: var(--n50); }
-#page-valutazione .sh-title { color: var(--c800); border-left: 4px solid var(--err); padding-left: 10px; }
+/* Valutazione: accento rosso (urgenza) */
+#page-valutazione { background: var(--bg); }
+#page-valutazione .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--crit); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Beneficiari: sfondo leggermente verde (affidabilità, score) */
-#page-beneficiari { background: linear-gradient(170deg, #ecfdf5 0%, var(--n50) 35%); }
-#page-beneficiari .sh-title { color: var(--ok-dk); border-left: 4px solid var(--ok); padding-left: 10px; }
+/* Beneficiari: sfondo con sfumatura verde scura */
+#page-beneficiari { background: linear-gradient(170deg, #071814 0%, var(--bg) 45%); }
+#page-beneficiari .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--ok); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Commissioni: sfondo neutro con accent viola */
-#page-commissioni { background: var(--n50); }
-#page-commissioni .sh-title { color: var(--c800); border-left: 4px solid var(--purple); padding-left: 10px; }
+/* Commissioni: sfondo con accent viola */
+#page-commissioni { background: var(--bg); }
+#page-commissioni .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--pu); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Archivio Documenti: sfondo con leggero tono carta */
-#page-documenti { background: #fafaf7; }
-#page-documenti .sh-title { border-left: 4px solid #d97706; padding-left: 10px; }
+/* Archivio Documenti: sfondo neutro con caldo */
+#page-documenti { background: linear-gradient(170deg, #0f1408 0%, var(--bg) 45%); }
+#page-documenti .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--warn); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Contratti: sfondo con accent arancio (esecuzione/avanzamento) */
-#page-esecuzione { background: var(--n50); }
-#page-esecuzione .sh-title { border-left: 4px solid var(--warn); padding-left: 10px; }
+/* Contratti: sfondo con accent arancio */
+#page-esecuzione { background: var(--bg); }
+#page-esecuzione .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--warn); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Rendicontazione: sfondo con sfumatura UE (blu istituzionale) */
-#page-rendicontazione { background: linear-gradient(160deg, #eff6ff 0%, var(--n50) 40%); }
-#page-rendicontazione .sh-title { color: var(--c800); border-left: 4px solid var(--c600); padding-left: 10px; }
+/* Rendicontazione: sfondo con blu istituzionale */
+#page-rendicontazione { background: linear-gradient(160deg, #081225 0%, var(--bg) 45%); }
+#page-rendicontazione .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--acc); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Conformità ANAC: sfondo con leggero tono di allerta */
-#page-conformita { background: linear-gradient(170deg, #fff7ed 0%, var(--n50) 40%); }
-#page-conformita .sh-title { border-left: 4px solid var(--warn); padding-left: 10px; }
+/* Conformità ANAC: sfondo con tono arancio/allerta */
+#page-conformita { background: linear-gradient(170deg, #18100a 0%, var(--bg) 45%); }
+#page-conformita .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--warn); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Report: sfondo scuro premium (analytics feel) */
-#page-report { background: var(--n50); }
-#page-report .sh-title { border-left: 4px solid var(--purple); padding-left: 10px; }
+/* Report: sfondo premium leggermente viola */
+#page-report { background: linear-gradient(160deg, #0e0a1f 0%, var(--bg) 50%); }
+#page-report .sh-title::before { content: ''; display: inline-block; width: 3px; height: 1em; background: var(--pu); border-radius: 2px; margin-right: 8px; vertical-align: middle; }
 
-/* Hover card più visibile per sezioni scure */
-#page-agente .card:hover { background: rgba(255,255,255,0.09); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
-
-/* KPI grid colorata per ogni sezione */
-#page-beneficiari .kpi { background: rgba(255,255,255,0.85); }
-#page-conformita .kpi { background: rgba(255,255,255,0.85); }
-
-/* Separatore visivo tra header e contenuto di ogni pagina */
-.page.active { border-top: 3px solid transparent; }
-#page-agente.active { border-top-color: var(--c400); }
-#page-procedure.active { border-top-color: var(--c500); }
-#page-valutazione.active { border-top-color: var(--err); }
-#page-beneficiari.active { border-top-color: var(--ok); }
-#page-report.active { border-top-color: var(--purple); }
+/* Bordo superiore colorato per ogni sezione attiva */
+.page.active { border-top: 2px solid transparent; }
+#page-agente.active     { border-top-color: var(--acc); }
+#page-procedure.active  { border-top-color: var(--acc); }
+#page-valutazione.active{ border-top-color: var(--crit); }
+#page-beneficiari.active{ border-top-color: var(--ok); }
+#page-commissioni.active{ border-top-color: var(--pu); }
+#page-documenti.active  { border-top-color: var(--warn); }
+#page-esecuzione.active { border-top-color: var(--warn); }
+#page-rendicontazione.active { border-top-color: var(--acc); }
+#page-conformita.active { border-top-color: var(--crit); }
+#page-report.active     { border-top-color: var(--pu); }
 
 /* ── SECTION HEADER ── */
 .sh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
@@ -1639,15 +1631,25 @@ function updateBN(page){
 }
 
 // ── TABS ──
-function switchTab(paneId,btn){
-  const pane=document.getElementById(paneId);if(!pane) return;
-  const container=pane.parentElement;
-  if(container) container.querySelectorAll(':scope > .tab-pane').forEach(p=>p.classList.remove('active'));
-  if(btn){
-    const wrap=btn.closest('.tabs-wrap');
-    if(wrap) wrap.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+function switchTab(paneId, btn) {
+  const pane = document.getElementById(paneId);
+  if (!pane) return;
+
+  // Cerca il contenitore page genitore
+  let container = pane.parentElement;
+
+  // Disattiva tutti i pane fratelli
+  container.querySelectorAll(':scope > .tab-pane').forEach(p => p.classList.remove('active'));
+
+  // Disattiva tutti i tab-btn nel wrap più vicino
+  if (btn) {
+    // Risali fino a trovare il .tabs-wrap o .page
+    let tabWrap = btn.closest('.tabs-wrap');
+    if (!tabWrap) tabWrap = btn.closest('.page');
+    if (tabWrap) tabWrap.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
   }
+
   pane.classList.add('active');
 }
 
