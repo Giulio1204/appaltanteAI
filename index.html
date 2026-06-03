@@ -309,13 +309,32 @@ tbody tr:hover{background:rgba(255,255,255,.03)}
 .pf-p{background:linear-gradient(90deg,#6d28d9,var(--pu))}
 
 /* ── TABS ── */
-.tabs-wrap{border-bottom:1px solid var(--bdr);margin-bottom:14px;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.tabs{display:flex;gap:0;min-width:max-content}
-.tab-btn{padding:7px 13px;font-size:.68rem;font-weight:600;color:var(--txt3);background:none;border:none;border-bottom:2px solid transparent;margin-bottom:-1px;cursor:pointer;transition:all var(--t);white-space:nowrap;font-family:inherit;letter-spacing:-.1px}
-.tab-btn:hover{color:var(--txt2)}
-.tab-btn.active{color:#93b8fb;border-bottom-color:var(--acc)}
-.tab-pane{display:none;animation:fi .16s ease both}
-.tab-pane.active{display:block}
+// ── TABS ──
+function switchTab(paneId, btn) {
+  const pane = document.getElementById(paneId);
+  if (!pane) return;
+
+  // Trova la pagina (.page) che contiene questo pane
+  const parentPage = pane.closest('.page') || pane.closest('.cnt')?.parentElement;
+
+  // Disattiva TUTTI i .tab-pane dentro quella pagina
+  if (parentPage) {
+    parentPage.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  }
+
+  // Attiva il pane richiesto
+  pane.classList.add('active');
+
+  // Gestione bottoni tab
+  if (btn) {
+    // Risali al tabs-wrap più vicino al bottone
+    const tabsWrap = btn.closest('.tabs-wrap');
+    if (tabsWrap) {
+      tabsWrap.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    }
+    btn.classList.add('active');
+  }
+}
 
 /* ── FORMS ── */
 .fr{display:grid;grid-template-columns:1fr 1fr;gap:10px}
@@ -1711,7 +1730,7 @@ function generaBando(){
   btn.textContent='⏳ Elaborazione…';btn.disabled=true;btn.style.opacity='.6';
   toast('Agente AI — generazione bando avviata…','info');
   setTimeout(()=>{
-    switchTab('ng-prev',document.querySelectorAll('#page-nuova .tab-btn')[4]);
+   switchTab('ng-prev', document.querySelectorAll('#page-nuova .tab-btn')[4]);
     ['sb1','sb2','sb3','sb4'].forEach((id,i)=>{
       const el=document.getElementById(id);
       if(el){el.classList.remove('cur');el.classList.add('done');el.textContent='✓';}
