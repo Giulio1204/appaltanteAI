@@ -102,10 +102,73 @@ body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradi
 .as-dis:hover{color:var(--txt2)}
 
 /* ── PAGES ── */
-.page{display:none;flex:1;animation:fi .18s ease both;padding-bottom:calc(18px + var(--bnav))}
-.page.active{display:block}
-@keyframes fi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-.cnt{padding:16px}
+/* ══ CONTRASTO SEZIONI ══ */
+
+/* Dashboard: sfondo neutro con accent blu scuro in topbar */
+#page-dashboard { background: var(--n50); }
+
+/* Agente AI: sfondo molto scuro per dare senso di "sistema attivo" */
+#page-agente { background: linear-gradient(160deg, #0a0f24 0%, #0d2060 100%); min-height: 100vh; }
+#page-agente .sh-title { color: #fff; }
+#page-agente .sh-sub { color: rgba(255,255,255,0.5); }
+#page-agente .card { background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.08); backdrop-filter: blur(10px); }
+#page-agente .card-title { color: #e0ecff; }
+#page-agente .card-sub { color: rgba(255,255,255,0.4); }
+#page-agente .card-hd { border-bottom-color: rgba(255,255,255,0.06); }
+
+/* Procedure: sfondo grigio più deciso */
+#page-procedure { background: var(--n100); }
+#page-procedure .sh-title { color: var(--c800); border-left: 4px solid var(--c500); padding-left: 10px; }
+
+/* Genera Bando: sfondo con leggero gradiente azurro */
+#page-nuova { background: linear-gradient(170deg, #e0ecff 0%, var(--n50) 40%); }
+
+/* Valutazione: accento rosso/arancio (senso di urgenza e analisi) */
+#page-valutazione { background: var(--n50); }
+#page-valutazione .sh-title { color: var(--c800); border-left: 4px solid var(--err); padding-left: 10px; }
+
+/* Beneficiari: sfondo leggermente verde (affidabilità, score) */
+#page-beneficiari { background: linear-gradient(170deg, #ecfdf5 0%, var(--n50) 35%); }
+#page-beneficiari .sh-title { color: var(--ok-dk); border-left: 4px solid var(--ok); padding-left: 10px; }
+
+/* Commissioni: sfondo neutro con accent viola */
+#page-commissioni { background: var(--n50); }
+#page-commissioni .sh-title { color: var(--c800); border-left: 4px solid var(--purple); padding-left: 10px; }
+
+/* Archivio Documenti: sfondo con leggero tono carta */
+#page-documenti { background: #fafaf7; }
+#page-documenti .sh-title { border-left: 4px solid #d97706; padding-left: 10px; }
+
+/* Contratti: sfondo con accent arancio (esecuzione/avanzamento) */
+#page-esecuzione { background: var(--n50); }
+#page-esecuzione .sh-title { border-left: 4px solid var(--warn); padding-left: 10px; }
+
+/* Rendicontazione: sfondo con sfumatura UE (blu istituzionale) */
+#page-rendicontazione { background: linear-gradient(160deg, #eff6ff 0%, var(--n50) 40%); }
+#page-rendicontazione .sh-title { color: var(--c800); border-left: 4px solid var(--c600); padding-left: 10px; }
+
+/* Conformità ANAC: sfondo con leggero tono di allerta */
+#page-conformita { background: linear-gradient(170deg, #fff7ed 0%, var(--n50) 40%); }
+#page-conformita .sh-title { border-left: 4px solid var(--warn); padding-left: 10px; }
+
+/* Report: sfondo scuro premium (analytics feel) */
+#page-report { background: var(--n50); }
+#page-report .sh-title { border-left: 4px solid var(--purple); padding-left: 10px; }
+
+/* Hover card più visibile per sezioni scure */
+#page-agente .card:hover { background: rgba(255,255,255,0.09); box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
+
+/* KPI grid colorata per ogni sezione */
+#page-beneficiari .kpi { background: rgba(255,255,255,0.85); }
+#page-conformita .kpi { background: rgba(255,255,255,0.85); }
+
+/* Separatore visivo tra header e contenuto di ogni pagina */
+.page.active { border-top: 3px solid transparent; }
+#page-agente.active { border-top-color: var(--c400); }
+#page-procedure.active { border-top-color: var(--c500); }
+#page-valutazione.active { border-top-color: var(--err); }
+#page-beneficiari.active { border-top-color: var(--ok); }
+#page-report.active { border-top-color: var(--purple); }
 
 /* ── SECTION HEADER ── */
 .sh{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px;gap:10px;flex-wrap:wrap}
